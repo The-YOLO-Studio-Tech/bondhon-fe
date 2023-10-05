@@ -7,7 +7,6 @@ const Template = ({ children }: { children: React.ReactNode }) => {
       <DefaultNavbar />
       {children}
 
-      
       <DefaultFooter />
     </div>
   );

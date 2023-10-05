@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const VideoCart = () => {
-  return (
-    <div>VideoCart</div>
-  )
-}
+  return <div>VideoCart</div>;
+};
 
-export default VideoCart
+export default VideoCart;

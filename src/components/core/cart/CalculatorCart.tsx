@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const CalculatorCart = () => {
-  return (
-    <div>CalculatorCart</div>
-  )
-}
+  return <div>CalculatorCart</div>;
+};
 
-export default CalculatorCart
+export default CalculatorCart;

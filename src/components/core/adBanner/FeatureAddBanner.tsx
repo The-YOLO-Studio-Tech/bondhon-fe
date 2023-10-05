@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const FeatureAddBanner = () => {
-  return (
-    <div>FeatureAddBanner</div>
-  )
-}
+  return <div>FeatureAddBanner</div>;
+};
 
-export default FeatureAddBanner
+export default FeatureAddBanner;
