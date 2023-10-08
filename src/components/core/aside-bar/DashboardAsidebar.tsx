@@ -11,19 +11,30 @@ const DashboardAsidebar = () => {
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white">
           <ul className="space-y-2 font-medium">
             <li>
-              Add Category
+              পেইজ সেটিংস
               <ul className="ml-4">
-                <li>Cat1</li>
-                <li>Cat1</li>
+                <li>হোম</li>
+                <li>ব্লগ ডিটেইলস</li>
               </ul>
             </li>
+            <li>ভিডিও</li>
+            <li>বিজ্ঞাপন</li>
             <li>
-              Page Settings
+              ব্লগ
               <ul className="ml-4">
-                <li>Home</li>
-                <li>Post Details</li>
+                <li>অ্যাড ক্যাটাগরি</li>
+                <li>
+                  ক্যাটাগরি ১
+                  <ul className="ml-4">
+                    অ্যাড সাব-ক্যাটাগরি
+                    <li>সাব-ক্যাটাগরি ১</li>
+                  </ul>
+                </li>
+                <li> ক্যাটাগরি ২</li>
               </ul>
             </li>
+            <li>আর্কাইভ</li>
+            <li>বাজারদর</li>
           </ul>
         </div>
       </aside>
