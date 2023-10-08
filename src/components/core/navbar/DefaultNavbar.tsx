@@ -1,8 +1,11 @@
+'use client';
+
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { BiChevronDown, BiSearch } from 'react-icons/bi';
 import { AiOutlineLine } from 'react-icons/ai';
 import MobileHamburgerMenu from './MobileHamburgerMenu';
+import { useBlogCategoryData } from '@/hooks/querey/useCategorySubcategoryData';
 
 const TopHeader = () => {
   return (
@@ -33,23 +36,32 @@ const TopHeader = () => {
   );
 };
 
-const MenuWithSubmenu = ({ idx }: { idx: number }) => {
+const MenuWithSubmenu = ({
+  idx,
+  instance,
+  count,
+}: {
+  idx: number;
+  instance: any;
+  count: number;
+}) => {
   return (
     <div className="relative menu z-10">
       <li className="flex gap-1 items-center">
         <span className="flex items-center">
-          স্থাপথ্য <BiChevronDown />
+          {instance?.title} <BiChevronDown />
         </span>
-        <span className={`rotate-90 ${idx == 3 ? 'hidden' : 'block'}`}>
+        <span className={`rotate-90 ${idx + 1 == count ? 'hidden' : 'block'}`}>
           <AiOutlineLine size={12} />
         </span>
       </li>
-      <div className=" absolute top-[-1000px] subMenu -left-10">
+      <div className=" absolute top-[-1000px] subMenu">
         <ul className="bg-white flex flex-col gap-2 text-[#392FA3] px-5 pb-3 mt-10 shadow-sm">
-          <Link href="/">subCategory1</Link>
-          <Link href="/">subCategory2</Link>
-          <Link href="/">subCategory3</Link>
-          <Link href="/">subCategory4</Link>
+          {instance.sub_category?.map((i: { title: string }) => (
+            <Link key={Math.random()} href="/">
+              {i.title}
+            </Link>
+          ))}
         </ul>
       </div>
     </div>
@@ -67,21 +79,43 @@ const SearchField = () => {
 
 // default component
 const DefaultNavbar = () => {
+  const { data, isLoading } = useBlogCategoryData();
+
   return (
     <div>
       <TopHeader />
       <div className="commonContainer">
         <div className="mt-5 hidden justify-between bg-[#392FA3] items-center px-4 py-2 text-white md:flex md:py-3 md:px-7 xl:py-5 xl:px-10">
           <div className="flex gap-4 xl:gap-6">
-            <Link href="/" className="flex items-center gap-1">
-              হোম{' '}
-              <span className="rotate-90">
-                <AiOutlineLine size={12} />
-              </span>
-            </Link>
-            {[...new Array(4)].map((_i, idx) => (
-              <MenuWithSubmenu idx={idx} key={Math.random()} />
-            ))}
+            {isLoading
+              ? [...new Array(4)].map(() => (
+                  <p key={Math.random()} className="px-4 py-1 rounded-md bg-white"></p>
+                ))
+              : data?.results?.map((i: any, idx: number) => {
+                  return (
+                    <>
+                      {i.sub_category.length === 0 ? (
+                        <Link href="/" className="flex items-center gap-1">
+                          হোম{' '}
+                          <span className="rotate-90">
+                            <AiOutlineLine size={12} />
+                          </span>
+                        </Link>
+                      ) : (
+                        <MenuWithSubmenu
+                          instance={i}
+                          count={data?.results.length}
+                          idx={idx}
+                          key={Math.random()}
+                        />
+                      )}
+                    </>
+                  );
+                })}
+
+            {/* {[...new Array(4)].map((_i, idx) => (
+              
+            ))} */}
           </div>
           <div>
             <SearchField />

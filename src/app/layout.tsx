@@ -1,4 +1,5 @@
 import NextAuthProvider from '@/components/provider/NextAuthProvider';
+import TanStackQueryProvider from '@/components/provider/TanstackProvider';
 import { authOptions } from '@/libs/authOptions';
 import '@styles/globals.css';
 import type { Metadata } from 'next';
@@ -17,7 +18,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <NextAuthProvider session={session}>{children}</NextAuthProvider>
+        <NextAuthProvider session={session}>
+          <TanStackQueryProvider>{children}</TanStackQueryProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
