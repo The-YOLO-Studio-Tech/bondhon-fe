@@ -55,3 +55,10 @@ pnpm run start
 ##### Copyright (c) 2023 Next Moov
 
 This software is licensed under Proprietary LICENSE.
+
+IMAGE_HOST=placehold.co
+API_URL=http://127.0.0.1:8000
+NEXTAUTH_URL=http://localhost:3000
+JWT_SICRECT_KEY=erOCBYaO9zFDkGj73KmwZIFH6sXAPAGn
+NEXTAUTH_SECRET=nxB4fSCAWtflGvOWjL6INysIA8t8LJG1
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
