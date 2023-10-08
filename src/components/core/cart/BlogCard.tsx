@@ -1,9 +1,10 @@
 import Image from 'next/legacy/image';
+import Link from 'next/link';
 import React from 'react';
 
 const BlogCard = () => {
   return (
-    <div>
+    <Link className=" h-fit" href="/blog/slug">
       <div className="relative">
         <Image
           src="https://placehold.co/600x400.png?text=Card"
@@ -23,7 +24,7 @@ const BlogCard = () => {
           বাংলাদেশের জনসংখ্যা এখন প্রায় ১৭ কোটি। এদের মধ্যে মানসিক স্বাস্থ্যগত
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

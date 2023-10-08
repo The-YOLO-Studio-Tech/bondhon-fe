@@ -15,7 +15,9 @@ const CategoryCart = () => {
           alt="thumbnail"
         />
       </div>
-      <button className="py-4 bg-[#392FA3] text-white w-full text-center xl:py-6">মুখোমুখি</button>
+      <button className="py-2 bg-[#392FA3] text-white leading-[140%] w-full text-center xl:py-5">
+        মুখোমুখি
+      </button>
     </Link>
   );
 };
