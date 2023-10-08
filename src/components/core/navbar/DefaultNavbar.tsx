@@ -33,14 +33,14 @@ const TopHeader = () => {
   );
 };
 
-const MenuWithSubmenu = () => {
+const MenuWithSubmenu = ({ idx }: { idx: number }) => {
   return (
-    <div className="relative menu ">
+    <div className="relative menu z-10">
       <li className="flex gap-1 items-center">
         <span className="flex items-center">
           স্থাপথ্য <BiChevronDown />
         </span>
-        <span className="rotate-90">
+        <span className={`rotate-90 ${idx == 3 ? 'hidden' : 'block'}`}>
           <AiOutlineLine size={12} />
         </span>
       </li>
@@ -79,8 +79,8 @@ const DefaultNavbar = () => {
                 <AiOutlineLine size={12} />
               </span>
             </Link>
-            {[...new Array(4)].map(() => (
-              <MenuWithSubmenu key={Math.random()} />
+            {[...new Array(4)].map((_i, idx) => (
+              <MenuWithSubmenu idx={idx} key={Math.random()} />
             ))}
           </div>
           <div>
