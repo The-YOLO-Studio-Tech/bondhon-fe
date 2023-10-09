@@ -1,3 +1,4 @@
+import { CategoryManagementModal } from '@/components/dashboard/blog/CategoryManagement';
 import Link from 'next/link';
 import React from 'react';
 
@@ -12,7 +13,7 @@ const DashboardAsidebar = () => {
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white">
           <ul className="space-y-2 font-medium">
             <li>
-              পেইজ সেটিংস
+              <span className="font-bold">পেইজ সেটিংস</span>
               <ul className="ml-4">
                 <li>
                   <Link href={'/dashboard/settings/home'}>হোম</Link>
@@ -38,15 +39,16 @@ const DashboardAsidebar = () => {
               <Link href={'/dashboard/advertisement'}>বিজ্ঞাপন</Link>
             </li>
             <li>
-              ব্লগ
+              <span className="font-bold">ব্লগ</span>
+
               <ul className="ml-4">
                 <li>
-                  <Link href={'/dashboard/blog/catagory/add'}>অ্যাড ক্যাটাগরি</Link>
+                  <CategoryManagementModal />
                 </li>
                 <li>
                   <Link href={'/dashboard/blog/1'}>ক্যাটাগরি ১</Link>
                   <ul className="ml-4">
-                    <Link href={'/dashboard/blog/1/sub-catagory/add'}>অ্যাড সাব-ক্যাটাগরি</Link>
+                    <Link href={'/dashboard/blog/1/sub/add'}>অ্যাড সাব-ক্যাটাগরি</Link>
 
                     <li>
                       <Link href={'/dashboard/blog/1/sub-catagory/1'}>অ্যাড সাব-ক্যাটাগরি</Link>
