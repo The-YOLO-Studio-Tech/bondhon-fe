@@ -1,5 +1,6 @@
 'use client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SnackbarProvider } from 'notistack';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -11,7 +12,10 @@ const queryClient = new QueryClient({
 const TanStackQueryProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <SnackbarProvider maxSnack={3}>
+        {' '}
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      </SnackbarProvider>
     </>
   );
 };

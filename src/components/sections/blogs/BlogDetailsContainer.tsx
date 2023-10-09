@@ -75,7 +75,7 @@ const BlogDetails = () => {
       <div className="relative">
         <Image
           src="https://placehold.co/600x400.png?text=Card"
-          className="rounded-2xl"
+          className=""
           width={591}
           height={332}
           layout="responsive"
