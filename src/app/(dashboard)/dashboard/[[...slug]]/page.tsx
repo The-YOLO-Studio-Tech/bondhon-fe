@@ -12,8 +12,7 @@ import React from 'react';
 export type Paramas = { params: { slug: string } };
 
 const DashBoard = ({ params }: Paramas) => {
-  // console.log(params?.slug?.toString());
-
+  // console.log(params.)
   return (
     <div>
       {params?.slug?.toString()?.replace(',', '/') === 'settings/home' && <LandingSettings />}

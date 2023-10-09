@@ -16,22 +16,22 @@ const BlogItems = () => {
       {data &&
         data.results.map((category: CategoryType) => (
           <li key={category.id}>
-            <Link href={`/dashboard/blog/${category.id}`}>{category.title}</Link>
+            <Link href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}`}>
+              {category.title}
+            </Link>
             <ul className="ml-4">
               <li>
                 <AddNewSubcategory category_id={category.id} />
               </li>
               {category.sub_category?.map((sub_category) => (
                 <li key={sub_category.id}>
-                  <Link href={`/dashboard/blog/${category.id}/${sub_category.id}`}>
+                  <Link
+                    href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}&sc_id=${sub_category.id}&sub_category__title=${sub_category.title}`}
+                  >
                     {sub_category.title}
                   </Link>
                 </li>
               ))}
-
-              {/* <li>
-                <Link href={`/dashboard/blog/${category.id}`}>ক্যাটাগরি ১</Link>
-              </li> */}
             </ul>
           </li>
         ))}
@@ -42,7 +42,7 @@ const BlogItems = () => {
 /** default component */
 const DashboardAsidebar = () => {
   return (
-    <div className="">
+    <div>
       <aside
         id="logo-sidebar"
         className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0"

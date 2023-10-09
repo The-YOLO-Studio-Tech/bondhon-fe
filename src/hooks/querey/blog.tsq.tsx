@@ -1,11 +1,13 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 
 export type BlogType = {
   id: number;
   title: string;
   thumbnail: string;
+  description_html: string;
   status: string;
   category: number;
   sub_category: number;
@@ -15,13 +17,15 @@ export type BlogType = {
 const REFEARCH_QUERY = ['contentBlogList'];
 
 export const useGetBlogData = () => {
-  /** session management */
+  const searchParams = useSearchParams();
+  const category__title = searchParams.get('category__title') || '';
+  const sub_category__title = searchParams.get('sub_category__title') || '';
 
   return useQuery({
-    queryKey: [...REFEARCH_QUERY],
+    queryKey: [...REFEARCH_QUERY, ...[category__title, sub_category__title]],
     queryFn: () =>
       axiousResuest({
-        url: `/content/blog/`,
+        url: `/content/blog/?category__title=${category__title}&sub_category__title=${sub_category__title}`,
         method: 'get',
       }),
   });
