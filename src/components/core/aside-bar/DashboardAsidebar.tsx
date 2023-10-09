@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const DashboardAsidebar = () => {
@@ -13,28 +14,53 @@ const DashboardAsidebar = () => {
             <li>
               পেইজ সেটিংস
               <ul className="ml-4">
-                <li>হোম</li>
-                <li>ব্লগ ডিটেইলস</li>
+                <li>
+                  <Link href={'/dashboard/settings/home'}>হোম</Link>
+                </li>
+                <li>
+                  <Link href={'/dashboard/settings/blog-details'}>ব্লগ ডিটেইলস</Link>
+                </li>
+                <li>
+                  <Link href={'/dashboard/settings/category'}>ক্যাটাগরি</Link>
+                </li>
+                <li>
+                  <Link href={'/dashboard/settings/calculator'}>ক্যালকুলেটর</Link>
+                </li>
+                <li>
+                  <Link href={'/dashboard/settings/certificate'}>সার্টিফিকেট</Link>
+                </li>
               </ul>
             </li>
-            <li>ভিডিও</li>
-            <li>বিজ্ঞাপন</li>
+            <li>
+              <Link href={'/dashboard/video'}>ভিডিও</Link>
+            </li>
+            <li>
+              <Link href={'/dashboard/advertisement'}>বিজ্ঞাপন</Link>
+            </li>
             <li>
               ব্লগ
               <ul className="ml-4">
-                <li>অ্যাড ক্যাটাগরি</li>
                 <li>
-                  ক্যাটাগরি ১
+                  <Link href={'/dashboard/blog/catagory/add'}>অ্যাড ক্যাটাগরি</Link>
+                </li>
+                <li>
+                  <Link href={'/dashboard/blog/1'}>ক্যাটাগরি ১</Link>
                   <ul className="ml-4">
-                    অ্যাড সাব-ক্যাটাগরি
-                    <li>সাব-ক্যাটাগরি ১</li>
+                    <Link href={'/dashboard/blog/1/sub-catagory/add'}>অ্যাড সাব-ক্যাটাগরি</Link>
+
+                    <li>
+                      <Link href={'/dashboard/blog/1/sub-catagory/1'}>অ্যাড সাব-ক্যাটাগরি</Link>
+                      সাব-ক্যাটাগরি ১
+                    </li>
                   </ul>
                 </li>
                 <li> ক্যাটাগরি ২</li>
               </ul>
             </li>
-            <li>আর্কাইভ</li>
-            <li>বাজারদর</li>
+            <li>
+              <Link href={'/archive'}>আর্কাইভ</Link>
+            </li>
+            {/* <li>বাজারদর</li> */}
           </ul>
         </div>
       </aside>
