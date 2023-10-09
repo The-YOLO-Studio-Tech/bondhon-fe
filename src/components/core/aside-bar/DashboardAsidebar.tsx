@@ -1,7 +1,45 @@
-import { CategoryManagementModal } from '@/components/dashboard/blog/CategoryManagement';
+'use client';
+import { AddCategoryModal } from '@/components/dashboard/blog/CategoryManagement';
+import { AddNewSubcategory } from '@/components/dashboard/blog/SubcategoryManagement';
+import { CategoryType, useGetCategoryData } from '@/hooks/querey/category.tsq';
 import Link from 'next/link';
 import React from 'react';
 
+const BlogItems = () => {
+  const { data } = useGetCategoryData();
+  // console.log(data);
+  return (
+    <ul className="ml-4">
+      <li>
+        <AddCategoryModal />
+      </li>
+      {data &&
+        data.results.map((category: CategoryType) => (
+          <li key={category.id}>
+            <Link href={`/dashboard/blog/${category.id}`}>{category.title}</Link>
+            <ul className="ml-4">
+              <li>
+                <AddNewSubcategory category_id={category.id} />
+              </li>
+              {category.sub_category?.map((sub_category) => (
+                <li key={sub_category.id}>
+                  <Link href={`/dashboard/blog/${category.id}/${sub_category.id}`}>
+                    {sub_category.title}
+                  </Link>
+                </li>
+              ))}
+
+              {/* <li>
+                <Link href={`/dashboard/blog/${category.id}`}>ক্যাটাগরি ১</Link>
+              </li> */}
+            </ul>
+          </li>
+        ))}
+    </ul>
+  );
+};
+
+/** default component */
 const DashboardAsidebar = () => {
   return (
     <div className="">
@@ -40,24 +78,7 @@ const DashboardAsidebar = () => {
             </li>
             <li>
               <span className="font-bold">ব্লগ</span>
-
-              <ul className="ml-4">
-                <li>
-                  <CategoryManagementModal />
-                </li>
-                <li>
-                  <Link href={'/dashboard/blog/1'}>ক্যাটাগরি ১</Link>
-                  <ul className="ml-4">
-                    <Link href={'/dashboard/blog/1/sub/add'}>অ্যাড সাব-ক্যাটাগরি</Link>
-
-                    <li>
-                      <Link href={'/dashboard/blog/1/sub-catagory/1'}>অ্যাড সাব-ক্যাটাগরি</Link>
-                      সাব-ক্যাটাগরি ১
-                    </li>
-                  </ul>
-                </li>
-                <li> ক্যাটাগরি ২</li>
-              </ul>
+              <BlogItems />
             </li>
             <li>
               <Link href={'/archive'}>আর্কাইভ</Link>
