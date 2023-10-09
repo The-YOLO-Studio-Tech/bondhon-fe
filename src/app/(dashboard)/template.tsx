@@ -9,7 +9,7 @@ const Template = async ({ children }: { children: React.ReactNode }) => {
         <DashboardTopNavbar />
 
         <DashboardAsidebar />
-        <div className=" ml-2 mt-20 lg:ml-[275px]">{children}</div>
+        <div className="pl-4 pt-20 bg-[#F1F3F3] pr-4 lg:pr-8 lg:pl-[300px]">{children}</div>
       </AuthPage>
     </div>
   );

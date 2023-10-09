@@ -30,7 +30,6 @@ const COLUMN = ['পোস্ট', 'লিংক', 'ডেট', 'একশন'];
 type WeUniqueType = {
   id: number;
   title: string;
-  status: string;
   url: string;
   thumbnail: string;
   created_at?: string | undefined;
@@ -68,7 +67,6 @@ const UploadForm = ({
         if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
           let modifiedData = {
             title: data?.title,
-            status: data?.status,
             url: data?.url,
           };
           await mutateAsync(modifiedData);
@@ -147,15 +145,15 @@ const AddData = () => {
     <>
       <button
         onClick={() => setOpen(!open)}
-        className="w-32 h-10 px-3.5 py-2.5 text-[#392FA3] border border-[#392FA3] rounded-lg justify-center items-center gap-1.5 inline-flex"
+        className="h-10 px-3.5 py-2.5 text-[#392FA3] border border-[#392FA3] rounded-lg justify-center items-center gap-1.5 inline-flex"
       >
         <div className=" text-base font-normal flex gap-1 items-center">
           <AiOutlinePlus />
-          Add New
+          ভিডিও অ্যাড করুন
         </div>
       </button>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="sm">
-        <DialogTitle>Add New Our Values Data</DialogTitle>
+        <DialogTitle>আপলোড ভিডিও</DialogTitle>
         <DialogContent>
           <div className="space-y-4">
             <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} />
@@ -177,7 +175,7 @@ const EditData = ({ id }: { id: number }) => {
         <FiEdit />
       </span>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="sm">
-        <DialogTitle>Edit Values</DialogTitle>
+        <DialogTitle>এডিট ভিডিও</DialogTitle>
         <DialogContent>
           <div className="space-y-4">
             {data && <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} instance={data} />}
@@ -214,7 +212,7 @@ const VideoManagement = () => {
         <div className="tableContainer overflow-x-auto overflow-hidden">
           <div className="w-full relative tableContainer overflow-y-scroll max-h-[calc(100vh-200px)] min-h-[calc(100vh-200px)] lg:max-h-[calc(100vh-320px)] lg:min-h-[calc(100vh-320px)]">
             <table className="w-full text-left">
-              <thead className="text-bbc-dash-d-4 sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
+              <thead className="text-bbc-dash-d-4 bg-white sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
                 <tr>
                   {COLUMN.map((item) => (
                     <th key={Math.random()} scope="col" className="p-6">
@@ -234,8 +232,8 @@ const VideoManagement = () => {
                             <Image
                               className="rounded-lg"
                               src={info.thumbnail}
-                              width={44}
-                              height={44}
+                              width={74}
+                              height={74}
                               alt="thumbnail"
                             />
                           </span>
