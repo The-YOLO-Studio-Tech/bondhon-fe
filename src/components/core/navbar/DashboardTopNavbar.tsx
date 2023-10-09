@@ -20,7 +20,6 @@ export const SignOut = () => {
   );
 };
 
-
 const DashboardTopNavbar = () => {
   return (
     <>
@@ -29,24 +28,27 @@ const DashboardTopNavbar = () => {
           <div className="flex items-center ">
             <div className="flex items-center justify-start w-64">
               {/* <MobileDashboardDrawer /> */}
-              <div className="flex ml-2 md:mr-24">{/* <Logo /> */} <Image src='/images/Bandhan-Logo.png' width={86} height={43} alt='logo'/></div>
+              <div className="flex ml-2 md:mr-24">
+                {/* <Logo /> */}{' '}
+                <Image src="/images/Bandhan-Logo.png" width={86} height={43} alt="logo" />
+              </div>
             </div>
             <div className="flex items-center w-full justify-between pl-16 px-4">
-            <div className="flex gap-6 items-center">
-              <div className="flex gap-2">
-                <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
-                  <HiArrowNarrowLeft size={20} />
-                </span>
+              <div className="flex gap-6 items-center">
+                <div className="flex gap-2">
+                  <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
+                    <HiArrowNarrowLeft size={20} />
+                  </span>
 
-                <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
-                  <HiArrowNarrowRight size={20} />
-                </span>
+                  <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
+                    <HiArrowNarrowRight size={20} />
+                  </span>
+                </div>
+                <h2 className="text-2xl font-bold lg:text-4xl">Dashboard</h2>
               </div>
-              <h2 className="text-2xl font-bold lg:text-4xl">Dashboard</h2>
-            </div>
-                <SignOut/>
+              <SignOut />
 
-                  {/* <div>
+              {/* <div>
                     <ThemeSwitch />
                   </div> */}
             </div>

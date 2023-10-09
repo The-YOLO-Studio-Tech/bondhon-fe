@@ -6,7 +6,7 @@ type ArchiveType = {
   title: string;
   url: string;
   thumbnail: string;
-  publish_year: string
+  publish_year: string;
 };
 
 export const useGetArchiveData = () => {

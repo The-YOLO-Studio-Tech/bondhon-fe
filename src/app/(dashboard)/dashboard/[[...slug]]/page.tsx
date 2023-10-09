@@ -20,9 +20,7 @@ const DashBoard = ({ params }: Paramas) => {
       {params?.slug?.toString()?.replace(',', '/') === 'advertisement' && (
         <AdvertisementManagement />
       )}
-      {params?.slug?.toString()?.replace(',', '/') === 'archive' && (
-        <ArchiveManagement />
-      )}
+      {params?.slug?.toString()?.replace(',', '/') === 'archive' && <ArchiveManagement />}
       {/* blog */}
       {params?.slug?.includes('blog') && <BlogManagement />}
     </div>

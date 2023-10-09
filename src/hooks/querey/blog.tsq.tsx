@@ -31,7 +31,6 @@ export const useGetBlogData = () => {
   });
 };
 
-
 export const useGetSingleBlogData = (id: number, fire: boolean) => {
   /** session management */
   return useQuery({

@@ -1,6 +1,13 @@
 'use client';
 import ImageUpload from '@/components/@assets/inputs/ImageUpload';
-import { BlogType, useAddBlog, useDeleteBlog, useGetBlogData, useGetSingleBlogData, useUpdateBlog } from '@/hooks/querey/blog.tsq';
+import {
+  BlogType,
+  useAddBlog,
+  useDeleteBlog,
+  useGetBlogData,
+  useGetSingleBlogData,
+  useUpdateBlog,
+} from '@/hooks/querey/blog.tsq';
 import { BlogInfo } from '@/libs/validations/blog.validation';
 import { LoadingButton } from '@mui/lab';
 import { CircularProgress, Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
@@ -19,7 +26,7 @@ import DeleteModal from '@/components/@assets/modals/DeleteModal';
 import { FiEdit } from 'react-icons/fi';
 import { convertDateFormat } from '@/libs/convertDateFormat';
 
-const COLUMN = ['পোস্ট','স্ট্যাটাস', 'তারিখ', 'একশন'];
+const COLUMN = ['পোস্ট', 'স্ট্যাটাস', 'তারিখ', 'একশন'];
 
 const UploadForm = ({
   instance,
@@ -191,9 +198,9 @@ const AddData = () => {
 };
 
 const BlogManagement = () => {
-  const { data,isLoading } = useGetBlogData();
+  const { data, isLoading } = useGetBlogData();
   const searchParams = useSearchParams();
-  
+
   return (
     <div>
       <h3 className="text-2xl font-semibold pt-10 pb-5">সকল ব্লগ</h3>
@@ -204,54 +211,58 @@ const BlogManagement = () => {
           </p>
           <AddData />
         </div>
-      
-      {/* table */}
-      <div className="tableContainer overflow-x-auto overflow-hidden">
-        <div className="w-full relative tableContainer overflow-y-scroll max-h-[calc(100vh-200px)] min-h-[calc(100vh-200px)] lg:max-h-[calc(100vh-320px)] lg:min-h-[calc(100vh-320px)]">
-          <table className="w-full text-left">
-            <thead className="text-bbc-dash-d-4 sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
-              <tr>
-                {COLUMN.map((item,idx) => (
-                  <th key={Math.random()} scope="col" className={`p-6 ${idx + 1 === COLUMN.length && 'text-right'}`}>
-                    {item}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="h-1/2 w-full">
-              {data &&
-                data?.results?.map((info: BlogType) => (
-                  <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
-                    <td className="px-6 py-4">
-                      <span className="flex gap-2 items-center">
-                        <span>
-                          <Image
-                            className="rounded-lg"
-                            src={info.thumbnail}
-                            width={44}
-                            height={44}
-                            alt="thumbnail"
-                          />
-                        </span>
-                        {info.title}
-                      </span>
-                    </td>
 
-                    <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td>
-                    <td className="px-6 py-4 ">{convertDateFormat(info.created_at)}</td>
-                    <td className="px-6 py-4 ">
-                      <span className="flex justify-end items-center gap-2">
-                        <EditData id={info.id} />
-                        <span className="text-bbc-dash-2 cursor-pointer">
-                          <DeleteData id={info.id} />
+        {/* table */}
+        <div className="tableContainer overflow-x-auto overflow-hidden">
+          <div className="w-full relative tableContainer overflow-y-scroll max-h-[calc(100vh-200px)] min-h-[calc(100vh-200px)] lg:max-h-[calc(100vh-320px)] lg:min-h-[calc(100vh-320px)]">
+            <table className="w-full text-left">
+              <thead className="text-bbc-dash-d-4 sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
+                <tr>
+                  {COLUMN.map((item, idx) => (
+                    <th
+                      key={Math.random()}
+                      scope="col"
+                      className={`p-6 ${idx + 1 === COLUMN.length && 'text-right'}`}
+                    >
+                      {item}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="h-1/2 w-full">
+                {data &&
+                  data?.results?.map((info: BlogType) => (
+                    <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
+                      <td className="px-6 py-4">
+                        <span className="flex gap-2 items-center">
+                          <span>
+                            <Image
+                              className="rounded-lg"
+                              src={info.thumbnail}
+                              width={44}
+                              height={44}
+                              alt="thumbnail"
+                            />
+                          </span>
+                          {info.title}
                         </span>
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-          {isLoading && (
+                      </td>
+
+                      <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td>
+                      <td className="px-6 py-4 ">{convertDateFormat(info.created_at)}</td>
+                      <td className="px-6 py-4 ">
+                        <span className="flex justify-end items-center gap-2">
+                          <EditData id={info.id} />
+                          <span className="text-bbc-dash-2 cursor-pointer">
+                            <DeleteData id={info.id} />
+                          </span>
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+            {isLoading && (
               <div className="absolute top-1/2 -translate-y-1/2 right-1/2 -translate-x-1/2 justify-center items-center">
                 <CircularProgress />
               </div>
@@ -261,8 +272,8 @@ const BlogManagement = () => {
                 No Data Available!
               </div>
             )}
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );

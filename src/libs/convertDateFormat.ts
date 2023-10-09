@@ -9,13 +9,12 @@ export const convertDateFormat = (date: string | undefined | Date): string => {
   return formattedDate;
 };
 
-
-export const convertNewDateToDbFormat = (date:any)=>{
+export const convertNewDateToDbFormat = (date: any) => {
   const year = date.getFullYear();
-const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(date.getDate()).padStart(2, '0');
 
-// Create the formatted date string
-const formattedDate = year + '-' + month + '-' + day;
-return formattedDate;
-}
+  // Create the formatted date string
+  const formattedDate = year + '-' + month + '-' + day;
+  return formattedDate;
+};

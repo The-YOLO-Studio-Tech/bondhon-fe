@@ -1,4 +1,4 @@
-'use client';;
+'use client';
 import { enqueueSnackbar } from 'notistack';
 import {
   CircularProgress,
@@ -16,7 +16,13 @@ import DeleteModal from '@/components/@assets/modals/DeleteModal';
 import { AiOutlinePlus } from 'react-icons/ai';
 import ImageUpload from '@/components/@assets/inputs/ImageUpload';
 import { ArchiveInfo } from '@/libs/validations/archive.validation';
-import { useAddArchive, useDeleteArchive, useGetArchiveData, useGetSingleArchiveData, useUpdateArchive } from '@/hooks/querey/useArchiveData';
+import {
+  useAddArchive,
+  useDeleteArchive,
+  useGetArchiveData,
+  useGetSingleArchiveData,
+  useUpdateArchive,
+} from '@/hooks/querey/useArchiveData';
 import { convertDateFormat, convertNewDateToDbFormat } from '@/libs/convertDateFormat';
 
 const COLUMN = ['পোস্ট', 'লিংক', 'তারিখ', 'একশন'];
@@ -52,7 +58,7 @@ const UploadForm = ({
       title: instance?.title || '',
       url: instance?.url || '',
       thumbnail: instance?.thumbnail || '',
-      publish_year : instance?.publish_year || convertNewDateToDbFormat(new Date()) 
+      publish_year: instance?.publish_year || convertNewDateToDbFormat(new Date()),
     },
 
     validationSchema: ArchiveInfo,
@@ -62,7 +68,7 @@ const UploadForm = ({
           let modifiedData = {
             title: data?.title,
             url: data?.url,
-            publish_year : data?.publish_year
+            publish_year: data?.publish_year,
           };
           await mutateAsync(modifiedData);
         } else {
@@ -103,7 +109,7 @@ const UploadForm = ({
         />
 
         <TextField
-        type = 'date'
+          type="date"
           required
           fullWidth
           size="small"
@@ -114,7 +120,7 @@ const UploadForm = ({
           onChange={handleChange}
           label="Publish Year"
         />
-        
+
         <TextField
           required
           fullWidth
