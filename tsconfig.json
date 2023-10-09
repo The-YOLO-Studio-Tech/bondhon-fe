@@ -48,7 +48,14 @@
       "@styles/*": ["./src/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "out/types/**/*.ts", "src/hooks/querey/category.tsq"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "out/types/**/*.ts",
+    "src/hooks/querey/category.tsq"
+  ],
   "exclude": ["node_modules", ".next", "out", "dist", "*.d.ts"],
   "types": ["types", "node", "react", "react-dom", "tailwindcss", "commitlint/types"]
 }
