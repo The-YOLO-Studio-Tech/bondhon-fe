@@ -18,7 +18,7 @@ import {
 } from '@/hooks/querey/useAdvertisementData';
 import { AdvertisementInfo } from '@/libs/validations/advertisement.validation';
 
-const COLUMN = ['অ্যাড', 'ডেট', 'একশন'];
+const COLUMN = ['অ্যাড', 'তারিখ', 'একশন'];
 
 type AdvertisementType = {
   id: number;

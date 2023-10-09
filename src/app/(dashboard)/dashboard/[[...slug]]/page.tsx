@@ -1,4 +1,5 @@
 import AdvertisementManagement from '@/components/dashboard/advertisement/AdvertisementManagement';
+import ArchiveManagement from '@/components/dashboard/archive/ArchiveManagement';
 import BlogManagement from '@/components/dashboard/blog/BlogManagement';
 
 import LandingSettings from '@/components/dashboard/settings/LandingSettings';
@@ -12,13 +13,15 @@ import React from 'react';
 export type Paramas = { params: { slug: string } };
 
 const DashBoard = ({ params }: Paramas) => {
-  // console.log(params.)
   return (
     <div>
       {params?.slug?.toString()?.replace(',', '/') === 'settings/home' && <LandingSettings />}
       {params?.slug?.toString()?.replace(',', '/') === 'video' && <VideoManagement />}
       {params?.slug?.toString()?.replace(',', '/') === 'advertisement' && (
         <AdvertisementManagement />
+      )}
+      {params?.slug?.toString()?.replace(',', '/') === 'archive' && (
+        <ArchiveManagement />
       )}
       {/* blog */}
       {params?.slug?.includes('blog') && <BlogManagement />}

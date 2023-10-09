@@ -1,4 +1,4 @@
-'use client';
+'use client';;
 import { enqueueSnackbar } from 'notistack';
 import {
   CircularProgress,
@@ -14,25 +14,18 @@ import { FiEdit } from 'react-icons/fi';
 import Image from 'next/legacy/image';
 import DeleteModal from '@/components/@assets/modals/DeleteModal';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { VideoInfo } from '@/libs/validations/video.validation';
 import ImageUpload from '@/components/@assets/inputs/ImageUpload';
-import { convertDateFormat } from '@/libs/convertDateFormat';
-import {
-  useAddVideo,
-  useDeleteVideo,
-  useGetSingleVideoData,
-  useGetVideoData,
-  useUpdateVideo,
-} from '@/hooks/querey/useVideoData';
+import { ArchiveInfo } from '@/libs/validations/archive.validation';
+import { useAddArchive, useDeleteArchive, useGetArchiveData, useGetSingleArchiveData, useUpdateArchive } from '@/hooks/querey/useArchiveData';
+import { convertDateFormat, convertNewDateToDbFormat } from '@/libs/convertDateFormat';
 
 const COLUMN = ['পোস্ট', 'লিংক', 'তারিখ', 'একশন'];
-
-type WeUniqueType = {
+type ArchiveType = {
   id: number;
   title: string;
   url: string;
   thumbnail: string;
-  created_at?: string | undefined;
+  publish_year?: string | undefined;
 };
 // mutateAsync
 const UploadForm = ({
@@ -40,7 +33,7 @@ const UploadForm = ({
   mutateAsync,
   setOpen,
 }: {
-  instance?: WeUniqueType | null;
+  instance?: ArchiveType | null;
   mutateAsync?: any;
   setOpen?: any;
 }) => {
@@ -59,15 +52,17 @@ const UploadForm = ({
       title: instance?.title || '',
       url: instance?.url || '',
       thumbnail: instance?.thumbnail || '',
+      publish_year : instance?.publish_year || convertNewDateToDbFormat(new Date()) 
     },
 
-    validationSchema: VideoInfo,
+    validationSchema: ArchiveInfo,
     onSubmit: async (data: any) => {
       try {
         if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
           let modifiedData = {
             title: data?.title,
             url: data?.url,
+            publish_year : data?.publish_year
           };
           await mutateAsync(modifiedData);
         } else {
@@ -106,6 +101,20 @@ const UploadForm = ({
           onChange={handleChange}
           label="Title"
         />
+
+        <TextField
+        type = 'date'
+          required
+          fullWidth
+          size="small"
+          value={values.publish_year}
+          error={touched.publish_year && Boolean(errors.publish_year)}
+          helperText={touched.publish_year && errors.publish_year}
+          name="publish_year"
+          onChange={handleChange}
+          label="Publish Year"
+        />
+        
         <TextField
           required
           fullWidth
@@ -140,7 +149,7 @@ const UploadForm = ({
 
 const AddData = () => {
   const [open, setOpen] = useState(false);
-  const { mutateAsync } = useAddVideo();
+  const { mutateAsync } = useAddArchive();
   return (
     <>
       <button
@@ -149,11 +158,11 @@ const AddData = () => {
       >
         <div className=" text-base font-normal flex gap-1 items-center">
           <AiOutlinePlus />
-          ভিডিও অ্যাড করুন
+          আর্কাইভ অ্যাড করুন
         </div>
       </button>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="sm">
-        <DialogTitle>আপলোড ভিডিও</DialogTitle>
+        <DialogTitle>আপলোড আর্কাইভ</DialogTitle>
         <DialogContent>
           <div className="space-y-4">
             <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} />
@@ -165,9 +174,9 @@ const AddData = () => {
 };
 
 const EditData = ({ id }: { id: number }) => {
-  const { mutateAsync } = useUpdateVideo(id);
+  const { mutateAsync } = useUpdateArchive(id);
   const [open, setOpen] = useState(false);
-  const { data } = useGetSingleVideoData(id, open);
+  const { data } = useGetSingleArchiveData(id, open);
 
   return (
     <>
@@ -175,7 +184,7 @@ const EditData = ({ id }: { id: number }) => {
         <FiEdit />
       </span>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="sm">
-        <DialogTitle>এডিট ভিডিও</DialogTitle>
+        <DialogTitle>এডিট আর্কাইভ</DialogTitle>
         <DialogContent>
           <div className="space-y-4">
             {data && <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} instance={data} />}
@@ -187,7 +196,7 @@ const EditData = ({ id }: { id: number }) => {
 };
 
 const DeleteData = ({ id }: { id: number }) => {
-  const { mutateAsync, isLoading } = useDeleteVideo(id);
+  const { mutateAsync, isLoading } = useDeleteArchive(id);
   return (
     <div>
       <DeleteModal handleDelete={mutateAsync} isLoading={isLoading} />
@@ -196,15 +205,15 @@ const DeleteData = ({ id }: { id: number }) => {
 };
 
 // default component
-const VideoManagement = () => {
-  const { data, isLoading } = useGetVideoData();
+const ArchiveManagement = () => {
+  const { data, isLoading } = useGetArchiveData();
   //
   return (
     <div>
-      <h3 className="text-2xl font-semibold pt-10 pb-5">সকল ভিডিও</h3>
+      <h3 className="text-2xl font-semibold pt-10 pb-5">সকল আর্কাইভ</h3>
       <div className=" bg-white rounded-2xl p-10 border ">
         <div className="flex mb-4 pb-10 border-b border-black justify-between">
-          <p className="text-2xl text-[#392FA3] font-semibold">ভিডিও ওভারভিউ</p>
+          <p className="text-2xl text-[#392FA3] font-semibold">আর্কাইভ ওভারভিউ</p>
           <AddData />
         </div>
 
@@ -224,7 +233,7 @@ const VideoManagement = () => {
 
               <tbody className="h-1/2 w-full">
                 {data &&
-                  data?.results?.map((info: WeUniqueType) => (
+                  data?.results?.map((info: ArchiveType) => (
                     <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
                       <td className="px-6 py-4">
                         <span className="flex gap-2 items-center">
@@ -242,7 +251,7 @@ const VideoManagement = () => {
                       </td>
                       <td className="px-6 py-4">{info.url}</td>
                       {/* <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td> */}
-                      <td className="px-6 py-4 ">{convertDateFormat(info.created_at)}</td>
+                      <td className="px-6 py-4 ">{convertDateFormat(info.publish_year)}</td>
                       <td className="px-6 py-4 ">
                         <span className="flex items-center gap-2">
                           <EditData id={info.id} />
@@ -276,4 +285,4 @@ const VideoManagement = () => {
   );
 };
 
-export default VideoManagement;
+export default ArchiveManagement;

@@ -81,7 +81,7 @@ const DashboardAsidebar = () => {
               <BlogItems />
             </li>
             <li>
-              <Link href={'/archive'}>আর্কাইভ</Link>
+              <Link href={'/dashboard/archive'}>আর্কাইভ</Link>
             </li>
             {/* <li>বাজারদর</li> */}
           </ul>

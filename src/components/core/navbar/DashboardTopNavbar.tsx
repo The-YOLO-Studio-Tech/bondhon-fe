@@ -1,86 +1,54 @@
+import Image from 'next/legacy/image';
 import React from 'react';
-import Link from 'next/link';
+import { FiLogOut } from 'react-icons/fi';
+import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
+
+export const SignOut = () => {
+  return (
+    <div className="flex justify-between mt-auto items-center mb-4 lg:mb-0 lg:mt-0 lg:pt-0">
+      <div className="flex gap-2 items-center">
+        <span className="w-12 h-12 rounded-full bg-slate-200"></span>
+        <div>
+          <h4 className="text-lg font-bold w-32">Admin Login</h4>
+          <p className="text-sm mt-1 text-[#808080]">Developer</p>
+        </div>
+      </div>
+      <div>
+        <FiLogOut className="font-bold cursor-pointer" size={20} />
+      </div>
+    </div>
+  );
+};
+
 
 const DashboardTopNavbar = () => {
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
-        <div className="px-3 py-3 lg:px-5 lg:pl-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center justify-start">
+        <div className="px-3 py-3 pt-7 lg:px-5 lg:pl-3">
+          <div className="flex items-center ">
+            <div className="flex items-center justify-start w-64">
               {/* <MobileDashboardDrawer /> */}
-              <div className="flex ml-2 md:mr-24">{/* <Logo /> */} Logo</div>
+              <div className="flex ml-2 md:mr-24">{/* <Logo /> */} <Image src='/images/Bandhan-Logo.png' width={86} height={43} alt='logo'/></div>
             </div>
-            <div className="flex items-center">
-              <div className="flex items-center ml-3">
-                <div className="flex items-center">
-                  <button
-                    type="button"
-                    className="text-xl font-bold flex rounded-full focus:ring-4 focus:ring-gray-300"
-                    aria-expanded="false"
-                    data-dropdown-toggle="dropdown-user"
-                    // onClick={signOut}
-                  >
-                    <span className="sr-only">Open user menu</span>
-                    Logout
-                  </button>
+            <div className="flex items-center w-full justify-between pl-16 px-4">
+            <div className="flex gap-6 items-center">
+              <div className="flex gap-2">
+                <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
+                  <HiArrowNarrowLeft size={20} />
+                </span>
+
+                <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
+                  <HiArrowNarrowRight size={20} />
+                </span>
+              </div>
+              <h2 className="text-2xl font-bold lg:text-4xl">Dashboard</h2>
+            </div>
+                <SignOut/>
 
                   {/* <div>
                     <ThemeSwitch />
                   </div> */}
-                </div>
-                <div
-                  className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
-                  id="dropdown-user"
-                >
-                  <div className="px-4 py-3" role="none">
-                    <p className="text-sm text-gray-900" role="none">
-                      Neil Sims
-                    </p>
-                    <p className="text-sm font-medium text-gray-900 truncate" role="none">
-                      neil.sims@flowbite.com
-                    </p>
-                  </div>
-                  <ul className="py-1" role="none">
-                    <li>
-                      <Link
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                      >
-                        Settings
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                      >
-                        Earnings
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                      >
-                        Sign out
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </div>

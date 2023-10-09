@@ -1,22 +1,25 @@
 'use client';
 import ImageUpload from '@/components/@assets/inputs/ImageUpload';
-import { BlogType, useAddBlog, useGetBlogData } from '@/hooks/querey/blog.tsq';
+import { BlogType, useAddBlog, useDeleteBlog, useGetBlogData, useGetSingleBlogData, useUpdateBlog } from '@/hooks/querey/blog.tsq';
 import { BlogInfo } from '@/libs/validations/blog.validation';
 import { LoadingButton } from '@mui/lab';
-import { Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { CircularProgress, Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { enqueueSnackbar } from 'notistack';
 import SendIcon from '@mui/icons-material/Send';
 
 // import { useGetBlogData } from '@/hooks/querey/blog.tsq';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TexEditor from '@/components/@assets/inputs/TexEditor';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useSearchParams } from 'next/navigation';
 import isNumberOrNull from '@/libs/utils/isNumberOrNull';
 import Image from 'next/legacy/image';
+import DeleteModal from '@/components/@assets/modals/DeleteModal';
+import { FiEdit } from 'react-icons/fi';
+import { convertDateFormat } from '@/libs/convertDateFormat';
 
-const COLUMN = ['পোস্ট', 'একশন'];
+const COLUMN = ['পোস্ট','স্ট্যাটাস', 'তারিখ', 'একশন'];
 
 const UploadForm = ({
   instance,
@@ -130,6 +133,37 @@ const UploadForm = ({
   );
 };
 
+const EditData = ({ id }: { id: number }) => {
+  const { mutateAsync } = useUpdateBlog(id);
+  const [open, setOpen] = useState(false);
+  const { data } = useGetSingleBlogData(id, open);
+
+  return (
+    <>
+      <span onClick={() => setOpen(!open)} className="text-[#392FA3] cursor-pointer">
+        <FiEdit />
+      </span>
+      <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">
+        <DialogTitle>এডিট ভিডিও</DialogTitle>
+        <DialogContent>
+          <div className="space-y-4">
+            {data && <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} instance={data} />}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+const DeleteData = ({ id }: { id: number }) => {
+  const { mutateAsync, isLoading } = useDeleteBlog(id);
+  return (
+    <div>
+      <DeleteModal handleDelete={mutateAsync} isLoading={isLoading} />
+    </div>
+  );
+};
+
 const AddData = () => {
   const [open, setOpen] = useState(false);
   const { mutateAsync } = useAddBlog();
@@ -157,9 +191,9 @@ const AddData = () => {
 };
 
 const BlogManagement = () => {
-  const { data } = useGetBlogData();
+  const { data,isLoading } = useGetBlogData();
   const searchParams = useSearchParams();
-  //   console.log(data);
+  
   return (
     <div>
       <h3 className="text-2xl font-semibold pt-10 pb-5">সকল ব্লগ</h3>
@@ -170,15 +204,15 @@ const BlogManagement = () => {
           </p>
           <AddData />
         </div>
-      </div>
+      
       {/* table */}
       <div className="tableContainer overflow-x-auto overflow-hidden">
         <div className="w-full relative tableContainer overflow-y-scroll max-h-[calc(100vh-200px)] min-h-[calc(100vh-200px)] lg:max-h-[calc(100vh-320px)] lg:min-h-[calc(100vh-320px)]">
           <table className="w-full text-left">
             <thead className="text-bbc-dash-d-4 sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
               <tr>
-                {COLUMN.map((item) => (
-                  <th key={Math.random()} scope="col" className="p-6">
+                {COLUMN.map((item,idx) => (
+                  <th key={Math.random()} scope="col" className={`p-6 ${idx + 1 === COLUMN.length && 'text-right'}`}>
                     {item}
                   </th>
                 ))}
@@ -203,13 +237,13 @@ const BlogManagement = () => {
                       </span>
                     </td>
 
-                    {/* <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td> */}
-                    {/* <td className="px-6 py-4 ">{convertDateFormat(info.created_at)}</td> */}
+                    <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td>
+                    <td className="px-6 py-4 ">{convertDateFormat(info.created_at)}</td>
                     <td className="px-6 py-4 ">
-                      <span className="flex items-center gap-2">
-                        {/* <EditData id={info.id} /> */}
+                      <span className="flex justify-end items-center gap-2">
+                        <EditData id={info.id} />
                         <span className="text-bbc-dash-2 cursor-pointer">
-                          {/* <DeleteData id={info.id} /> */}
+                          <DeleteData id={info.id} />
                         </span>
                       </span>
                     </td>
@@ -217,7 +251,18 @@ const BlogManagement = () => {
                 ))}
             </tbody>
           </table>
+          {isLoading && (
+              <div className="absolute top-1/2 -translate-y-1/2 right-1/2 -translate-x-1/2 justify-center items-center">
+                <CircularProgress />
+              </div>
+            )}
+            {data?.results?.length === 0 && (
+              <div className="absolute text text-bbc-dash-d-2 top-1/2 -translate-y-1/2 right-1/2 -translate-x-1/2 justify-center items-center">
+                No Data Available!
+              </div>
+            )}
         </div>
+      </div>
       </div>
     </div>
   );

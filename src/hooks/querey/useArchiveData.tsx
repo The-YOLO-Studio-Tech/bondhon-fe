@@ -1,59 +1,49 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { useSearchParams } from 'next/navigation';
 
-export type BlogType = {
-  id: number;
+type ArchiveType = {
   title: string;
+  url: string;
   thumbnail: string;
-  description_html: string;
-  status: string;
-  category: number;
-  sub_category: number;
-  created_at?: string | undefined;
+  publish_year: string
 };
 
-const REFEARCH_QUERY = ['contentBlogList'];
-
-export const useGetBlogData = () => {
-  const searchParams = useSearchParams();
-  const category__title = searchParams.get('category__title') || '';
-  const sub_category__title = searchParams.get('sub_category__title') || '';
+export const useGetArchiveData = () => {
+  /** session management */
 
   return useQuery({
-    queryKey: [...REFEARCH_QUERY, ...[category__title, sub_category__title]],
+    queryKey: ['e-magazine'],
     queryFn: () =>
       axiousResuest({
-        url: `/content/blog/?category__title=${category__title}&sub_category__title=${sub_category__title}`,
+        url: `/content/e-magazine/`,
         method: 'get',
       }),
   });
 };
 
-
-export const useGetSingleBlogData = (id: number, fire: boolean) => {
+export const useGetSingleArchiveData = (id: number, fire: boolean) => {
   /** session management */
   return useQuery({
-    queryKey: ['single_blog', id],
+    queryKey: ['single_e-magazine', id],
     queryFn: () =>
       axiousResuest({
-        url: `/content/blog/${id}/`,
+        url: `/content/e-magazine/${id}/`,
         method: 'get',
       }),
     enabled: fire,
   });
 };
 
-export const useAddBlog = () => {
+export const useAddArchive = () => {
   const queryClient = useQueryClient();
   /** session management */
   const { data: session } = useSession();
 
   return useMutation(
-    async (body: BlogType) =>
+    async (body: ArchiveType) =>
       await axiousResuest({
-        url: `/content/blog/`,
+        url: `/content/e-magazine/`,
 
         method: 'post',
         data: body,
@@ -63,19 +53,19 @@ export const useAddBlog = () => {
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(REFEARCH_QUERY),
+      onSuccess: () => queryClient.invalidateQueries(['e-magazine']),
     },
   );
 };
 
-export const useUpdateBlog = (id: number) => {
+export const useUpdateArchive = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
   const { data: session } = useSession();
   return useMutation(
-    async (body: BlogType) =>
+    async (body: ArchiveType) =>
       await axiousResuest({
-        url: `/content/blog/${id}/`,
+        url: `/content/e-magazine/${id}/`,
 
         method: 'patch',
         data: body,
@@ -85,19 +75,19 @@ export const useUpdateBlog = (id: number) => {
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(REFEARCH_QUERY),
+      onSuccess: () => queryClient.invalidateQueries(['e-magazine']),
     },
   );
 };
 
-export const useDeleteBlog = (id: number) => {
+export const useDeleteArchive = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
   const { data: session } = useSession();
   return useMutation(
     async () =>
       await axiousResuest({
-        url: `/content/blog/${id}/`,
+        url: `/content/e-magazine/${id}/`,
 
         method: 'delete',
         headers: {
@@ -106,7 +96,7 @@ export const useDeleteBlog = (id: number) => {
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(REFEARCH_QUERY),
+      onSuccess: () => queryClient.invalidateQueries(['e-magazine']),
     },
   );
 };
