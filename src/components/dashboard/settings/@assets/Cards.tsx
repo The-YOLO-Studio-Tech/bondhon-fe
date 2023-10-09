@@ -1,12 +1,16 @@
 import Image from 'next/legacy/image';
 import React from 'react';
 
-export const DashFeaturedCard = () => {
+export const DashFeaturedCard = ({
+  image = '/images/uploadImages/featuredCategory.png',
+}: {
+  image?: string;
+}) => {
   return (
     <div>
       <div className="relative">
         <Image
-          src="/images/uploadImages/featuredCategory.png"
+          src={image}
           layout="responsive"
           objectFit="cover"
           width={576}

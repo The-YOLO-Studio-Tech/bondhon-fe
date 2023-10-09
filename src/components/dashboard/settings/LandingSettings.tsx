@@ -1,11 +1,12 @@
 import {
   DashCategoryCard,
-  DashFeaturedCard,
+  // DashFeaturedCard,
   DashLargeAddCard,
   DashRegularAddCard,
   DashSideCategoryCard,
   DashVerticalAddCard,
 } from './@assets/Cards';
+import TopFeaturePost from './@assets/TopFeaturePost';
 
 const LandingSettings = () => {
   return (
@@ -14,7 +15,7 @@ const LandingSettings = () => {
         {/* header section */}
         <div className="grid grid-cols-3 gap-7">
           <div className="col-span-2">
-            <DashFeaturedCard />
+            <TopFeaturePost />
           </div>
           <div className="col-span-1 grid grid-rows-4 gap-7">
             <DashSideCategoryCard />
