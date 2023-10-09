@@ -93,10 +93,10 @@ const DefaultNavbar = () => {
                 ))
               : data?.results?.map((i: any, idx: number) => {
                   return (
-                    <>
+                    <div key={Math.random()}>
                       {i.sub_category.length === 0 ? (
                         <Link href="/" className="flex items-center gap-1">
-                          হোম{' '}
+                          {i.title}
                           <span className="rotate-90">
                             <AiOutlineLine size={12} />
                           </span>
@@ -109,7 +109,7 @@ const DefaultNavbar = () => {
                           key={Math.random()}
                         />
                       )}
-                    </>
+                    </div>
                   );
                 })}
 
