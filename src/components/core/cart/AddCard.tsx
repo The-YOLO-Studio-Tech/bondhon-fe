@@ -1,11 +1,19 @@
 import Image from 'next/legacy/image';
 import React from 'react';
 
-const AddCard = ({ width, height }: { width: any; height: any }) => {
+const AddCard = ({
+  width,
+  height,
+  image = '/images/placeHolder.jpeg',
+}: {
+  width: any;
+  height: any;
+  image?: string;
+}) => {
   return (
     <div className="relative">
       <Image
-        src="https://placehold.co/600x400.png?text=Add"
+        src={image}
         width={width}
         height={height}
         layout="responsive"

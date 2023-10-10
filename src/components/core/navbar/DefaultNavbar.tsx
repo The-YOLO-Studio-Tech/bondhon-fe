@@ -2,7 +2,7 @@
 
 import Image from 'next/legacy/image';
 import Link from 'next/link';
-import { BiChevronDown, BiSearch } from 'react-icons/bi';
+import { BiChevronDown, BiHomeAlt2, BiSearch } from 'react-icons/bi';
 import { AiOutlineLine } from 'react-icons/ai';
 import MobileHamburgerMenu from './MobileHamburgerMenu';
 import { useBlogCategoryData } from '@/hooks/querey/useCategorySubcategoryData';
@@ -87,6 +87,15 @@ const DefaultNavbar = () => {
       <div className="commonContainer">
         <div className="mt-5 hidden justify-between bg-[#392FA3] items-center px-4 py-2 text-white md:flex md:py-3 md:px-7 xl:py-5 xl:px-10">
           <div className="flex gap-4 xl:gap-6">
+            <Link href="/" className="flex items-center gap-1">
+              <span className="flex items-center gap-1">
+                <BiHomeAlt2 />
+                হোম
+              </span>
+              <span className="rotate-90">
+                <AiOutlineLine size={12} />
+              </span>
+            </Link>
             {isLoading
               ? [...new Array(4)].map(() => (
                   <p key={Math.random()} className="px-4 py-1 rounded-md bg-white"></p>

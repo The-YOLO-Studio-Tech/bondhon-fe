@@ -30,12 +30,15 @@ const LandingSettings = () => {
 
         {/* category card section */}
         <div className="my-8 grid grid-cols-3 gap-7">
+          <FeaturePostCategory categoryNum={'feature_post_category5'} />
+          <FeaturePostCategory categoryNum={'feature_post_category6'} />
+          <FeaturePostCategory categoryNum={'feature_post_category7'} />
+          <FeaturePostCategory categoryNum={'feature_post_category8'} />
           <FeaturePostCategory categoryNum={'feature_post_category9'} />
           <FeaturePostCategory categoryNum={'feature_post_category10'} />
           <FeaturePostCategory categoryNum={'feature_post_category11'} />
           <FeaturePostCategory categoryNum={'feature_post_category12'} />
           <FeaturePostCategory categoryNum={'feature_post_category13'} />
-          <FeaturePostCategory categoryNum={'feature_post_category14'} />
         </div>
 
         {/* add section */}
@@ -45,12 +48,12 @@ const LandingSettings = () => {
 
         {/* more category card section */}
         <div className="my-8 grid grid-cols-3 gap-7">
+          <FeaturePostCategory categoryNum={'feature_post_category14'} />
           <FeaturePostCategory categoryNum={'feature_post_category15'} />
           <FeaturePostCategory categoryNum={'feature_post_category16'} />
           <FeaturePostCategory categoryNum={'feature_post_category17'} />
           <FeaturePostCategory categoryNum={'feature_post_category18'} />
           <FeaturePostCategory categoryNum={'feature_post_category19'} />
-          <FeaturePostCategory categoryNum={'feature_post_category20'} />
         </div>
       </div>
 
@@ -66,18 +69,19 @@ const LandingSettings = () => {
           <AddPost addNum="add2" />
         </div>
         <div className="grid space-y-7 mt-8">
-          <FeaturePostCategory categoryNum={'feature_post_category5'} />
-          <FeaturePostCategory categoryNum={'feature_post_category6'} />
-          <FeaturePostCategory categoryNum={'feature_post_category7'} />
-          <FeaturePostCategory categoryNum={'feature_post_category8'} />
+          <FeaturePostCategory categoryNum={'feature_post_category20'} />
+          <FeaturePostCategory categoryNum={'feature_post_category21'} />
+          <FeaturePostCategory categoryNum={'feature_post_category22'} />
+          <FeaturePostCategory categoryNum={'feature_post_category23'} />
         </div>
         <div className="mt-10">
           <AddPost addNum="add3" />
         </div>
 
         <div className="grid space-y-7 mt-8">
-          <FeaturePostCategory categoryNum={'feature_post_category21'} />
-          <FeaturePostCategory categoryNum={'feature_post_category22'} />
+          <FeaturePostCategory categoryNum={'feature_post_category24'} />
+          <FeaturePostCategory categoryNum={'feature_post_category25'} />
+          <FeaturePostCategory categoryNum={'feature_post_category26'} />
         </div>
       </div>
     </div>
