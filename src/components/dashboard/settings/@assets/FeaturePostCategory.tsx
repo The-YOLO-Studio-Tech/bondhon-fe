@@ -130,6 +130,31 @@ const MiniCard = ({
           page_name: 'home',
           content: { feature_post_category22: category },
         };
+      } else if (categoryNum === 'feature_post_category23') {
+        data = {
+          page_name: 'home',
+          content: { feature_post_category23: category },
+        };
+      } else if (categoryNum === 'feature_post_category24') {
+        data = {
+          page_name: 'home',
+          content: { feature_post_category24: category },
+        };
+      } else if (categoryNum === 'feature_post_category25') {
+        data = {
+          page_name: 'home',
+          content: { feature_post_category25: category },
+        };
+      } else if (categoryNum === 'feature_post_category25') {
+        data = {
+          page_name: 'home',
+          content: { feature_post_category25: category },
+        };
+      } else if (categoryNum === 'feature_post_category26') {
+        data = {
+          page_name: 'home',
+          content: { feature_post_category26: category },
+        };
       }
       await mutateAsync(data);
       setOpen(false);
@@ -141,16 +166,20 @@ const MiniCard = ({
     }
   }, [category, mutateAsync, setOpen, categoryNum]);
   return (
-    <div className="cursor-pointer" onClick={handleClick}>
-      <Image
-        className="rounded-lg"
-        src={category?.thumbnail}
-        width={150}
-        height={150}
-        alt="thumbnail"
-      />
-      <p>{category?.title}</p>
-    </div>
+    <>
+      {category && (
+        <div className="cursor-pointer" onClick={handleClick}>
+          <Image
+            className="rounded-lg"
+            src={category?.thumbnail}
+            width={150}
+            height={150}
+            alt="thumbnail"
+          />
+          <p>{category?.title}</p>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -162,7 +191,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
         {categoryNum == 'feature_post_category1' &&
-          (data?.results?.[0]?.content?.feature_post_category1 ? (
+          (data?.results?.[0]?.content?.feature_post_category1?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category1.thumbnail}
             />
@@ -170,7 +199,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category2' &&
-          (data?.results?.[0]?.content?.feature_post_category2 ? (
+          (data?.results?.[0]?.content?.feature_post_category2?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category2.thumbnail}
             />
@@ -178,7 +207,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category3' &&
-          (data?.results?.[0]?.content?.feature_post_category3 ? (
+          (data?.results?.[0]?.content?.feature_post_category3?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category3.thumbnail}
             />
@@ -186,7 +215,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category4' &&
-          (data?.results?.[0]?.content?.feature_post_category4 ? (
+          (data?.results?.[0]?.content?.feature_post_category4?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category4.thumbnail}
             />
@@ -194,7 +223,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category5' &&
-          (data?.results?.[0]?.content?.feature_post_category5 ? (
+          (data?.results?.[0]?.content?.feature_post_category5?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category5.thumbnail}
             />
@@ -202,7 +231,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category6' &&
-          (data?.results?.[0]?.content?.feature_post_category6 ? (
+          (data?.results?.[0]?.content?.feature_post_category6?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category6.thumbnail}
             />
@@ -210,7 +239,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category7' &&
-          (data?.results?.[0]?.content?.feature_post_category7 ? (
+          (data?.results?.[0]?.content?.feature_post_category7?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category7.thumbnail}
             />
@@ -218,7 +247,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category8' &&
-          (data?.results?.[0]?.content?.feature_post_category8 ? (
+          (data?.results?.[0]?.content?.feature_post_category8?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category8.thumbnail}
             />
@@ -226,7 +255,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category9' &&
-          (data?.results?.[0]?.content?.feature_post_category9 ? (
+          (data?.results?.[0]?.content?.feature_post_category9?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category9.thumbnail}
             />
@@ -234,7 +263,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category10' &&
-          (data?.results?.[0]?.content?.feature_post_category10 ? (
+          (data?.results?.[0]?.content?.feature_post_category10?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category10.thumbnail}
             />
@@ -242,7 +271,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category11' &&
-          (data?.results?.[0]?.content?.feature_post_category11 ? (
+          (data?.results?.[0]?.content?.feature_post_category11?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category11.thumbnail}
             />
@@ -250,7 +279,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category12' &&
-          (data?.results?.[0]?.content?.feature_post_category12 ? (
+          (data?.results?.[0]?.content?.feature_post_category12?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category12.thumbnail}
             />
@@ -258,7 +287,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category13' &&
-          (data?.results?.[0]?.content?.feature_post_category13 ? (
+          (data?.results?.[0]?.content?.feature_post_category13?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category13.thumbnail}
             />
@@ -266,7 +295,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category14' &&
-          (data?.results?.[0]?.content?.feature_post_category14 ? (
+          (data?.results?.[0]?.content?.feature_post_category14?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category14.thumbnail}
             />
@@ -274,7 +303,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category15' &&
-          (data?.results?.[0]?.content?.feature_post_category15 ? (
+          (data?.results?.[0]?.content?.feature_post_category15?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category15.thumbnail}
             />
@@ -282,7 +311,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category16' &&
-          (data?.results?.[0]?.content?.feature_post_category16 ? (
+          (data?.results?.[0]?.content?.feature_post_category16?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category16.thumbnail}
             />
@@ -290,7 +319,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category17' &&
-          (data?.results?.[0]?.content?.feature_post_category17 ? (
+          (data?.results?.[0]?.content?.feature_post_category17?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category17.thumbnail}
             />
@@ -298,7 +327,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category18' &&
-          (data?.results?.[0]?.content?.feature_post_category18 ? (
+          (data?.results?.[0]?.content?.feature_post_category18?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category18.thumbnail}
             />
@@ -306,7 +335,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category19' &&
-          (data?.results?.[0]?.content?.feature_post_category19 ? (
+          (data?.results?.[0]?.content?.feature_post_category19?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category19.thumbnail}
             />
@@ -314,7 +343,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category20' &&
-          (data?.results?.[0]?.content?.feature_post_category20 ? (
+          (data?.results?.[0]?.content?.feature_post_category20?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category20.thumbnail}
             />
@@ -322,7 +351,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category21' &&
-          (data?.results?.[0]?.content?.feature_post_category21 ? (
+          (data?.results?.[0]?.content?.feature_post_category21?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category21.thumbnail}
             />
@@ -330,7 +359,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category22' &&
-          (data?.results?.[0]?.content?.feature_post_category22 ? (
+          (data?.results?.[0]?.content?.feature_post_category22?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category22.thumbnail}
             />
@@ -338,7 +367,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category23' &&
-          (data?.results?.[0]?.content?.feature_post_category23 ? (
+          (data?.results?.[0]?.content?.feature_post_category23?.thumbnail ? (
             <DashSideCategoryCard
               image={data?.results?.[0].content?.feature_post_category23.thumbnail}
             />
@@ -346,7 +375,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashSideCategoryCard />
           ))}
         {categoryNum == 'feature_post_category24' &&
-          (data?.results?.[0]?.content?.feature_post_category24 ? (
+          (data?.results?.[0]?.content?.feature_post_category24?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category24.thumbnail}
             />
@@ -354,7 +383,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category25' &&
-          (data?.results?.[0]?.content?.feature_post_category25 ? (
+          (data?.results?.[0]?.content?.feature_post_category25?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category25.thumbnail}
             />
@@ -362,7 +391,7 @@ const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
             <DashCategoryCard />
           ))}
         {categoryNum == 'feature_post_category26' &&
-          (data?.results?.[0]?.content?.feature_post_category26 ? (
+          (data?.results?.[0]?.content?.feature_post_category26?.thumbnail ? (
             <DashCategoryCard
               image={data?.results?.[0].content?.feature_post_category26.thumbnail}
             />

@@ -41,7 +41,7 @@ const TopFeaturePost = () => {
   return (
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
-        {data?.results?.[0] ? (
+        {data?.results?.[0].content?.feature_post ? (
           <DashFeaturedCard image={data?.results?.[0].content.feature_post.thumbnail} />
         ) : (
           <DashFeaturedCard />

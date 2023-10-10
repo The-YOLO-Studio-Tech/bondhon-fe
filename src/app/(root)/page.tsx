@@ -6,6 +6,7 @@ import CategorySection, {
 } from '@/components/sections/landing/CategorySection';
 import HeroSection from '@/components/sections/landing/HeroSection';
 import LandingRightSideSection from '@/components/sections/landing/LandingRightSideSection';
+import MagazineAndArChiveSection from '@/components/sections/landing/MagazineAndArChiveSection';
 import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
 import { CircularProgress } from '@mui/material';
 
@@ -46,6 +47,9 @@ const Home = () => {
             ) : (
               <LoadingCard width={947} height={257} />
             )}
+          </div>
+          <div>
+            <MagazineAndArChiveSection />
           </div>
           <div className="">
             <BottomCategorySection data={data} />

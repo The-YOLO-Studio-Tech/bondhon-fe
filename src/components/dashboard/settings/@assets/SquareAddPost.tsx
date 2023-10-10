@@ -64,15 +64,15 @@ const AddPost = ({ addNum }: { addNum: string }) => {
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
         {addNum == 'add1' &&
-          (data?.results?.[0].content.add1 ? (
-            <DashRegularAddCard image={data?.results?.[0].content.add1.add_banner} />
+          (data?.results?.[0]?.content?.add1 ? (
+            <DashRegularAddCard image={data?.results?.[0]?.content?.add1?.add_banner} />
           ) : (
             <DashRegularAddCard />
           ))}
         {addNum == 'add2' &&
-          (data?.results?.[0].content.add2 ? (
+          (data?.results?.[0]?.content?.add2 ? (
             <DashVerticalAddCard
-              image={data?.results?.[0].content.add2.add_banner}
+              image={data?.results?.[0]?.content?.add2?.add_banner}
               width={273}
               height={548}
             />
@@ -80,7 +80,7 @@ const AddPost = ({ addNum }: { addNum: string }) => {
             <DashVerticalAddCard width={273} height={548} />
           ))}
         {addNum == 'add3' &&
-          (data?.results?.[0].content.add3 ? (
+          (data?.results?.[0]?.content?.add3 ? (
             <DashVerticalAddCard
               image={data?.results?.[0].content.add3.add_banner}
               width={273}
@@ -90,14 +90,14 @@ const AddPost = ({ addNum }: { addNum: string }) => {
             <DashVerticalAddCard width={273} height={430} />
           ))}
         {addNum == 'add4' &&
-          (data?.results?.[0].content.add4 ? (
-            <DashLargeAddCard image={data?.results?.[0].content.add4.add_banner} />
+          (data?.results?.[0]?.content.add4 ? (
+            <DashLargeAddCard image={data?.results?.[0]?.content?.add4?.add_banner} />
           ) : (
             <DashLargeAddCard />
           ))}
         {addNum == 'add5' &&
-          (data?.results?.[0].content.add5 ? (
-            <DashLargeAddCard image={data?.results?.[0].content.add5.add_banner} />
+          (data?.results?.[0]?.content?.add5 ? (
+            <DashLargeAddCard image={data?.results?.[0]?.content?.add5?.add_banner} />
           ) : (
             <DashLargeAddCard />
           ))}

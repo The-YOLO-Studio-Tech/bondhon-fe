@@ -3,27 +3,30 @@ import CalculatorCart from '@/components/core/cart/CalculatorCart';
 import DisplayCategory from '@/components/core/cart/DisplayCategory';
 import LoadingCard from '@/components/core/cart/LoadingCard';
 import ThumnileCategoryCart from '@/components/core/cart/ThumnileCategoryCart';
+import VideoCart from '@/components/core/cart/VideoCart';
 
 const LandingRightSideSection = ({ data }: { data: any }) => {
   return (
     <div>
       <div className="mb-5 xl:mb-7">
-        <DisplayCategory categoryNum="feature_post_category24" data={data} />
+        <VideoCart />
       </div>
-      {data?.results?.[0]?.content?.add1 ? (
-        <AddCard image={data?.results?.[0]?.content?.add1?.add_banner} width={295} height={333} />
-      ) : (
-        <LoadingCard width={295} height={333} />
-      )}
+      <div className="px-4 md:px-0">
+        {data?.results?.[0]?.content?.add1 ? (
+          <AddCard image={data?.results?.[0]?.content?.add1?.add_banner} width={295} height={333} />
+        ) : (
+          <LoadingCard width={295} height={333} />
+        )}
+      </div>
       {/* <AddCard width={295} height={295} /> */}
-      <div className="mt-8 xl:mt-[60px]">
+      <div className="mt-8 px-4 md:px-0 xl:mt-[60px]">
         {data?.results?.[0]?.content?.add2 ? (
           <AddCard image={data?.results?.[0]?.content?.add2?.add_banner} width={295} height={609} />
         ) : (
           <LoadingCard width={295} height={609} />
         )}
       </div>
-      <div className="space-y-5 my-5 xl:my-7">
+      <div className="space-y-5 grid grid-cols-2 my-5 gap-5 md:grid-cols-none md:gap-0 xl:my-7">
         <ThumnileCategoryCart
           categoryNum="feature_post_category20"
           data={data}
@@ -45,7 +48,7 @@ const LandingRightSideSection = ({ data }: { data: any }) => {
           key={Math.random()}
         />
       </div>
-      <div className="">
+      <div className="px-4 md:px-0">
         {data?.results?.[0]?.content?.add3 ? (
           <AddCard image={data?.results?.[0]?.content?.add3?.add_banner} width={295} height={317} />
         ) : (
