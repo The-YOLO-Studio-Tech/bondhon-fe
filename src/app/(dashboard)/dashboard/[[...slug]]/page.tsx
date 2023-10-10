@@ -15,7 +15,8 @@ export type Paramas = { params: { slug: string } };
 const DashBoard = ({ params }: Paramas) => {
   return (
     <div>
-      {params?.slug?.toString()?.replace(',', '/') === 'settings/home' && <LandingSettings />}
+      {params?.slug?.toString()?.replace(',', '/') === 'settings/home' ||
+        (!params.slug && <LandingSettings />)}
       {params?.slug?.toString()?.replace(',', '/') === 'video' && <VideoManagement />}
       {params?.slug?.toString()?.replace(',', '/') === 'advertisement' && (
         <AdvertisementManagement />
