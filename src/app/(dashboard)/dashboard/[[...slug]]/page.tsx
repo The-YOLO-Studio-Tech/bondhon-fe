@@ -10,6 +10,10 @@ import React from 'react';
 // const blogPattern = /^blog,\d+$/;
 // const addSubCatPattern = /^blog,(\d+),sub,add$/;
 
+
+
+
+
 export type Paramas = { params: { slug: string } };
 
 const DashBoard = ({ params }: Paramas) => {
