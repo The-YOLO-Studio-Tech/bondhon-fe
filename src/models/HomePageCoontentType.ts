@@ -49,8 +49,9 @@ export type HomePageCoontentType = {
   feature_post_category21: PostCategoryType;
   feature_post_category22: PostCategoryType;
   feature_video: FeatureVideoType;
-  square_add1: AddType;
-  square_add2: AddType;
-  square_add3: AddType;
-  square_add4: AddType;
+  add1: AddType;
+  add2: AddType;
+  add3: AddType;
+  add4: AddType;
+  add5: AddType;
 };

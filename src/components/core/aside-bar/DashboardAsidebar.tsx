@@ -49,10 +49,10 @@ const DashboardAsidebar = () => {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white">
-          <ul className="space-y-2 font-medium">
+          <ul className="space-y-3 font-medium">
             <li>
               <span className="font-bold">পেইজ সেটিংস</span>
-              <ul className="ml-4">
+              <ul className="ml-4 space-y-2">
                 <li>
                   <Link href={'/dashboard/settings/home'}>হোম</Link>
                 </li>
