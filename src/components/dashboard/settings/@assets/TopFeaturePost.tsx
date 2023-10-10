@@ -41,12 +41,16 @@ const TopFeaturePost = () => {
   return (
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
-        {data && <DashFeaturedCard image={data?.results[0].content.feature_post.thumbnail} />}
+        {data?.results?.[0] ? (
+          <DashFeaturedCard image={data?.results?.[0].content.feature_post.thumbnail} />
+        ) : (
+          <DashFeaturedCard />
+        )}
       </div>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">
         <DialogTitle>পোস্ট সিলেক্ট করুন</DialogTitle>
         <DialogContent>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {blog &&
               blog.results.map((blog: BlogType) => (
                 <MiniCard key={blog.id} blog={blog} setOpen={(x: any) => setOpen(x)} />

@@ -22,12 +22,12 @@ export const DashFeaturedCard = ({
   );
 };
 
-export const DashSideCategoryCard = () => {
+export const DashSideCategoryCard = ({ image = '/images/uploadImages/featuredCategory.png' }) => {
   return (
     <div>
       <div className="relative">
         <Image
-          src="/images/uploadImages/featuredCategory.png"
+          src={image}
           layout="responsive"
           objectFit="cover"
           width={273}
@@ -38,12 +38,12 @@ export const DashSideCategoryCard = () => {
     </div>
   );
 };
-export const DashCategoryCard = () => {
+export const DashCategoryCard = ({ image = '/images/uploadImages/addMainCategory.png' }) => {
   return (
     <div>
       <div className="relative">
         <Image
-          src="/images/uploadImages/addMainCategory.png"
+          src={image}
           layout="responsive"
           objectFit="cover"
           width={273}
@@ -55,12 +55,12 @@ export const DashCategoryCard = () => {
   );
 };
 
-export const DashLargeAddCard = () => {
+export const DashLargeAddCard = ({ image = '/images/uploadImages/largeAdd.png' }) => {
   return (
     <div>
       <div className="relative">
         <Image
-          src="/images/uploadImages/largeAdd.png"
+          src={image}
           layout="responsive"
           objectFit="cover"
           width={875}
@@ -72,33 +72,29 @@ export const DashLargeAddCard = () => {
   );
 };
 
-export const DashVerticalAddCard = ({ width, height }: { width: any; height: any }) => {
+export const DashVerticalAddCard = ({
+  width,
+  height,
+  image = '/images/uploadImages/verticalAdd.png',
+}: {
+  width: any;
+  height: any;
+  image?: any;
+}) => {
   return (
     <div>
       <div className="relative">
-        <Image
-          src="/images/uploadImages/verticalAdd.png"
-          layout="responsive"
-          width={width}
-          height={height}
-          alt="placeholder"
-        />
+        <Image src={image} layout="responsive" width={width} height={height} alt="placeholder" />
       </div>
     </div>
   );
 };
 
-export const DashRegularAddCard = () => {
+export const DashRegularAddCard = ({ image = '/images/uploadImages/verticalAdd.png' }) => {
   return (
     <div>
       <div className="relative">
-        <Image
-          src="/images/uploadImages/verticalAdd.png"
-          layout="responsive"
-          width={273}
-          height={306}
-          alt="placeholder"
-        />
+        <Image src={image} layout="responsive" width={273} height={306} alt="placeholder" />
       </div>
     </div>
   );
