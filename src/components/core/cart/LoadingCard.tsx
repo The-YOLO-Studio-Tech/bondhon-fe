@@ -5,6 +5,7 @@ const LoadingCard = ({ width, height }: { width: any; height: any }) => {
   return (
     <div className="w-ful relative">
       <Image
+        priority
         src="/images/placeHolder.jpeg"
         width={width}
         height={height}
