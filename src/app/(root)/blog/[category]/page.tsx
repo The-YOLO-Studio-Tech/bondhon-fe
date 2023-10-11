@@ -18,9 +18,7 @@ const BlogCategory = ({ params }: Paramas) => {
         <div className="col-span-9">
           <AllBlogsSection />
         </div>
-        <div className="col-span-3">
-          
-        </div>
+        <div className="col-span-3"></div>
       </div>
     </div>
   );

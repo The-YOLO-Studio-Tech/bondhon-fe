@@ -21,10 +21,10 @@ const DashBoard = ({ params }: Paramas) => {
       {params?.slug?.toString()?.replace(',', '/') === 'advertisement' && (
         <AdvertisementManagement />
       )}
-      {(params?.slug?.toString()?.replace(',', '/') === 'archive') && <ArchiveManagement />}
+      {params?.slug?.toString()?.replace(',', '/') === 'archive' && <ArchiveManagement />}
       {/* blog */}
-      {(params?.slug?.includes('blog')  && (params.slug?.length === 1)) && <BlogManagement />}
-      {(params?.slug?.[0] == 'settings' && params?.slug?.[1] == 'blog')  && <BlogAddManagement />}
+      {params?.slug?.includes('blog') && params.slug?.length === 1 && <BlogManagement />}
+      {params?.slug?.[0] == 'settings' && params?.slug?.[1] == 'blog' && <BlogAddManagement />}
     </div>
   );
 };

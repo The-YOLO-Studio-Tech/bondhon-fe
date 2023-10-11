@@ -70,9 +70,7 @@ const BlogAddPost = ({ addNum }: { addNum: string }) => {
           ))}
         {addNum == 'blog_add2' &&
           (data?.results?.[1]?.content?.blog_add2 ? (
-            <DashRegularAddCard
-              image={data?.results?.[1]?.content?.blog_add2?.add_banner}
-            />
+            <DashRegularAddCard image={data?.results?.[1]?.content?.blog_add2?.add_banner} />
           ) : (
             <DashRegularAddCard />
           ))}

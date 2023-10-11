@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .tableContainer::-webkit-scrollbar {
   background: white;
   height: 10px;
@@ -29,7 +28,6 @@
   padding-left: 120px;
   padding-right: 120px;
 }
-
 
 @media screen and (max-width: 1280px) {
   .commonContainer {

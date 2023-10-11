@@ -75,12 +75,13 @@ export const UploadForm = ({
 
   return (
     <>
-    {
-      instance ? <BiEdit onClick={() => setOpen(!open)} size={15} className='texre cursor-pointer'/> :
-      <p className="cursor-pointer" onClick={() => setOpen(!open)}>
-        অ্যাড ক্যাটাগরি
-      </p>
-    }
+      {instance ? (
+        <BiEdit onClick={() => setOpen(!open)} size={15} className="texre cursor-pointer" />
+      ) : (
+        <p className="cursor-pointer" onClick={() => setOpen(!open)}>
+          অ্যাড ক্যাটাগরি
+        </p>
+      )}
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="sm">
         <DialogTitle>অ্যাড ক্যাটাগরি</DialogTitle>
         <DialogContent>
@@ -129,19 +130,20 @@ export const AddCategoryModal = () => {
   );
 };
 
+export const UpdateCategoryModal = ({ id, instance }: { id: number; instance: any }) => {
+  const { mutateAsync } = useUpdateCategory(id);
+  return (
+    <div>
+      <UploadForm mutateAsync={mutateAsync} instance={instance} />
+    </div>
+  );
+};
 
-export const UpdateCategoryModal = ({id,instance}:{id:number,instance:any})=>{
-  const {mutateAsync} = useUpdateCategory(id)
-  return <div>
-    <UploadForm mutateAsync={mutateAsync} instance={instance}/>
-  </div>
-}
-
-export const DeleteCategory = ({id}:{id:number})=>{
+export const DeleteCategory = ({ id }: { id: number }) => {
   const { mutateAsync, isLoading } = useDeleteCategory(id);
   return (
     <div>
       <DeleteModal handleDelete={mutateAsync} isLoading={isLoading} />
     </div>
   );
-}
+};
