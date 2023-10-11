@@ -38,6 +38,16 @@ const MiniCard = ({ add, setOpen, addNum }: { add: AddType; setOpen: any; addNum
           page_name: 'blog',
           content: { blog_add5: add },
         };
+      } else if (addNum == 'blog_add6') {
+        data = {
+          page_name: 'blog',
+          content: { blog_add6: add },
+        };
+      } else if (addNum == 'blog_add7') {
+        data = {
+          page_name: 'blog',
+          content: { blog_add7: add },
+        };
       }
       await mutateAsync(data);
       setOpen(false);
@@ -123,7 +133,7 @@ const BlogAddPost = ({ addNum }: { addNum: string }) => {
             <DashAddCard width={1270} height={227} />
           ))}
         {addNum == 'blog_add7' &&
-          (data?.results?.[1]?.content?.blog_add6 ? (
+          (data?.results?.[1]?.content?.blog_add67 ? (
             <DashAddCard
               width={295}
               height={482}

@@ -1,3 +1,5 @@
+'use client';
+import { signOut } from 'next-auth/react';
 import Image from 'next/legacy/image';
 import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
@@ -9,12 +11,12 @@ export const SignOut = () => {
       <div className="flex gap-2 items-center">
         <span className="w-12 h-12 rounded-full bg-slate-200"></span>
         <div>
-          <h4 className="text-lg font-bold w-32">Admin Login</h4>
-          <p className="text-sm mt-1 text-[#808080]">Developer</p>
+          <h4 className="text-lg font-bold w-32">Bondhon</h4>
+          <p className="text-sm mt-1 text-[#808080]">Admin</p>
         </div>
       </div>
       <div>
-        <FiLogOut className="font-bold cursor-pointer" size={20} />
+        <FiLogOut onClick={() => signOut()} className="font-bold cursor-pointer" size={20} />
       </div>
     </div>
   );

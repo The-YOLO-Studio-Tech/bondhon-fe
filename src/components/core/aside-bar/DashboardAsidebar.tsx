@@ -99,9 +99,9 @@ const DashboardAsidebar = () => {
                 <li>
                   <Link href={'/dashboard/settings/blog'}>ব্লগ</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href={'/dashboard/settings/category'}>ক্যাটাগরি</Link>
-                </li>
+                </li> */}
                 {/* <li>
                   <Link href={'/dashboard/settings/calculator'}>ক্যালকুলেটর</Link>
                 </li> */}
