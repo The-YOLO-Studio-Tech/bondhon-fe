@@ -4,6 +4,7 @@ import { AddNewSubcategory } from '@/components/dashboard/blog/SubcategoryManage
 import { CategoryType, useGetCategoryData } from '@/hooks/querey/category.tsq';
 import Link from 'next/link';
 import React from 'react';
+import { AiOutlineDown } from 'react-icons/ai';
 
 const BlogItems = () => {
   const { data } = useGetCategoryData();
@@ -16,9 +17,17 @@ const BlogItems = () => {
       {data &&
         data.results.map((category: CategoryType) => (
           <li key={category.id}>
-            <Link href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}`}>
-              {category.title}
-            </Link>
+            <div>
+              <Link href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}`}>
+                {category.title}
+              </Link>
+              <p>
+                <AiOutlineDown />
+              </p>
+              <p>del icon</p>
+              <p>edit icon</p>
+            </div>
+
             <ul className="ml-4">
               <li>
                 <AddNewSubcategory category_id={category.id} />
@@ -62,12 +71,12 @@ const DashboardAsidebar = () => {
                 <li>
                   <Link href={'/dashboard/settings/category'}>ক্যাটাগরি</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href={'/dashboard/settings/calculator'}>ক্যালকুলেটর</Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link href={'/dashboard/settings/certificate'}>সার্টিফিকেট</Link>
-                </li>
+                </li> */}
               </ul>
             </li>
             <li>
