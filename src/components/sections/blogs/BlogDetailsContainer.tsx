@@ -1,4 +1,5 @@
 'use client';
+import BlogCard from '@/components/core/cart/BlogCard';
 // import BlogCard from '@/components/core/cart/BlogCard';
 import { BlogType, useGetBlogData } from '@/hooks/querey/blog.tsq';
 import Image from 'next/legacy/image';
@@ -88,9 +89,22 @@ const BlogDetails = ({ blog }: { blog: BlogType }) => {
   );
 };
 
+const AsideRelatatedBlog = ({ blog_title, category }: { blog_title: string; category: string }) => {
+  const { data } = useGetBlogData(3, 0, category);
+
+  return (
+    <>
+      {data &&
+        data.results.map(
+          (i: BlogType) => i.title !== blog_title && <BlogCard key={i.id} blog={i} />,
+        )}
+    </>
+  );
+};
+
 // default component
 const BlogDetailsContainer = () => {
-  const { data } = useGetBlogData();
+  const { data } = useGetBlogData(3, 0);
 
   return (
     <div>
@@ -101,9 +115,12 @@ const BlogDetailsContainer = () => {
         </div>
         {/* details side content */}
         <div className="grid grid-cols-2 gap-5 mt-10 md:mt-0 md:col-span-2 md:space-y-5 md:gap-0 md:grid-cols-none xl:space-y-7">
-          {/* {[...new Array(2)].map(() => (
-            <BlogCard key={Math.random()} />
-          ))} */}
+          {data?.results[0] && (
+            <AsideRelatatedBlog
+              blog_title={data?.results[0]?.title}
+              category={data?.results[0]?.category?.title}
+            />
+          )}
         </div>
       </div>
     </div>

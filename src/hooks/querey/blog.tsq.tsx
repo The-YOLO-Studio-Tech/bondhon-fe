@@ -16,21 +16,21 @@ export type BlogType = {
 
 const REFEARCH_QUERY = ['contentBlogList'];
 
-export const useGetBlogData = () => {
+export const useGetBlogData = (limit = 50, offset = 0, c_title = '') => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const title = pathname.includes('/post/') ? pathname.replace('/post/', '') || '' : '';
+  const title = pathname.includes('/post/') ? pathname.replace('/post/', '') || '' : c_title;
   const category__title = pathname.includes('/post/')
     ? ''
-    : searchParams.get('category__title') || pathname.replace('/blog/', '') || '';
+    : searchParams.get('category__title') || pathname.replace('/blog/', '') || c_title;
   const sub_category__title = searchParams.get('sub_category__title') || '';
 
   return useQuery({
     queryKey: [...REFEARCH_QUERY, ...[category__title, sub_category__title]],
     queryFn: () =>
       axiousResuest({
-        url: `/content/blog/?category__title=${category__title}&sub_category__title=${sub_category__title}&title=${title}`,
+        url: `/content/blog/?limit=${limit}&offset=${offset}&category__title=${category__title}&sub_category__title=${sub_category__title}&title=${title}`,
         method: 'get',
       }),
   });
