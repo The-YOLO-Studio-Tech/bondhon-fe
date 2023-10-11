@@ -1,7 +1,7 @@
 'use client';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { DashRegularAddCard } from './Cards';
+import { DashAddCard } from './Cards';
 import Image from 'next/legacy/image';
 import { useGetPageContent, useMutionPageContent } from '@/hooks/querey/pageContent.tsq';
 import { enqueueSnackbar } from 'notistack';
@@ -64,33 +64,63 @@ const BlogAddPost = ({ addNum }: { addNum: string }) => {
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
         {addNum == 'blog_add1' &&
           (data?.results?.[1]?.content?.blog_add1 ? (
-            <DashRegularAddCard image={data?.results?.[1]?.content?.blog_add1?.add_banner} />
+            <DashAddCard
+              width={295}
+              height={488}
+              image={data?.results?.[1]?.content?.blog_add1?.add_banner}
+            />
           ) : (
-            <DashRegularAddCard />
+            <DashAddCard width={295} height={488} />
           ))}
         {addNum == 'blog_add2' &&
           (data?.results?.[1]?.content?.blog_add2 ? (
-            <DashRegularAddCard image={data?.results?.[1]?.content?.blog_add2?.add_banner} />
+            <DashAddCard
+              width={295}
+              height={668}
+              image={data?.results?.[1]?.content?.blog_add2?.add_banner}
+            />
           ) : (
-            <DashRegularAddCard />
+            <DashAddCard width={295} height={668} />
           ))}
         {addNum == 'blog_add3' &&
           (data?.results?.[1]?.content?.blog_add3 ? (
-            <DashRegularAddCard image={data?.results?.[1]?.content?.blog_add3?.add_banner} />
+            <DashAddCard
+              width={295}
+              height={302}
+              image={data?.results?.[1]?.content?.blog_add3?.add_banner}
+            />
           ) : (
-            <DashRegularAddCard />
+            <DashAddCard width={295} height={302} />
           ))}
         {addNum == 'blog_add4' &&
           (data?.results?.[1]?.content?.blog_add4 ? (
-            <DashRegularAddCard image={data?.results?.[1]?.content?.blog_add4?.add_banner} />
+            <DashAddCard
+              width={295}
+              height={426}
+              image={data?.results?.[1]?.content?.blog_add4?.add_banner}
+            />
           ) : (
-            <DashRegularAddCard />
+            <DashAddCard width={295} height={426} />
           ))}
         {addNum == 'blog_add5' &&
           (data?.results?.[1]?.content?.blog_add5 ? (
-            <DashRegularAddCard image={data?.results?.[1]?.content?.blog_add5?.add_banner} />
+            <DashAddCard
+              width={945}
+              height={257}
+              image={data?.results?.[1]?.content?.blog_add5?.add_banner}
+            />
           ) : (
-            <DashRegularAddCard />
+            <DashAddCard width={945} height={257} />
+          ))}
+        {addNum == 'blog_add6' &&
+          (data?.results?.[1]?.content?.blog_add6 ? (
+            <DashAddCard
+              width={295}
+              height={482}
+              image={data?.results?.[1]?.content?.blog_add6?.add_banner}
+            />
+          ) : (
+            <DashAddCard width={295} height={426} />
           ))}
       </div>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">

@@ -12,6 +12,7 @@ const BlogAddManagement = () => {
           <BlogAddPost addNum="blog_add2" />
           <BlogAddPost addNum="blog_add3" />
           <BlogAddPost addNum="blog_add4" />
+          <BlogAddPost addNum="blog_add5" />
         </div>
       </div>
       <div className="pb-10">
@@ -20,7 +21,7 @@ const BlogAddManagement = () => {
         </h2>
 
         <div className="grid grid-cols-4 gap-5">
-          <BlogAddPost addNum="blog_add5" />
+          <BlogAddPost addNum="blog_add6" />
         </div>
       </div>
     </div>

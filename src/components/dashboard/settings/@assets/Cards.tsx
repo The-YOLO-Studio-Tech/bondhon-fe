@@ -55,6 +55,45 @@ export const DashCategoryCard = ({ image = '/images/uploadImages/addMainCategory
   );
 };
 
+export const DashAddCard = ({
+  image,
+  width,
+  height,
+}: {
+  image?: string;
+  width: number;
+  height: number;
+}) => {
+  return (
+    <div>
+      <div className="">
+        {image ? (
+          <Image
+            src={image}
+            layout="responsive"
+            objectFit="cover"
+            width={width}
+            height={height}
+            alt="img"
+          />
+        ) : (
+          <div className="relative w-fit">
+            <div className="relative w-fit">
+              <Image src="/images/cardBg.png" width={width} height={height} alt="img" />
+            </div>
+            <div className="absolute top-1/2 p-10 border-[#3C08A0] border border-dashed text-center left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <p>add</p>
+              <p className="text-2xl font-semibold pt-2">
+                {width}x{height}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export const DashLargeAddCard = ({ image = '/images/uploadImages/largeAdd.png' }) => {
   return (
     <div>

@@ -1,7 +1,7 @@
 'use client';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { DashLargeAddCard, DashRegularAddCard, DashVerticalAddCard } from './Cards';
+import { DashAddCard, DashLargeAddCard, DashVerticalAddCard } from './Cards';
 import Image from 'next/legacy/image';
 import { useGetPageContent, useMutionPageContent } from '@/hooks/querey/pageContent.tsq';
 import { enqueueSnackbar } from 'notistack';
@@ -13,7 +13,12 @@ const MiniCard = ({ add, setOpen, addNum }: { add: AddType; setOpen: any; addNum
   const handleClick = useCallback(async () => {
     let data;
     try {
-      if (addNum == 'add1') {
+      if (addNum == 'topAdd') {
+        data = {
+          page_name: 'home',
+          content: { topAdd: add },
+        };
+      } else if (addNum == 'add1') {
         data = {
           page_name: 'home',
           content: { add1: add },
@@ -63,11 +68,25 @@ const AddPost = ({ addNum }: { addNum: string }) => {
   return (
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
+        {addNum == 'topAdd' &&
+          (data?.results?.[0]?.content?.topAdd ? (
+            <DashAddCard
+              width={295}
+              height={84}
+              image={data?.results?.[0]?.content?.topAdd?.add_banner}
+            />
+          ) : (
+            <DashAddCard width={295} height={84} />
+          ))}
         {addNum == 'add1' &&
           (data?.results?.[0]?.content?.add1 ? (
-            <DashRegularAddCard image={data?.results?.[0]?.content?.add1?.add_banner} />
+            <DashAddCard
+              width={273}
+              height={306}
+              image={data?.results?.[0]?.content?.add1?.add_banner}
+            />
           ) : (
-            <DashRegularAddCard />
+            <DashAddCard width={273} height={306} />
           ))}
         {addNum == 'add2' &&
           (data?.results?.[0]?.content?.add2 ? (

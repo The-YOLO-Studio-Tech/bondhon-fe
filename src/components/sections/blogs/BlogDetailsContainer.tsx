@@ -1,13 +1,17 @@
 'use client';
+import AddCard from '@/components/core/cart/AddCard';
 import BlogCard from '@/components/core/cart/BlogCard';
+import LoadingCard from '@/components/core/cart/LoadingCard';
 // import BlogCard from '@/components/core/cart/BlogCard';
 import { BlogType, useGetBlogData } from '@/hooks/querey/blog.tsq';
+import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 
 const BlogDetailsHeader = ({ blog }: { blog: BlogType }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+
   return (
     <div className=" justify-between items-end pb-5 border-b lg:flex xl:pb-7">
       <div>
@@ -105,7 +109,7 @@ const AsideRelatatedBlog = ({ blog_title, category }: { blog_title: string; cate
 // default component
 const BlogDetailsContainer = () => {
   const { data } = useGetBlogData(3, 0);
-
+  const { data: addData } = useGetPageContent('blog');
   return (
     <div>
       {data?.results[0] && <BlogDetailsHeader blog={data?.results[0]} />}
@@ -114,13 +118,26 @@ const BlogDetailsContainer = () => {
           {data?.results[0] && <BlogDetails blog={data?.results[0]} />}
         </div>
         {/* details side content */}
-        <div className="grid grid-cols-2 gap-5 mt-10 md:mt-0 md:col-span-2 md:space-y-5 md:gap-0 md:grid-cols-none xl:space-y-7">
-          {data?.results[0] && (
-            <AsideRelatatedBlog
-              blog_title={data?.results[0]?.title}
-              category={data?.results[0]?.category?.title}
-            />
-          )}
+        <div className="grid-cols-2">
+          <div className="grid  gap-5 mt-10 md:mt-0 md:col-span-2 md:space-y-5 md:gap-0 md:grid-cols-none xl:space-y-7">
+            {data?.results[0] && (
+              <AsideRelatatedBlog
+                blog_title={data?.results[0]?.title}
+                category={data?.results[0]?.category?.title}
+              />
+            )}
+          </div>
+          <div className="border">
+            {addData?.results?.[1]?.content?.blog_add6 ? (
+              <AddCard
+                image={addData?.results?.[1]?.content?.blog_add6?.add_banner}
+                width={295}
+                height={482}
+              />
+            ) : (
+              <LoadingCard width={295} height={482} />
+            )}
+          </div>
         </div>
       </div>
     </div>
