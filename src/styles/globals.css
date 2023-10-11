@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.commonContainer {
-  max-width: 1512px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 120px;
-  padding-right: 120px;
-}
 
 .tableContainer::-webkit-scrollbar {
   background: white;
@@ -28,6 +21,15 @@
 .menu:hover > .subMenu {
   top: 16px;
 }
+
+.commonContainer {
+  max-width: 1512px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
 
 @media screen and (max-width: 1280px) {
   .commonContainer {

@@ -1,5 +1,5 @@
 'use client';
-import { SubCategoryType, useAddSubCategory } from '@/hooks/querey/subCategory.tsq';
+import { SubCategoryType, useAddSubCategory, useDeleteSubCategory, useUpdateSubCategory } from '@/hooks/querey/subCategory.tsq';
 import { BlogSubCategoryInfo } from '@/libs/validations/blog.validation';
 import { LoadingButton } from '@mui/lab';
 import { Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
@@ -7,6 +7,8 @@ import { useFormik } from 'formik';
 import { enqueueSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
+import DeleteModal from '@/components/@assets/modals/DeleteModal';
+import { BiEdit } from 'react-icons/bi';
 
 const UploadForm = ({
   instance,
@@ -54,9 +56,12 @@ const UploadForm = ({
 
   return (
     <>
+    {instance ? <BiEdit onClick={() => setOpen(!open)} size={15} className='texre cursor-pointer'/> :
+    
       <p className="cursor-pointer" onClick={() => setOpen(!open)}>
         অ্যাড সাব-ক্যাটাগরি
       </p>
+    }
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="sm">
         <DialogTitle>অ্যাড সাব-ক্যাটাগরি</DialogTitle>
         <DialogContent>
@@ -100,3 +105,20 @@ export const AddNewSubcategory = ({ category_id }: { category_id: number }) => {
   );
 };
 // অ্যাড সাব-ক্যাটাগরি {category_id}
+
+
+export const UpdateSubCategoryModal = ({id,instance,category_id}:{id:number,instance:any,category_id:number})=>{
+  const {mutateAsync} = useUpdateSubCategory(id)
+  return <div>
+    <UploadForm mutateAsync={mutateAsync} category={category_id} instance={instance}/>
+  </div>
+}
+
+export const DeleteSubCategory = ({id}:{id:number})=>{
+  const { mutateAsync, isLoading } = useDeleteSubCategory(id);
+  return (
+    <div>
+      <DeleteModal handleDelete={mutateAsync} isLoading={isLoading} />
+    </div>
+  );
+}

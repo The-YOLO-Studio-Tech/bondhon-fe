@@ -6,8 +6,10 @@ import { LoadingButton } from '@mui/lab';
 import { useFormik } from 'formik';
 import { enqueueSnackbar } from 'notistack';
 import ImageUpload from '@/components/@assets/inputs/ImageUpload';
-import { useAddCategory } from '@/hooks/querey/category.tsq';
+import { useAddCategory, useDeleteCategory, useUpdateCategory } from '@/hooks/querey/category.tsq';
 import { BlogCategoryInfo } from '@/libs/validations/blog.validation';
+import { BiEdit } from 'react-icons/bi';
+import DeleteModal from '@/components/@assets/modals/DeleteModal';
 
 type CategoryType = {
   id: number;
@@ -16,7 +18,7 @@ type CategoryType = {
   created_at?: string | undefined;
 };
 
-const UploadForm = ({
+export const UploadForm = ({
   instance,
   mutateAsync,
 }: {
@@ -73,9 +75,12 @@ const UploadForm = ({
 
   return (
     <>
+    {
+      instance ? <BiEdit onClick={() => setOpen(!open)} size={15} className='texre cursor-pointer'/> :
       <p className="cursor-pointer" onClick={() => setOpen(!open)}>
         অ্যাড ক্যাটাগরি
       </p>
+    }
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="sm">
         <DialogTitle>অ্যাড ক্যাটাগরি</DialogTitle>
         <DialogContent>
@@ -123,3 +128,20 @@ export const AddCategoryModal = () => {
     </div>
   );
 };
+
+
+export const UpdateCategoryModal = ({id,instance}:{id:number,instance:any})=>{
+  const {mutateAsync} = useUpdateCategory(id)
+  return <div>
+    <UploadForm mutateAsync={mutateAsync} instance={instance}/>
+  </div>
+}
+
+export const DeleteCategory = ({id}:{id:number})=>{
+  const { mutateAsync, isLoading } = useDeleteCategory(id);
+  return (
+    <div>
+      <DeleteModal handleDelete={mutateAsync} isLoading={isLoading} />
+    </div>
+  );
+}

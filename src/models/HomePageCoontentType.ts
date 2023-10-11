@@ -54,4 +54,10 @@ export type HomePageCoontentType = {
   add3: AddType;
   add4: AddType;
   add5: AddType;
+  blog_dd1: AddType;
+  blog_dd2: AddType;
+  blog_dd3: AddType;
+  blog_dd4: AddType;
+  blog_dd5: AddType;
 };
+

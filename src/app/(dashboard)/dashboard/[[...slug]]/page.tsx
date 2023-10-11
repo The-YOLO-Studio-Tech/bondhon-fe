@@ -1,5 +1,6 @@
 import AdvertisementManagement from '@/components/dashboard/advertisement/AdvertisementManagement';
 import ArchiveManagement from '@/components/dashboard/archive/ArchiveManagement';
+import BlogAddManagement from '@/components/dashboard/blog/BlogAddManagement';
 import BlogManagement from '@/components/dashboard/blog/BlogManagement';
 
 import LandingSettings from '@/components/dashboard/settings/LandingSettings';
@@ -20,9 +21,10 @@ const DashBoard = ({ params }: Paramas) => {
       {params?.slug?.toString()?.replace(',', '/') === 'advertisement' && (
         <AdvertisementManagement />
       )}
-      {params?.slug?.toString()?.replace(',', '/') === 'archive' && <ArchiveManagement />}
+      {(params?.slug?.toString()?.replace(',', '/') === 'archive') && <ArchiveManagement />}
       {/* blog */}
-      {params?.slug?.includes('blog') && <BlogManagement />}
+      {(params?.slug?.includes('blog')  && (params.slug?.length === 1)) && <BlogManagement />}
+      {(params?.slug?.[0] == 'settings' && params?.slug?.[1] == 'blog')  && <BlogAddManagement />}
     </div>
   );
 };

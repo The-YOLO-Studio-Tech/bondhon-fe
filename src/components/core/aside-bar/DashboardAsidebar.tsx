@@ -1,48 +1,69 @@
 'use client';
-import { AddCategoryModal } from '@/components/dashboard/blog/CategoryManagement';
-import { AddNewSubcategory } from '@/components/dashboard/blog/SubcategoryManagement';
+import { AddCategoryModal, DeleteCategory, UpdateCategoryModal } from '@/components/dashboard/blog/CategoryManagement';
+import { AddNewSubcategory, DeleteSubCategory, UpdateSubCategoryModal } from '@/components/dashboard/blog/SubcategoryManagement';
 import { CategoryType, useGetCategoryData } from '@/hooks/querey/category.tsq';
 import Link from 'next/link';
-import React from 'react';
-import { AiOutlineDown } from 'react-icons/ai';
+import { useState } from 'react';
+import { AiOutlineDown, AiOutlineRight } from 'react-icons/ai';
 
-const BlogItems = () => {
-  const { data } = useGetCategoryData();
-  // console.log(data);
-  return (
-    <ul className="ml-4">
-      <li>
-        <AddCategoryModal />
-      </li>
-      {data &&
-        data.results.map((category: CategoryType) => (
-          <li key={category.id}>
-            <div>
-              <Link href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}`}>
+
+// category
+const CategoryItem = ({category}:{category:any}) => {
+ 
+  const [open,setOpen] = useState(false)
+  return(
+<li key={category.id}>
+            <div className='flex '>
+              <Link onClick={()=>setOpen(!open)} className='flex justify-between items-center mr-8 pb-1 w-4/5' href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}`}>
                 {category.title}
+                {open ? <AiOutlineDown />
+                :<AiOutlineRight/>}
               </Link>
-              <p>
-                <AiOutlineDown />
-              </p>
-              <p>del icon</p>
-              <p>edit icon</p>
+              <span className='w-1/5 flex gap-1 items-center'>
+                <UpdateCategoryModal id={category.id} instance = {category}/>
+              <DeleteCategory id={category.id}/>
+              </span>
             </div>
 
-            <ul className="ml-4">
-              <li>
+            <ul className={`ml-4 ${open  ? 'inline-block': 'hidden'}`}>
+              <li className='my-1 '>
                 <AddNewSubcategory category_id={category.id} />
               </li>
-              {category.sub_category?.map((sub_category) => (
-                <li key={sub_category.id}>
+              {category.sub_category?.map((sub_category:any) => (
+               <ul className='list-disc ml-4' key={sub_category.id}>
+                 <li className='' key={sub_category.id}>
+                  <div className='flex gap-2 text-sm items-center'>
                   <Link
                     href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}&sc_id=${sub_category.id}&sub_category__title=${sub_category.title}`}
                   >
                     {sub_category.title}
                   </Link>
+                  <span className='flex gap-1'>
+                    <UpdateSubCategoryModal id={sub_category.id} category_id={category.id} instance={sub_category}/>
+                    <DeleteSubCategory  id={sub_category.id}/>
+                  </span>
+                  </div>
                 </li>
+               </ul>
               ))}
             </ul>
           </li>
+  )
+}
+
+
+
+
+const BlogItems = () => {
+  const { data } = useGetCategoryData();
+  return (
+    <ul className="ml-4 space-y-2">
+      <li>
+        <AddCategoryModal />
+      </li>
+      {data &&
+        data.results.map((category: CategoryType) => (
+          <CategoryItem key={Math.random()} category = {category}/>
         ))}
     </ul>
   );
@@ -66,7 +87,7 @@ const DashboardAsidebar = () => {
                   <Link href={'/dashboard/settings/home'}>হোম</Link>
                 </li>
                 <li>
-                  <Link href={'/dashboard/settings/blog-details'}>ব্লগ ডিটেইলস</Link>
+                  <Link href={'/dashboard/settings/blog'}>ব্লগ</Link>
                 </li>
                 <li>
                   <Link href={'/dashboard/settings/category'}>ক্যাটাগরি</Link>

@@ -7,13 +7,13 @@ export type SubCategoryType = {
   title: string;
   created_at?: string | undefined;
 };
-const REFEARCH_QUERY = ['contentCategoryList', 'contentSubCategoryList'];
+// const REFEARCH_QUERY = ['contentCategoryList', 'contentSubCategoryList'];
 
 export const useGetSubCategoryData = () => {
   /** session management */
 
   return useQuery({
-    queryKey: [...REFEARCH_QUERY],
+    queryKey: ['test'],
     queryFn: () =>
       axiousResuest({
         url: `/content/sub-category/`,
@@ -40,7 +40,7 @@ export const useAddSubCategory = () => {
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(REFEARCH_QUERY),
+      onSuccess: () => queryClient.invalidateQueries('test'),
     },
   );
 };
@@ -62,7 +62,7 @@ export const useUpdateSubCategory = (id: number) => {
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(REFEARCH_QUERY),
+      onSuccess: () => queryClient.invalidateQueries('test'),
     },
   );
 };
@@ -83,7 +83,7 @@ export const useDeleteSubCategory = (id: number) => {
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(REFEARCH_QUERY),
+      onSuccess: () => queryClient.invalidateQueries('test'),
     },
   );
 };
