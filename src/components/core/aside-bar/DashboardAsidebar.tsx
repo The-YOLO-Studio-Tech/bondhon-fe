@@ -94,7 +94,7 @@ const DashboardAsidebar = () => {
               <span className="font-bold">পেইজ সেটিংস</span>
               <ul className="ml-4 space-y-2">
                 <li>
-                  <Link href={'/dashboard/settings/home'}>হোম</Link>
+                  <Link href={'/dashboard'}>হোম</Link>
                 </li>
                 <li>
                   <Link href={'/dashboard/settings/blog'}>ব্লগ</Link>

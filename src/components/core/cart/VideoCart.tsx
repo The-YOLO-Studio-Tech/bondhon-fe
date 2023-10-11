@@ -21,7 +21,7 @@ const VideoCart = () => {
         </div>
       )}
       <button className="py-2 bg-[#392FA3] text-white leading-[140%] w-full text-center xl:py-5">
-        {'title'}
+        {data?.results?.[0]?.title}
       </button>
     </div>
   );

@@ -18,7 +18,7 @@ const AllBlogsSection = ({
 
   return (
     <div>
-      <div className="grid grid-cols-2 gap-5 mt-10 md:mt-12 md:grid-cols-2 xl:grid-cols-3 xl:mt-16 xl:gap-7">
+      <div className="grid grid-cols-2 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-7">
         {isLoading
           ? [...new Array(4)].map(() => (
               <LoadingCard key={Math.random()} width={295} height={239} />

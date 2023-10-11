@@ -9,7 +9,7 @@ import TopFeaturePost from './@assets/TopFeaturePost';
 const LandingSettings = () => {
   return (
     <>
-      <div className="mt-10">
+      <div className="mt-10 w-56">
         <AddPost addNum="topAdd" />
       </div>
       <div className="py-10 md:grid md:grid-cols-12 md:gap-5 xl:gap-7">

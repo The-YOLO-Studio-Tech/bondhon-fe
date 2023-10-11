@@ -88,7 +88,10 @@ const BlogDetails = ({ blog }: { blog: BlogType }) => {
           alt="img"
         />
       </div>
-      <div className="mt-5 xl:mt-10">{blog.description_html}</div>
+      <div
+        dangerouslySetInnerHTML={{ __html: blog.description_html }}
+        className="mt-5 xl:mt-10"
+      ></div>
     </div>
   );
 };
@@ -118,8 +121,8 @@ const BlogDetailsContainer = () => {
           {data?.results[0] && <BlogDetails blog={data?.results[0]} />}
         </div>
         {/* details side content */}
-        <div className="grid-cols-2">
-          <div className="grid  gap-5 mt-10 md:mt-0 md:col-span-2 md:space-y-5 md:gap-0 md:grid-cols-none xl:space-y-7">
+        <div className=" md:col-span-2">
+          <div className="grid grid-cols-2 gap-5 mt-10 md:mt-0 md:space-y-5 md:gap-0 md:grid-cols-none xl:space-y-7">
             {data?.results[0] && (
               <AsideRelatatedBlog
                 blog_title={data?.results[0]?.title}
@@ -127,7 +130,7 @@ const BlogDetailsContainer = () => {
               />
             )}
           </div>
-          <div className="border">
+          <div className="">
             {addData?.results?.[1]?.content?.blog_add6 ? (
               <AddCard
                 image={addData?.results?.[1]?.content?.blog_add6?.add_banner}

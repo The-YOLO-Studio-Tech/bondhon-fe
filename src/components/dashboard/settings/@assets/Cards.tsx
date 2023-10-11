@@ -81,7 +81,45 @@ export const DashAddCard = ({
             <div className="relative w-fit">
               <Image src="/images/cardBg.png" width={width} height={height} alt="img" />
             </div>
-            <div className="absolute top-1/2 p-10 border-[#3C08A0] border border-dashed text-center left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute top-1/2 text-center left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <p>add</p>
+              <p className="text-2xl font-semibold pt-2">
+                {width}x{height}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+export const DashBlogAddCard = ({
+  image,
+  width,
+  height,
+}: {
+  image?: string;
+  width: number;
+  height: number;
+}) => {
+  return (
+    <div>
+      <div className="">
+        {image ? (
+          <Image
+            src={image}
+            layout="responsive"
+            objectFit="cover"
+            width={400}
+            height={400}
+            alt="img"
+          />
+        ) : (
+          <div className="relative w-fit">
+            <div className="relative w-fit">
+              <Image src="/images/cardBg.png" width={400} height={400} alt="img" />
+            </div>
+            <div className="absolute top-1/2 text-center left-1/2 -translate-x-1/2 -translate-y-1/2">
               <p>add</p>
               <p className="text-2xl font-semibold pt-2">
                 {width}x{height}

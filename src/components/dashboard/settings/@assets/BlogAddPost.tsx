@@ -1,7 +1,7 @@
 'use client';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { DashAddCard } from './Cards';
+import { DashAddCard, DashBlogAddCard } from './Cards';
 import Image from 'next/legacy/image';
 import { useGetPageContent, useMutionPageContent } from '@/hooks/querey/pageContent.tsq';
 import { enqueueSnackbar } from 'notistack';
@@ -64,43 +64,43 @@ const BlogAddPost = ({ addNum }: { addNum: string }) => {
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
         {addNum == 'blog_add1' &&
           (data?.results?.[1]?.content?.blog_add1 ? (
-            <DashAddCard
+            <DashBlogAddCard
               width={295}
               height={488}
               image={data?.results?.[1]?.content?.blog_add1?.add_banner}
             />
           ) : (
-            <DashAddCard width={295} height={488} />
+            <DashBlogAddCard width={295} height={488} />
           ))}
         {addNum == 'blog_add2' &&
           (data?.results?.[1]?.content?.blog_add2 ? (
-            <DashAddCard
+            <DashBlogAddCard
               width={295}
               height={668}
               image={data?.results?.[1]?.content?.blog_add2?.add_banner}
             />
           ) : (
-            <DashAddCard width={295} height={668} />
+            <DashBlogAddCard width={295} height={668} />
           ))}
         {addNum == 'blog_add3' &&
           (data?.results?.[1]?.content?.blog_add3 ? (
-            <DashAddCard
+            <DashBlogAddCard
               width={295}
               height={302}
               image={data?.results?.[1]?.content?.blog_add3?.add_banner}
             />
           ) : (
-            <DashAddCard width={295} height={302} />
+            <DashBlogAddCard width={295} height={302} />
           ))}
         {addNum == 'blog_add4' &&
           (data?.results?.[1]?.content?.blog_add4 ? (
-            <DashAddCard
+            <DashBlogAddCard
               width={295}
               height={426}
               image={data?.results?.[1]?.content?.blog_add4?.add_banner}
             />
           ) : (
-            <DashAddCard width={295} height={426} />
+            <DashBlogAddCard width={295} height={426} />
           ))}
         {addNum == 'blog_add5' &&
           (data?.results?.[1]?.content?.blog_add5 ? (
@@ -115,9 +115,19 @@ const BlogAddPost = ({ addNum }: { addNum: string }) => {
         {addNum == 'blog_add6' &&
           (data?.results?.[1]?.content?.blog_add6 ? (
             <DashAddCard
+              width={1270}
+              height={227}
+              image={data?.results?.[1]?.content?.blog_add6?.add_banner}
+            />
+          ) : (
+            <DashAddCard width={1270} height={227} />
+          ))}
+        {addNum == 'blog_add7' &&
+          (data?.results?.[1]?.content?.blog_add6 ? (
+            <DashAddCard
               width={295}
               height={482}
-              image={data?.results?.[1]?.content?.blog_add6?.add_banner}
+              image={data?.results?.[1]?.content?.blog_add7?.add_banner}
             />
           ) : (
             <DashAddCard width={295} height={426} />

@@ -28,7 +28,10 @@ const MiniCard = ({ blog, setOpen }: { blog: BlogType; setOpen: any }) => {
   return (
     <div className="cursor-pointer" onClick={handleClick}>
       <Image className="rounded-lg" src={blog.thumbnail} width={150} height={150} alt="thumbnail" />
-      <p>{blog.title}</p>
+      <p className="truncate">
+        {blog.title} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam nam illum
+        officia quibusdam sequi similique porro iste assumenda laudantium consequatur.
+      </p>
     </div>
   );
 };
@@ -50,7 +53,7 @@ const TopFeaturePost = () => {
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">
         <DialogTitle>পোস্ট সিলেক্ট করুন</DialogTitle>
         <DialogContent>
-          <div className="flex flex-wrap gap-4">
+          <div className="grid grid-cols-6 gap-4">
             {blog &&
               blog.results.map((blog: BlogType) => (
                 <MiniCard key={blog.id} blog={blog} setOpen={(x: any) => setOpen(x)} />

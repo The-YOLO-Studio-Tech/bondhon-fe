@@ -118,10 +118,10 @@ const MagazineAndArChiveSection = () => {
           </div>
 
           <div className="md:h-2/5 grid grid-cols-2 gap-5 xl:gap-7">
-            <div className="text-sm border py-1 text-center h-full border-[#392FA3] xl:text-lg">
+            <div className="text-sm border p-5 text-center h-full border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
               <p>জটিল যৌগের সরল কথা</p>
             </div>
-            <div className="text-sm border py-1 text-center border-[#392FA3] xl:text-lg">
+            <div className="text-sm border p-5 text-center border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
               <p>জটিল যৌগের সরল কথা</p>
             </div>
           </div>

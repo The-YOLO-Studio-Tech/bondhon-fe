@@ -15,7 +15,7 @@ const CategoryCart = ({ image, title }: { image: any; title: string }) => {
           alt="thumbnail"
         />
       </div>
-      <button className="py-2 bg-[#392FA3] text-white leading-[140%] w-full text-center xl:py-5">
+      <button className="py-2 bg-[#392FA3] truncate text-white leading-[140%] w-full text-center px-2 md:px-3 xl:px-5 xl:py-5">
         {title}
       </button>
     </Link>
