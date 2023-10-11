@@ -68,14 +68,14 @@ const MobileHamburgerMenu = () => {
                     </AccordionSummary>
                     <AccordionDetails sx={{ padding: '0px' }}>
                       <ul className="space-y-3 font-medium ml-10">
-                        {i?.sub_category?.map((i: { title: string }, idx: number) => (
+                        {i?.sub_category?.map((j: { title: string }, idx: number) => (
                           <li
                             className="list-disc"
                             onClick={() => setOpen(!open)}
                             // className={`list-disc ${router.pathname == i.url?'active_nav':''}`}
                             key={idx}
                           >
-                            <Link href="/">{i.title}</Link>
+                            <Link href={`/blog/${i.title}/${j.title}`}>{j.title}</Link>
                           </li>
                         ))}
                       </ul>

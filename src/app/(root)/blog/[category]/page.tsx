@@ -17,7 +17,7 @@ const BlogCategory = ({ params }: Paramas) => {
         <h2 className="text-[#392FA3] text-2xl font-bold xl:text-[42px]">
           {decodeURIComponent(params.category)}
         </h2>
-        <p className="text-[#392FA3] mt-4  mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">
+        <p className="text-[#392FA3] mt-4 mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">
           <Link href={'/'}>হোম</Link> - {decodeURIComponent(params.category)}
         </p>
       </div>
