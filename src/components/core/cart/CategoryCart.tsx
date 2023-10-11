@@ -4,7 +4,7 @@ import React from 'react';
 
 const CategoryCart = ({ image, title }: { image: any; title: string }) => {
   return (
-    <Link href="/category/slug">
+    <Link href={`/blog/${title}`}>
       <div className="relative">
         <Image
           src={image}

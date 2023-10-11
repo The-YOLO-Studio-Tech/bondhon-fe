@@ -1,6 +1,7 @@
 import AllBlogsSection from '@/components/sections/blogs/AllBlogsSection';
+import React from 'react';
 
-const page = () => {
+const BlogCategory = () => {
   return (
     <div className="mt-6 commonContainer xl:mt-8">
       <div className="text-center">
@@ -17,4 +18,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default BlogCategory;

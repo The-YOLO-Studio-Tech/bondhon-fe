@@ -1,9 +1,9 @@
-import AddCard from '@/components/core/cart/AddCard';
 import BlogDetailsContainer from '@/components/sections/blogs/BlogDetailsContainer';
 import WritterRelatedBlogSection from '@/components/sections/blogs/WritterRelatedBlogSection';
+import { AddCard } from '@mui/icons-material';
 import React from 'react';
 
-const BlogDetails = () => {
+const PostDetails = () => {
   return (
     <div className="commonContainer mt-7 xl:mt-10">
       <div className="mb-10 xl:mb-16">
@@ -15,4 +15,4 @@ const BlogDetails = () => {
   );
 };
 
-export default BlogDetails;
+export default PostDetails;
