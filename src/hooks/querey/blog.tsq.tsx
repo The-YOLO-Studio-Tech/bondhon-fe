@@ -16,15 +16,13 @@ export type BlogType = {
 
 const REFEARCH_QUERY = ['contentBlogList'];
 
-export const useGetBlogData = (limit = 50, offset = 0, c_title = '') => {
+export const useGetBlogData = (limit = 50, offset = 0, c_title = '', s_title = '') => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const title = pathname.includes('/post/') ? pathname.replace('/post/', '') || '' : c_title;
-  const category__title = pathname.includes('/post/')
-    ? ''
-    : searchParams.get('category__title') || pathname.replace('/blog/', '') || c_title;
-  const sub_category__title = searchParams.get('sub_category__title') || '';
+  const title = pathname.includes('/post/') ? pathname.replace('/post/', '') || '' : '';
+  const category__title = searchParams.get('category__title') || c_title;
+  const sub_category__title = searchParams.get('sub_category__title') || s_title;
 
   return useQuery({
     queryKey: [...REFEARCH_QUERY, ...[category__title, sub_category__title]],

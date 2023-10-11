@@ -18,7 +18,7 @@ const BlogCategory = ({ params }: Paramas) => {
       </div>
       <div className="md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
         <div className="col-span-9">
-          <AllBlogsSection />
+          <AllBlogsSection c_title={params.category} s_title="" />
         </div>
         <div className="col-span-3"></div>
       </div>

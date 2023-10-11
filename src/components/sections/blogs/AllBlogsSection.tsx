@@ -3,8 +3,8 @@ import React from 'react';
 import BlogCard from '../../core/cart/BlogCard';
 import { BlogType, useGetBlogData } from '@/hooks/querey/blog.tsq';
 
-const AllBlogsSection = () => {
-  const { data } = useGetBlogData();
+const AllBlogsSection = ({ c_title = '', s_title = '' }: { c_title: string; s_title: string }) => {
+  const { data } = useGetBlogData(50, 0, c_title, s_title);
 
   return (
     <div>

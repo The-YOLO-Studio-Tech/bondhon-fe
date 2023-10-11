@@ -58,7 +58,7 @@ const MenuWithSubmenu = ({
       <div className=" absolute top-[-1000px] subMenu">
         <ul className="bg-white flex flex-col gap-2 text-[#392FA3] px-5 pb-3 mt-10 shadow-sm">
           {instance.sub_category?.map((i: { title: string }) => (
-            <Link key={Math.random()} href="/">
+            <Link key={Math.random()} href={`/blog/${instance.title}/${i.title}`}>
               {i.title}
             </Link>
           ))}
@@ -104,7 +104,7 @@ const DefaultNavbar = () => {
                   return (
                     <div key={Math.random()}>
                       {i.sub_category.length === 0 ? (
-                        <Link href="/" className="flex items-center gap-1">
+                        <Link href={`/blog/${i.title}`} className="flex items-center gap-1">
                           {i.title}
                           <span className="rotate-90">
                             <AiOutlineLine size={12} />
