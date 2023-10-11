@@ -1,5 +1,5 @@
 import BlogDetailsContainer from '@/components/sections/blogs/BlogDetailsContainer';
-import WritterRelatedBlogSection from '@/components/sections/blogs/WritterRelatedBlogSection';
+// import WritterRelatedBlogSection from '@/components/sections/blogs/WritterRelatedBlogSection';
 import { AddCard } from '@mui/icons-material';
 import React from 'react';
 
@@ -10,7 +10,7 @@ const PostDetails = () => {
         <AddCard width={1270} height={275} />
       </div>
       <BlogDetailsContainer />
-      <WritterRelatedBlogSection />
+      {/* <WritterRelatedBlogSection /> */}
     </div>
   );
 };
