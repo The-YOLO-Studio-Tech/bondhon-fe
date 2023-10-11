@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(authOptions);
   return (
-    <html lang="en">
+    <html lang="en,bn">
       <body className={inter.className} suppressHydrationWarning={true}>
         <NextAuthProvider session={session}>
           <TanStackQueryProvider>{children}</TanStackQueryProvider>
