@@ -4,9 +4,12 @@ import { authOptions } from '@/libs/authOptions';
 import '@styles/globals.css';
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
-import { Inter } from 'next/font/google';
+import { Hind_Siliguri } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Hind_Siliguri({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['bengali', 'latin', 'latin-ext'],
+});
 
 export const metadata: Metadata = {
   title: 'Bondhon',
