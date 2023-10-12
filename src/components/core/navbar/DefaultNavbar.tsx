@@ -94,7 +94,7 @@ const SearchField = () => {
       <input
         type="text"
         placeholder="Search"
-        className="outline-none px-2 md:max-w-[90px] xl:max-w-[130px] "
+        className="outline-none px-2 md:max-w-[90px] xl:max-w-[150px] "
       />
     </div>
   );
@@ -102,7 +102,7 @@ const SearchField = () => {
 
 // default component
 const DefaultNavbar = () => {
-  const { data, isLoading } = useBlogCategoryData();
+  const { data, isLoading } = useBlogCategoryData(6, 0);
 
   return (
     <div>
