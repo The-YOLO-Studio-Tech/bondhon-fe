@@ -23,7 +23,7 @@ const SubCategoryPage = ({ params }: Paramas) => {
         </div>
         <div className="md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
           <div className="md:col-span-9">
-            <AllBlogsSection c_title={params.category} addData={addData} />
+            <AllBlogsSection c_title={params.category} s_title={params.subcat} addData={addData} />
           </div>
           <div className="hidden md:block md:col-span-3">
             <div className="mb-5 md:mb-8 xl:mb-14">

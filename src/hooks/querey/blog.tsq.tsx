@@ -26,10 +26,14 @@ export const useGetBlogData = (limit = 50, offset = 0, c_title = '', s_title = '
   const sub_category__title = searchParams.get('sub_category__title') || s_title;
 
   return useQuery({
-    queryKey: [...REFEARCH_QUERY, ...[category__title, sub_category__title]],
+    queryKey: [...REFEARCH_QUERY, ...[category__title, sub_category__title, title]],
     queryFn: () =>
       axiousResuest({
-        url: `/content/blog/?limit=${limit}&offset=${offset}&category__title=${category__title}&sub_category__title=${sub_category__title}&title=${title}`,
+        url: `/content/blog/?limit=${limit}&offset=${offset}&category__title=${decodeURIComponent(
+          category__title,
+        )}&sub_category__title=${decodeURIComponent(
+          sub_category__title,
+        )}&title=${decodeURIComponent(title)}`,
         method: 'get',
       }),
   });
