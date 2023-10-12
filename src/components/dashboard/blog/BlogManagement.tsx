@@ -38,7 +38,6 @@ const UploadForm = ({
   setOpen?: any;
 }) => {
   const searchParams = useSearchParams();
-  //   console.log(searchParams.get('c_id'));
 
   const {
     handleChange,
@@ -57,7 +56,7 @@ const UploadForm = ({
       short_description: instance?.short_description || '',
       description_html: instance?.description_html || '',
       thumbnail: instance?.thumbnail || null,
-      category: instance?.category || isNumberOrNull(searchParams.get('c_id')),
+      category: isNumberOrNull(searchParams.get('c_id')),
       sub_category: instance?.sub_category || isNumberOrNull(searchParams.get('sc_id')),
     },
 
@@ -69,7 +68,9 @@ const UploadForm = ({
             title: data?.title,
             description_html: data?.description_html,
             status: data?.status,
-            category: data?.category ? data?.category?.id : null,
+            category: data?.category
+              ? data?.category?.id
+              : isNumberOrNull(searchParams.get('c_id')),
             sub_category: data?.sub_category,
           };
 
@@ -220,7 +221,9 @@ const BlogManagement = () => {
       <div className=" bg-white rounded-2xl p-10 border ">
         <div className="flex mb-4 pb-10 border-b border-black justify-between">
           <p className="text-2xl text-[#392FA3] font-semibold">
-            {searchParams.get('category__title')}
+            {searchParams.get('category__title')}{' '}
+            {searchParams.get('sub_category__title') &&
+              `| ${searchParams.get('sub_category__title')}`}
           </p>
           <AddData />
         </div>
