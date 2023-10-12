@@ -73,6 +73,7 @@ export const useAddBlog = () => {
 export const useUpdateBlog = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
+
   const { data: session } = useSession();
   return useMutation(
     async (body: BlogType) =>

@@ -68,7 +68,7 @@ const UploadForm = ({
             title: data?.title,
             description_html: data?.description_html,
             status: data?.status,
-            category: data?.category,
+            category: data?.category ? data?.category?.id : null,
             sub_category: data?.sub_category,
           };
 
