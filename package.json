@@ -10,6 +10,12 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js --fix"
   },
+  "engines": { 
+     "node": ">=18.15.0", 
+     "npm": ">=8.7.0", 
+     "pnpm": ">=8.7.0", 
+     "yarn": ">=1.22.0" 
+   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
