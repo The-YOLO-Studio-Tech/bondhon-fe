@@ -5,8 +5,7 @@ import { DashCategoryCard, DashSideCategoryCard } from './Cards';
 import Image from 'next/legacy/image';
 import { useGetPageContent, useMutionPageContent } from '@/hooks/querey/pageContent.tsq';
 import { enqueueSnackbar } from 'notistack';
-import { CategoryType } from '@/hooks/querey/category.tsq';
-import { useGetSubCategoryData } from '@/hooks/querey/subCategory.tsq';
+import { CategoryType, useGetCategoryData } from '@/hooks/querey/category.tsq';
 
 const MiniCard = ({
   category,
@@ -196,7 +195,7 @@ const MiniCard = ({
 
 const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
   const [open, setOpen] = useState(false);
-  const { data: category } = useGetSubCategoryData();
+  const { data: category } = useGetCategoryData();
   const { data } = useGetPageContent('home');
   return (
     <div>
