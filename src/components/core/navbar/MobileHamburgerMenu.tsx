@@ -40,47 +40,54 @@ const MobileHamburgerMenu = () => {
             {data?.results?.map((i: any) => {
               return (
                 <div key={Math.random()}>
-                  <Accordion
-                    sx={{
-                      width: '288px',
-                      boxShadow: 'none',
-                      borderRadius: 'none',
-                      margin: '-8px 0',
-                    }}
-                  >
-                    <AccordionSummary
-                      sx={{ padding: '0px' }}
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
+                  {i.sub_category.length > 0 ? (
+                    <Accordion
+                      sx={{
+                        width: '288px',
+                        boxShadow: 'none',
+                        borderRadius: 'none',
+                        margin: '-8px 0',
+                      }}
                     >
-                      <Typography
-                        sx={{
-                          fontSize: '20px',
-                          fontWeight: '600',
-                          margin: '0px',
-                          padding: '0px',
-                          // color:`${active?'#EAA41D':''}`
-                        }}
+                      <AccordionSummary
+                        sx={{ padding: '0px' }}
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
                       >
-                        {i.title}
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={{ padding: '0px' }}>
-                      <ul className="space-y-3 font-medium ml-10">
-                        {i?.sub_category?.map((j: { title: string }, idx: number) => (
-                          <li
-                            className="list-disc"
-                            onClick={() => setOpen(!open)}
-                            // className={`list-disc ${router.pathname == i.url?'active_nav':''}`}
-                            key={idx}
-                          >
-                            <Link href={`/blog/${i.title}/${j.title}`}>{j.title}</Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionDetails>
-                  </Accordion>
+                        <Typography
+                          sx={{
+                            fontSize: '20px',
+                            fontWeight: '600',
+                            margin: '0px',
+                            padding: '0px',
+                            // color:`${active?'#EAA41D':''}`
+                          }}
+                        >
+                          {i.title}
+                        </Typography>
+                      </AccordionSummary>
+                      <AccordionDetails sx={{ padding: '0px' }}>
+                        <ul className="space-y-3 font-medium ml-10">
+                          {i?.sub_category?.map((j: { title: string }, idx: number) => (
+                            <li
+                              className="list-disc"
+                              onClick={() => setOpen(!open)}
+                              // className={`list-disc ${router.pathname == i.url?'active_nav':''}`}
+                              key={idx}
+                            >
+                              <Link href={`/blog/${i.title}/${j.title}`}>{j.title}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </AccordionDetails>
+                    </Accordion>
+                  ) : (
+                    <li className="text-xl list-none font-semibold">
+                      <Link href={`/blog/${i.title}`}>{i.title}</Link>
+                    </li>
+                  )}
+
                   {/* <p>{instance.title}</p>
       <ul className="mt-2 text-sm font-medium ml-5">
         {

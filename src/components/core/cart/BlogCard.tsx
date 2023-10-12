@@ -16,19 +16,19 @@ const BlogCard = ({ blog }: { blog: BlogType }) => {
           alt="thumbnail"
         />
       </div>
-      <div className="pl-4 pb-4 pt-3 pr-3 bg-[#F9F9F9] xl:pl-8 xl:pb-8 xl:pt-5 xl:pr-4">
-        <h3 className="font-medium truncate text-[#070A1F] py-2 xl:pt-5 xl:pb-4 xl:text-xl">
+      <div className="pl-3 pb-3 pt-2 pr-2 bg-[#F9F9F9] xl:pl-8 xl:pb-5 xl:pt-3 xl:pr-4">
+        <h3 className="font-medium truncate text-[#070A1F] py-2 xl:pt-4 xl:pb-3 xl:text-xl">
           {blog.title}
         </h3>
-        <p
-          dangerouslySetInnerHTML={{
-            __html:
-              blog.description_html?.length > 70
-                ? blog.description_html.slice(0, 70) + '...'
-                : blog.description_html,
-          }}
-          className="text-[#4E4E4E] text-xs xl:text-[15px]"
-        ></p>
+        <div className="h-14">
+          {blog?.short_description && (
+            <p className="text-[#4E4E4E] leading-[140%] text-xs xl:text-[15px]">
+              {blog?.short_description?.length > 70
+                ? blog?.short_description.slice(0, 70) + '...'
+                : blog?.short_description}
+            </p>
+          )}
+        </div>
       </div>
     </Link>
   );

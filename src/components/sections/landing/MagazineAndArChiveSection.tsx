@@ -18,17 +18,18 @@ const MagazineAndArChiveSection = () => {
   const { data } = useGetArchiveData();
   return (
     <div className="md:grid py-8 border-t border-b mt-8 gap-5 xl:gap-7 md:mt-10 md:py-10 md:grid-cols-3 xl:py-[60px] xl:mt-[60px]">
-      <div className="md:col-span-2">
+      <div className="h-full md:col-span-2 ">
         <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
           বন্ধন ইম্যাগাজিন চলতি সংখ্যা
         </h2>
-        <div>
+        <div className="h-full overflow-hidden">
           <div
             style={{
+              backgroundColor: 'white',
               position: 'relative',
-              paddingTop: 'max(60%,324px)',
+              paddingTop: 'max(20%,100px)',
               width: '100%',
-              height: '100%',
+              height: '96%',
             }}
           >
             <iframe
@@ -51,7 +52,7 @@ const MagazineAndArChiveSection = () => {
           </div>
         </div>
       </div>
-      <div className="md:col-span-1 h-full">
+      <div className="h-full md:col-span-1">
         <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
           আর্কাইভ
         </h2>
@@ -122,11 +123,11 @@ const MagazineAndArChiveSection = () => {
             </div>
           </div>
 
-          <div className="md:h-2/5 grid grid-cols-2 gap-5 xl:gap-7">
+          <div className="md:h-2/5 md:mt-auto grid grid-cols-2 gap-5 mt-4 xl:gap-7">
             <div className="text-sm border p-5 text-center h-full border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
               <p>জটিল যৌগের সরল কথা</p>
             </div>
-            <div className="text-sm border p-5 text-center border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
+            <div className="text-sm border p-5 text-center h-full border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
               <p>জটিল যৌগের সরল কথা</p>
             </div>
           </div>

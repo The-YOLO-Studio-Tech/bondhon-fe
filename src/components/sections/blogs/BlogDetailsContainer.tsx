@@ -5,6 +5,7 @@ import LoadingCard from '@/components/core/cart/LoadingCard';
 // import BlogCard from '@/components/core/cart/BlogCard';
 import { BlogType, useGetBlogData } from '@/hooks/querey/blog.tsq';
 import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
+import { convertDateFormat } from '@/libs/convertDateFormat';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
@@ -17,12 +18,14 @@ const BlogDetailsHeader = ({ blog }: { blog: BlogType }) => {
       <div>
         <h2 className="text-xl font-semibold mb-4 xl:mb-[22px] xl:text-3xl">{blog.title}</h2>
         {/* <h5 className="text-sm font-medium xl:text-[15px]">ব্লগ টি লিখেছেন- স্থপতি মৃধা রাতুল</h5> */}
-        <p className="text-[#7B7C7D] text-xs xl:text-sm">প্রকাশ : {blog.created_at}</p>
+        <p className="text-[#7B7C7D] text-xs xl:text-sm">
+          প্রকাশ : {convertDateFormat(blog.created_at)}
+        </p>
       </div>
       <div className="mt-5 xl:mt-0">
         <h5 className="text-sm xl:text-[15px]">০৩ মিনিট রিডিং পড়ুন</h5>
         <div className="flex space-x-1 mt-4 items-center md:mt-7">
-          <p className="font-normal text-sm text-[rgb(7,10,31)] dark:text-white">শেয়ার করুন :</p>
+          <p className="font-normal text-sm text-[rgb(7,10,31)]">শেয়ার করুন :</p>
           <Link
             target="_blank"
             className="relative w-5 h-5 xl:h-7 xl:w-7"

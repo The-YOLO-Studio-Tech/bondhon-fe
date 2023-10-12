@@ -70,9 +70,12 @@ const MenuWithSubmenu = ({
         </span>
       </li>
       <div className="absolute top-[-1000px] subMenu">
-        <ul className="bg-white text-[#392FA3] px-5 pb-3 mt-10 shadow-sm">
+        <ul className="bg-white text-[#392FA3] px-5 space-y-2 pb-3 mt-10 shadow-sm">
           {instance.sub_category?.map((i: { title: string }) => (
-            <li className="min-w-[250px] inline-block" key={Math.random()}>
+            <li
+              className="min-w-[250px] inline-block hover:border-b xl:text-xl"
+              key={Math.random()}
+            >
               <Link className="" key={Math.random()} href={`/blog/${instance.title}/${i.title}`}>
                 {i.title}
               </Link>

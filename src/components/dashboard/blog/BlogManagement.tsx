@@ -54,6 +54,7 @@ const UploadForm = ({
     initialValues: {
       title: instance?.title || '',
       status: instance?.status || 'publish',
+      short_description: instance?.short_description || '',
       description_html: instance?.description_html || '',
       thumbnail: instance?.thumbnail || null,
       category: instance?.category || isNumberOrNull(searchParams.get('c_id')),
@@ -111,6 +112,18 @@ const UploadForm = ({
           onChange={handleChange}
           label="Title"
         />
+        <TextField
+          required
+          fullWidth
+          name="short_description"
+          value={values.short_description}
+          error={touched.short_description && Boolean(errors.short_description)}
+          helperText={touched.short_description && errors.short_description}
+          onChange={handleChange}
+          label="Short Description"
+          multiline
+          rows={4}
+        />
         <TexEditor
           value={values.description_html}
           error={
@@ -151,7 +164,7 @@ const EditData = ({ id }: { id: number }) => {
         <FiEdit />
       </span>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">
-        <DialogTitle>এডিট ভিডিও</DialogTitle>
+        <DialogTitle>এডিট ব্লগ</DialogTitle>
         <DialogContent>
           <div className="space-y-4">
             {data && <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} instance={data} />}
@@ -186,7 +199,7 @@ const AddData = () => {
         </div>
       </button>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">
-        <DialogTitle>Add New Our Values Data</DialogTitle>
+        <DialogTitle>আপলোড ব্লগ</DialogTitle>
         <DialogContent>
           <div className="space-y-4">
             <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} />

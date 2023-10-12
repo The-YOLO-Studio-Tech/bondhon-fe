@@ -3,7 +3,7 @@ import React from 'react';
 
 const DefaultFooter = () => {
   return (
-    <div className="bg-[#392FA3] pb-7 pt-14 mt-10 text-white xl:mt-14 xl:pb-12 xl:pt-20">
+    <div className="bg-[#392FA3] pb-5 pt-8 mt-10 text-white xl:mt-14 xl:pb-8 xl:pt-14">
       <div className="commonContainer">
         <div className="flex justify-between mb-5 flex-col items-center md:flex-row md:items-start md:mb-7 xl:mb-10">
           <div className="space-y-6 xl:space-y-10">

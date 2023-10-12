@@ -31,6 +31,7 @@ export const BlogSubCategoryInfo = () =>
 export const BlogInfo = () =>
   yup.object().shape({
     title: yup.string().max(150).required('This field is required'),
+    short_description: yup.string().max(250).required('This field is required'),
     status: yup.string().max(50).required('This field is required'),
     description_html: yup.string().required('This field is required'),
     thumbnail: yup

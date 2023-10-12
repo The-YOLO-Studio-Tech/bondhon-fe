@@ -8,6 +8,7 @@ export type BlogType = {
   title: string;
   thumbnail: string;
   description_html: string;
+  short_description?: string | undefined;
   status: string;
   category: number;
   sub_category: number;
