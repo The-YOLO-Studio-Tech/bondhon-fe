@@ -23,7 +23,7 @@ const BlogDetailsHeader = ({ blog }: { blog: BlogType }) => {
         </p>
       </div>
       <div className="mt-5 xl:mt-0">
-        <h5 className="text-sm xl:text-[15px]">০৩ মিনিট রিডিং পড়ুন</h5>
+        {/* <h5 className="text-sm xl:text-[15px]">০৩ মিনিট রিডিং পড়ুন</h5> */}
         <div className="flex space-x-1 mt-4 items-center md:mt-7">
           <p className="font-normal text-sm text-[rgb(7,10,31)]">শেয়ার করুন :</p>
           <Link

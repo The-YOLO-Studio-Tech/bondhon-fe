@@ -60,7 +60,34 @@ const MagazineAndArChiveSection = () => {
           <div className="h-full md:h-3/5">
             <div className="bg-[#4852AE] py-3 px-5 flex w-full justify-between text-white text-sm font-semibold xl:text-lg">
               {' '}
-              <span>বছর</span> <span>মাস</span>
+              <select className="bg-inherit outline-none" name="" id="">
+                <option value="">বছর</option>
+                {data?.results?.map((i: any) => {
+                  const dateObject = new Date(i?.publish_year);
+                  const year = new Intl.DateTimeFormat('bn-BD', { year: 'numeric' })?.format(
+                    dateObject,
+                  );
+                  return (
+                    <option key={Math.random()} value="">
+                      {year}
+                    </option>
+                  );
+                })}
+              </select>
+              <select className="bg-inherit w-fit outline-none max-w-[100px]" name="" id="">
+                <option value="">মাস</option>
+                {data?.results?.map((i: any) => {
+                  const dateObject = new Date(i?.publish_year);
+                  const month = new Intl.DateTimeFormat('bn-BD', { month: 'long' }).format(
+                    dateObject,
+                  );
+                  return (
+                    <option key={Math.random()} value="">
+                      {month}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
             <div className="bg-[#F2F2F2] p-5">
               <div>
