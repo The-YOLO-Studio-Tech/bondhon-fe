@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  runtime: 'edge',
+  reactStrictMode: true,
+  swcMinify: true,
+
   images: {
     domains: process.env.IMAGE_HOST.split(','),
   },
