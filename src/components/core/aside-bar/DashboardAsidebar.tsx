@@ -66,6 +66,7 @@ const CategoryItem = ({ category }: { category: any }) => {
 
 const BlogItems = () => {
   const { data } = useGetCategoryData();
+
   return (
     <ul className="ml-4 space-y-2">
       <li>

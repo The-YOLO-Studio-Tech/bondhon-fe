@@ -20,7 +20,7 @@ const Home = () => {
     );
   }
   return (
-    <main className="commonContainer pt-8 md:pt-12 ">
+    <main className="commonContainer pt-6 md:pt-8 ">
       <div className="md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
         <div className="md:col-span-9">
           <HeroSection />

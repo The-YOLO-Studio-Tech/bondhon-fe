@@ -17,7 +17,7 @@ const FeatureCart = ({ data }: { data: any }) => {
               alt="featureCard"
             />
           </div>
-          <p className="text-xl left-0 truncate right-0 font-bold absolute bottom-0 bg-[#392FA3] p-5 text-white md:p-6 xl:p-8 xl:text-[32px]">
+          <p className="text-lg left-0 truncate right-0 font-bold absolute bottom-0 bg-[#392FA3] p-5 text-white md:p-6 xl:p-8 xl:text-[28px]">
             {data?.results?.[0]?.content?.feature_post?.title}
           </p>
         </Link>

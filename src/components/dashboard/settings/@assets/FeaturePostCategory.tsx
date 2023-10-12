@@ -5,7 +5,8 @@ import { DashCategoryCard, DashSideCategoryCard } from './Cards';
 import Image from 'next/legacy/image';
 import { useGetPageContent, useMutionPageContent } from '@/hooks/querey/pageContent.tsq';
 import { enqueueSnackbar } from 'notistack';
-import { CategoryType, useGetCategoryData } from '@/hooks/querey/category.tsq';
+import { CategoryType } from '@/hooks/querey/category.tsq';
+import { useGetSubCategoryData } from '@/hooks/querey/subCategory.tsq';
 
 const MiniCard = ({
   category,
@@ -169,13 +170,23 @@ const MiniCard = ({
     <>
       {category && (
         <div className="cursor-pointer" onClick={handleClick}>
-          <Image
-            className="rounded-lg"
-            src={category?.thumbnail}
-            width={150}
-            height={150}
-            alt="thumbnail"
-          />
+          {category.thumbnail ? (
+            <Image
+              className="rounded-lg"
+              src={category?.thumbnail}
+              width={150}
+              height={150}
+              alt="thumbnail"
+            />
+          ) : (
+            <Image
+              className="rounded-lg"
+              src="/images/cardBg.png"
+              width={150}
+              height={150}
+              alt="thumbnail"
+            />
+          )}
           <p>{category?.title}</p>
         </div>
       )}
@@ -185,7 +196,7 @@ const MiniCard = ({
 
 const FeaturePostCategory = ({ categoryNum }: { categoryNum: string }) => {
   const [open, setOpen] = useState(false);
-  const { data: category } = useGetCategoryData();
+  const { data: category } = useGetSubCategoryData();
   const { data } = useGetPageContent('home');
   return (
     <div>

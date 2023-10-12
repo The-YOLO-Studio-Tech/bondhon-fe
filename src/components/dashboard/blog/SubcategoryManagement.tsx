@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteModal from '@/components/@assets/modals/DeleteModal';
 import { BiEdit } from 'react-icons/bi';
+import ImageUpload from '@/components/@assets/inputs/ImageUpload';
 
 const UploadForm = ({
   instance,
@@ -34,18 +35,32 @@ const UploadForm = ({
     errors,
     isSubmitting,
     handleSubmit,
-    // setFieldValue,
+    setFieldValue,
     resetForm,
   } = useFormik({
     initialValues: {
       title: instance?.title || '',
+      thumbnail: instance?.thumbnail || '',
       category: category,
     },
 
     validationSchema: BlogSubCategoryInfo,
     onSubmit: async (data: any) => {
       try {
-        await mutateAsync(data);
+        if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
+          let modifiedData = {
+            title: data?.title,
+          };
+          await mutateAsync(modifiedData);
+        } else {
+          let form_data = new FormData();
+
+          for (let key in data) {
+            form_data.append(key, data[key]);
+          }
+
+          await mutateAsync(form_data);
+        }
         setOpen(!open);
         resetForm();
         instance
@@ -82,6 +97,12 @@ const UploadForm = ({
               name="title"
               onChange={handleChange}
               label="Title"
+            />
+
+            <ImageUpload
+              error={Boolean(errors.thumbnail) && touched.thumbnail && errors.thumbnail}
+              setValue={(x: any) => setFieldValue('thumbnail', x)}
+              value={values.thumbnail}
             />
 
             <div className="flex items-center gap-3 justify-end">

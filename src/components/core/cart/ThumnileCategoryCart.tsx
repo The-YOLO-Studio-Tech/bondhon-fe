@@ -11,7 +11,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category1?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category1?.title}
             </h5>
             <div className="relative col-span-6 w-full h-[100px] md:h-full">
@@ -39,7 +39,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category2?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category2?.title}
             </h5>
             <div className="relative col-span-6 w-full h-[100px] md:h-full">
@@ -67,7 +67,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category3?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category3?.title}
             </h5>
             <div className="relative col-span-6 w-full h-[100px] md:h-full">
@@ -95,7 +95,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category4?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category4?.title}
             </h5>
             <div className="relative col-span-6 w-full h-[100px] md:h-full">
@@ -123,7 +123,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category20?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category20?.title}
             </h5>
             <div className="relative col-span-6 w-full">
@@ -155,7 +155,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category21?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category21?.title}
             </h5>
             <div className="relative col-span-6 w-full">
@@ -187,7 +187,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category22?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category22?.title}
             </h5>
             <div className="relative col-span-6">
@@ -219,7 +219,7 @@ const ThumnileCategoryCart = ({ data, categoryNum }: { data: any; categoryNum: s
             href={`/blog/${data?.results?.[0]?.content?.feature_post_category23?.title}`}
             className=" border grid grid-cols-11 w-full items-center border-[#392FA3]"
           >
-            <h5 className="col-span-5 text-sm font-semibold text-center xl:text-lg">
+            <h5 className="col-span-5 font-medium p-1 text-center xl:text-xl">
               {data?.results?.[0]?.content?.feature_post_category23?.title}
             </h5>
             <div className="relative col-span-6 w-full">

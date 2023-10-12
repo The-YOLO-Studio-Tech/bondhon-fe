@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 export type SubCategoryType = {
   id: number;
   title: string;
+  thumbnail: string;
   created_at?: string | undefined;
 };
 // const REFEARCH_QUERY = ['contentCategoryList', 'contentSubCategoryList'];
