@@ -1,5 +1,4 @@
 export const runtime = 'nodejs';
-
 import NextAuthProvider from '@/components/provider/NextAuthProvider';
 import TanStackQueryProvider from '@/components/provider/TanstackProvider';
 import { authOptions } from '@/libs/authOptions';
