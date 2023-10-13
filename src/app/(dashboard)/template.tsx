@@ -2,7 +2,6 @@ import AuthPage from '@/components/auth/AuthPage';
 import DashboardAsidebar from '@/components/core/aside-bar/DashboardAsidebar';
 import DashboardTopNavbar from '@/components/core/navbar/DashboardTopNavbar';
 
-export const runtime = 'edge'; // 'nodejs' (default) | 'edge'
 const Template = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
