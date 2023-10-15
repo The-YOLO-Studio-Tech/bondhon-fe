@@ -26,14 +26,14 @@ export const DashVideoCard = ({ url, title }: { url?: string; title?: string }) 
     <>
       {url ? (
         <div>
-          <div className="relative w-full  h-48 xl:h-[250px]">
+          <div className="relative w-full  h-48 xl:h-[320px]">
             <iframe
               width="100%"
               height="100%"
               src={`https://www.youtube.com/embed/${new URL(url).searchParams.get('v')}`}
-              title="YouTube video player"
+              // title="YouTube video player"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
           </div>

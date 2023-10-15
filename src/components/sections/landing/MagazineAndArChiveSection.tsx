@@ -138,20 +138,24 @@ const MagazineAndArChiveSection = () => {
                   modules={[]}
                   className="mySwiper555"
                 >
-                  {data?.results?.map((i: any) => (
-                    <SwiperSlide key={Math.random()}>
-                      <div>
-                        <Image
-                          src={i.thumbnail}
-                          width={111}
-                          height={150}
-                          layout="responsive"
-                          objectFit="cover"
-                          alt="thumbnail"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
+                  {data?.results?.length > 0 ? (
+                    data?.results?.map((i: any) => (
+                      <SwiperSlide key={Math.random()}>
+                        <div>
+                          <Image
+                            src={i.thumbnail}
+                            width={111}
+                            height={150}
+                            layout="responsive"
+                            objectFit="cover"
+                            alt="thumbnail"
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))
+                  ) : (
+                    <p className="text-lg font-semibold py-4">No megazine available</p>
+                  )}
                 </Swiper>
               </div>
               <div className="flex justify-center gap-3 mt-2 lg:gap-5">

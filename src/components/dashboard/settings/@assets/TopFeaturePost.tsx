@@ -28,10 +28,7 @@ const MiniCard = ({ blog, setOpen }: { blog: BlogType; setOpen: any }) => {
   return (
     <div className="cursor-pointer" onClick={handleClick}>
       <Image className="rounded-lg" src={blog.thumbnail} width={150} height={150} alt="thumbnail" />
-      <p className="truncate">
-        {blog.title} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam nam illum
-        officia quibusdam sequi similique porro iste assumenda laudantium consequatur.
-      </p>
+      <p className="truncate">{blog.title}</p>
     </div>
   );
 };
