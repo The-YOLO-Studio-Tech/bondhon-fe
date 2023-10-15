@@ -22,7 +22,7 @@ const BlogAddManagement = () => {
         <div>
           <BlogAddPost addNum="blog_add6" />
         </div>
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid mt-4 grid-cols-4 gap-5">
           <BlogAddPost addNum="blog_add7" />
         </div>
       </div>

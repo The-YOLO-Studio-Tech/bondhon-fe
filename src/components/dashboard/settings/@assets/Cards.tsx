@@ -141,14 +141,19 @@ export const DashBlogAddCard = ({
     <div>
       <div className="">
         {image ? (
-          <Image
-            src={image}
-            layout="responsive"
-            objectFit="cover"
-            width={400}
-            height={400}
-            alt="img"
-          />
+          <div className="relative">
+            <Image
+              src={image}
+              layout="responsive"
+              objectFit="cover"
+              width={400}
+              height={400}
+              alt="img"
+            />
+            <p className="absolute py-1 text-xl font-medium bottom-0 left-0 w-full bg-white text-center">
+              {width} x {height}
+            </p>
+          </div>
         ) : (
           <div className="relative w-fit">
             <div className="relative w-fit">
@@ -207,6 +212,9 @@ export const DashRegularAddCard = ({ image = '/images/uploadImages/verticalAdd.p
     <div>
       <div className="relative">
         <Image src={image} layout="responsive" width={273} height={306} alt="placeholder" />
+        <p className="absolute py-1 text-xl font-medium bottom-0 left-0 w-full bg-white text-center">
+          {'273'} x {'306'}
+        </p>
       </div>
     </div>
   );
