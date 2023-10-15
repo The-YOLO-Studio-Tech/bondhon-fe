@@ -29,7 +29,7 @@ export const VideoCategoryCart = () => {
   return (
     <Link href="/video-gallery">
       <div>
-        <div className="relative w-full h-[244px]">
+        <div className="relative w-full h-52 md:h-44 xl:h-[244px]">
           <iframe
             width="100%"
             height="100%"

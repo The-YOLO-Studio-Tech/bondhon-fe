@@ -12,9 +12,23 @@ const DefaultFooter = () => {
             </div>
             <p className="text-sm xl:text-lg">প্রকাশনায়ঃ আকিজ বিজনেস লিমিটেড</p>
           </div>
+          <div className="space-y-5 text-center mt-5 md:mt-0 md:text-start xl:space-y-8">
+            <div>
+              <h5 className="font-semibold md:text-xs xl:text-lg">উপদেষ্টা</h5>
+              <p className="md:text-xs xl:text-lg">স্থপতি সজল চৌধুরী</p>
+            </div>
+            <div>
+              <h5 className="font-semibold md:text-xs xl:text-lg">সম্পাদক</h5>
+              <p className="md:text-xs xl:text-lg">হিমেল চৌধুরী</p>
+            </div>
+            <div>
+              <h5 className="font-semibold md:text-xs xl:text-lg">চিফ রিপোর্টার</h5>
+              <p className="md:text-xs xl:text-lg">মাহফুজ ফারুক</p>
+            </div>
+          </div>
           <div>
             <ul className="flex text-center my-6 flex-col space-y-5 xl:my-0 xl:space-y-10">
-              <li>বন্ধন</li>
+              {/* <li>বন্ধন</li> */}
               <li>বিজ্ঞাপন</li>
               <li>নীতিমালা</li>
             </ul>

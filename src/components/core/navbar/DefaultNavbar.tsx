@@ -35,15 +35,21 @@ const TopHeader = () => {
           <Image src="/images/Bandhan-Logo.png" layout="fill" priority alt="Bandhan Logo" />
         </Link>
         <div className="flex items-center justify-end gap-3 xl:gap-5">
-          <Image
-            src="/images/icons/youtube.png"
-            width={32}
-            height={32}
-            priority
-            alt="youtube-icon"
-          />
-          <Image src="/images/icons/fb.png" width={32} height={32} priority alt="facebook-icon" />
-          <Image src="/images/icons/email.png" width={32} height={32} priority alt="email-icon" />
+          <span>
+            <Image
+              src="/images/icons/youtube.png"
+              width={32}
+              height={32}
+              priority
+              alt="youtube-icon"
+            />
+          </span>
+          <Link href="https://www.facebook.com/bandhanmagazine" target="_blank">
+            <Image src="/images/icons/fb.png" width={32} height={32} priority alt="facebook-icon" />
+          </Link>
+          <a href="mailto: bandhanbgd@gmail.com">
+            <Image src="/images/icons/email.png" width={32} height={32} priority alt="email-icon" />
+          </a>
         </div>
       </div>
     </div>
