@@ -13,6 +13,7 @@ export const useGetFilteredArchiveData = (month?: string, year?: string) => {
   /** session management */
   const month__in = decodeURIComponent(month || '') || '';
   const year__in = decodeURIComponent(year || '') || '';
+
   return useQuery({
     queryKey: ['e-magazine', month__in, year__in],
     queryFn: () =>

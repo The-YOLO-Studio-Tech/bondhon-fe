@@ -13,6 +13,7 @@ import { useGetFilteredArchiveData } from '@/hooks/querey/useArchiveData';
 import Image from 'next/legacy/image';
 import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
 import Link from 'next/link';
+import getPreviousYearsInBangla from '@/libs/getPreviousYearsInBangla';
 
 SwiperCore.use([Navigation]);
 
@@ -21,8 +22,7 @@ const MagazineAndArChiveSection = () => {
   const [year, setYear] = useState('');
   const { data: pageContentData } = useGetPageContent('home');
   const { data } = useGetFilteredArchiveData(month, year);
-  // const {data:dateData} = useGetArchiveData()
-  let currentYear = 2024;
+
   const banglaMonths = [
     'জানুয়ারি',
     'ফেব্রুয়ারি',
@@ -37,6 +37,7 @@ const MagazineAndArChiveSection = () => {
     'নভেম্বর',
     'ডিসেম্বর',
   ];
+
   return (
     <div className="md:grid py-8 border-t border-b mt-8 gap-5 xl:gap-7 md:mt-10 md:py-10 md:grid-cols-3 xl:py-[60px] xl:mt-[60px]">
       <div className="h-full md:col-span-2 ">
@@ -83,24 +84,21 @@ const MagazineAndArChiveSection = () => {
               {' '}
               <select
                 onChange={(e) => setYear(e.target.value)}
+                value={year}
                 className="bg-inherit outline-none"
-                name=""
-                id=""
               >
-                {[...new Array(10)]?.map((_i: any) => {
-                  currentYear -= 1;
+                {getPreviousYearsInBangla(10).map((i: string) => {
                   return (
-                    <option key={Math.random()} value={currentYear}>
-                      {currentYear}
+                    <option key={Math.random()} value={i}>
+                      {i}
                     </option>
                   );
                 })}
               </select>
               <select
+                value={month}
                 onChange={(e) => setMonth(e.target.value)}
                 className="bg-inherit w-fit outline-none max-w-[100px]"
-                name=""
-                id=""
               >
                 {banglaMonths.map((i: any) => {
                   return (
@@ -119,11 +117,6 @@ const MagazineAndArChiveSection = () => {
                     prevEl: '.button-prev',
                     nextEl: '.button-next',
                   }}
-                  // autoplay={{
-                  //   delay: 4000,
-                  //   disableOnInteraction: false,
-                  //   pauseOnMouseEnter: true,
-                  // }}
                   breakpoints={{
                     100: {
                       slidesPerView: 2,
