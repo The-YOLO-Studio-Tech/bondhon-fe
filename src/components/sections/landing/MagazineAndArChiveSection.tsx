@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -9,13 +9,34 @@ import 'swiper/css/pagination';
 // import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
-import { useGetArchiveData } from '@/hooks/querey/useArchiveData';
+import { useGetFilteredArchiveData } from '@/hooks/querey/useArchiveData';
 import Image from 'next/legacy/image';
+import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
+import Link from 'next/link';
 
 SwiperCore.use([Navigation]);
 
 const MagazineAndArChiveSection = () => {
-  const { data } = useGetArchiveData();
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('');
+  const { data: pageContentData } = useGetPageContent('home');
+  const { data } = useGetFilteredArchiveData(month, year);
+  // const {data:dateData} = useGetArchiveData()
+  let currentYear = 2024;
+  const banglaMonths = [
+    'জানুয়ারি',
+    'ফেব্রুয়ারি',
+    'মার্চ',
+    'এপ্রিল',
+    'মে',
+    'জুন',
+    'জুলাই',
+    'আগস্ট',
+    'সেপ্টেম্বর',
+    'অক্টোবর',
+    'নভেম্বর',
+    'ডিসেম্বর',
+  ];
   return (
     <div className="md:grid py-8 border-t border-b mt-8 gap-5 xl:gap-7 md:mt-10 md:py-10 md:grid-cols-3 xl:py-[60px] xl:mt-[60px]">
       <div className="h-full md:col-span-2 ">
@@ -60,30 +81,31 @@ const MagazineAndArChiveSection = () => {
           <div className="h-full md:h-3/5">
             <div className="bg-[#4852AE] py-3 px-5 flex w-full justify-between text-white text-sm font-semibold xl:text-lg">
               {' '}
-              <select className="bg-inherit outline-none" name="" id="">
-                <option value="">বছর</option>
-                {data?.results?.map((i: any) => {
-                  const dateObject = new Date(i?.publish_year);
-                  const year = new Intl.DateTimeFormat('bn-BD', { year: 'numeric' })?.format(
-                    dateObject,
-                  );
+              <select
+                onChange={(e) => setYear(e.target.value)}
+                className="bg-inherit outline-none"
+                name=""
+                id=""
+              >
+                {[...new Array(10)]?.map((_i: any) => {
+                  currentYear -= 1;
                   return (
-                    <option key={Math.random()} value="">
-                      {year}
+                    <option key={Math.random()} value={currentYear}>
+                      {currentYear}
                     </option>
                   );
                 })}
               </select>
-              <select className="bg-inherit w-fit outline-none max-w-[100px]" name="" id="">
-                <option value="">মাস</option>
-                {data?.results?.map((i: any) => {
-                  const dateObject = new Date(i?.publish_year);
-                  const month = new Intl.DateTimeFormat('bn-BD', { month: 'long' }).format(
-                    dateObject,
-                  );
+              <select
+                onChange={(e) => setMonth(e.target.value)}
+                className="bg-inherit w-fit outline-none max-w-[100px]"
+                name=""
+                id=""
+              >
+                {banglaMonths.map((i: any) => {
                   return (
-                    <option key={Math.random()} value="">
-                      {month}
+                    <option key={Math.random()} value={i}>
+                      {i}
                     </option>
                   );
                 })}
@@ -151,12 +173,40 @@ const MagazineAndArChiveSection = () => {
           </div>
 
           <div className="md:h-2/5 md:mt-auto grid grid-cols-2 gap-5 mt-4 xl:gap-7">
-            <div className="text-sm border p-5 text-center h-full border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
-              <p>জটিল যৌগের সরল কথা</p>
-            </div>
-            <div className="text-sm border p-5 text-center h-full border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
-              <p>জটিল যৌগের সরল কথা</p>
-            </div>
+            {pageContentData.results?.[0]?.content?.feature_post_category3 ? (
+              <Link
+                href={`/blog/${pageContentData?.results?.[0]?.content?.feature_post_category3?.title}`}
+                className="text-sm border p-5 text-center flex items-center justify-center h-full min-h-[73px] border-[#392FA3] md:p-0 md:py-2 xl:text-lg"
+              >
+                <p>{pageContentData.results?.[0]?.content?.feature_post_category3?.title}</p>
+              </Link>
+            ) : (
+              <div className="relative w-full h-[73px]">
+                <Image
+                  src="/images/placeHolder.jpeg"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="placeholder"
+                />
+              </div>
+            )}
+            {pageContentData.results?.[0]?.content?.feature_post_category16 ? (
+              <Link
+                href={`/blog/${pageContentData?.results?.[0]?.content?.feature_post_category16?.title}`}
+                className="text-sm border p-5 text-center flex items-center justify-center h-full min-h-[73px] border-[#392FA3] md:p-0 md:py-2 xl:text-lg"
+              >
+                <p>{pageContentData.results?.[0]?.content?.feature_post_category16?.title}</p>
+              </Link>
+            ) : (
+              <div className="relative w-full h-[73px]">
+                <Image
+                  src="/images/placeHolder.jpeg"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="placeholder"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

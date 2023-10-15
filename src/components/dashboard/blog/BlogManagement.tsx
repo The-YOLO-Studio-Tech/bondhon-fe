@@ -68,6 +68,7 @@ const UploadForm = ({
             title: data?.title,
             description_html: data?.description_html,
             status: data?.status,
+            short_description: data?.short_description,
             category: data?.category
               ? data?.category?.id
               : isNumberOrNull(searchParams.get('c_id')),

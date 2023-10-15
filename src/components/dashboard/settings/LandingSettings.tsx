@@ -1,7 +1,4 @@
-import {
-  // DashFeaturedCard,
-  DashCategoryCard,
-} from './@assets/Cards';
+import { DashVideoCard } from './@assets/Cards';
 import FeaturePostCategory from './@assets/FeaturePostCategory';
 import AddPost from './@assets/SquareAddPost';
 import TopFeaturePost from './@assets/TopFeaturePost';
@@ -64,7 +61,7 @@ const LandingSettings = () => {
         {/* right side section */}
         <div className="col-span-3">
           <div>
-            <DashCategoryCard />
+            <DashVideoCard />
           </div>
           <div className="mt-7">
             <AddPost addNum="add1" />

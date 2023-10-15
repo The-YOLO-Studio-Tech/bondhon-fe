@@ -17,7 +17,7 @@ export const VideoCart = ({ data }: { data: any }) => {
           allowFullScreen
         ></iframe>
       </div>
-      <button className="py-2 bg-[#392FA3] text-white leading-[140%] w-full text-center xl:py-5">
+      <button className="py-2 bg-[#392FA3] text-white leading-[140%] w-full text-center font-medium xl:text-xl xl:py-5">
         {data?.title}
       </button>
     </div>
@@ -32,13 +32,13 @@ export const VideoCategoryCart = () => {
           <Image
             src="/images/video.png"
             width={295}
-            height={252}
+            height={244}
             layout="responsive"
             objectFit="cover"
             alt="img"
           />
         </div>
-        <button className="py-2 bg-[#392FA3] text-white leading-[140%] w-full text-center xl:py-5">
+        <button className="py-2 bg-[#392FA3] text-white leading-[140%] font-medium w-full text-center xl:text-xl xl:py-5">
           {`ভিডিও গ্যালারি`}
         </button>
       </div>
