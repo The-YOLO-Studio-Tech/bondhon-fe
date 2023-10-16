@@ -233,7 +233,7 @@ const BlogManagement = () => {
         <div className="tableContainer overflow-x-auto overflow-hidden">
           <div className="w-full relative tableContainer overflow-y-scroll max-h-[calc(100vh-200px)] min-h-[calc(100vh-200px)] lg:max-h-[calc(100vh-320px)] lg:min-h-[calc(100vh-320px)]">
             <table className="w-full text-left">
-              <thead className="text-bbc-dash-d-4 sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
+              <thead className="text-bbc-dash-d-4 bg-white sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
                 <tr>
                   {COLUMN.map((item, idx) => (
                     <th
