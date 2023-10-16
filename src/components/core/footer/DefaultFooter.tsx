@@ -6,7 +6,7 @@ const DefaultFooter = () => {
     <div className="bg-[#392FA3] pb-5 pt-8 mt-7 text-white md:mt-8 xl:pb-8 xl:pt-14">
       <div className="commonContainer">
         <div className="flex justify-between mb-5 flex-col items-center md:flex-row md:items-start md:mb-7 xl:mb-10">
-          <div className="space-y-6 xl:space-y-10">
+          <div className="space-y-3 md:space-y-6 xl:space-y-10">
             <div className="relative mx-auto w-fit md:mx-0">
               <Image src="/images/BandhanWhiteLogo.png" width={136} height={61} alt="logo" />
             </div>
@@ -43,8 +43,8 @@ const DefaultFooter = () => {
             </div>
           </div> */}
           <div>
-            <ul className="flex text-center my-6 flex-col space-y-5 xl:my-0 xl:space-y-10">
-              {/* <li>বন্ধন</li> */}
+            <ul className="flex text-center my-6 flex-col space-y-3 md:space-y-5 xl:my-0 xl:space-y-10">
+              <li>বন্ধন</li>
               <li>বিজ্ঞাপন</li>
               <li>নীতিমালা</li>
             </ul>

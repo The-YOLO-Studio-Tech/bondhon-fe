@@ -4,7 +4,7 @@ import { BsArrowRight } from 'react-icons/bs';
 const CalculatorCart = () => {
   return (
     <div>
-      <div className="px-4 bg-[#F4F6F8] md:px-2 xl:px-10">
+      <div className="bg-[#F4F6F8] px-2 xl:px-10">
         <h3 className="text-[#4852AE] text-xl pt-4 font-medium md:pt-7 xl:text-[28px]">
           আপনি কি জানেন! বাড়ি বানাতে কি কি লাগে ?
         </h3>
