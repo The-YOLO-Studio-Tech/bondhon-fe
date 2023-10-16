@@ -39,7 +39,7 @@ const MagazineAndArChiveSection = () => {
   ];
 
   return (
-    <div className="md:grid py-8 border-t border-b mt-8 gap-5 xl:gap-7 md:mt-10 md:py-10 md:grid-cols-3 xl:py-[60px] xl:mt-[60px]">
+    <div className="md:grid py-7 border-t border-b mt-7 gap-5 xl:gap-7 md:mt-8 md:py-8 md:grid-cols-3 xl:py-10">
       <div className="h-full md:col-span-2 ">
         <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
           বন্ধন ইম্যাগাজিন চলতি সংখ্যা

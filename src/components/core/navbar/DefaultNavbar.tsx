@@ -13,7 +13,7 @@ import AddCard from '../cart/AddCard';
 const TopHeader = () => {
   const { data: addData } = useGetPageContent('blog');
   return (
-    <div className=" mt-4 md:mt-6 xl:mt-8">
+    <div className="mt-4">
       <div className="grid commonContainer grid-cols-3 items-center w-full">
         <div className="md:hidden">
           <MobileHamburgerMenu />
@@ -24,10 +24,10 @@ const TopHeader = () => {
               <AddCard
                 image={addData?.results?.[0]?.content?.topAdd?.add_banner}
                 width={295}
-                height={57}
+                height={84}
               />
             ) : (
-              <LoadingCard width={295} height={57} />
+              <LoadingCard width={295} height={84} />
             )}
           </div>
         </div>

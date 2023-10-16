@@ -3,7 +3,7 @@ import React from 'react';
 
 const CategorySection = ({ data }: { data: any }) => {
   return (
-    <div className="grid grid-cols-2 py-8 gap-5 md:grid-cols-3 md:py-10 xl:py-[60px] xl:gap-7">
+    <div className="grid grid-cols-2 py-7 gap-5 md:grid-cols-3 md:py-8 xl:gap-7">
       <DisplayCategory categoryNum="feature_post_category5" data={data} />
       <DisplayCategory categoryNum="feature_post_category6" data={data} />
       <DisplayCategory categoryNum="feature_post_category7" data={data} />
@@ -21,7 +21,7 @@ export default CategorySection;
 
 export const BottomCategorySection = ({ data }: { data: any }) => {
   return (
-    <div className="grid grid-cols-2 pt-8 gap-5 md:grid-cols-3 md:pt-10 xl:pt-[60px] xl:gap-7">
+    <div className="grid grid-cols-2 pt-7 gap-5 md:grid-cols-3 md:pt-8 xl:gap-7">
       <DisplayCategory categoryNum="feature_post_category14" data={data} />
       <DisplayCategory categoryNum="feature_post_category15" data={data} />
       <DisplayCategory categoryNum="feature_post_category16" data={data} />
