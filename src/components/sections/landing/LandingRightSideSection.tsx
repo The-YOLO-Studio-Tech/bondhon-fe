@@ -59,8 +59,8 @@ const LandingRightSideSection = ({ data }: { data: any }) => {
         <DisplayCategory categoryNum="feature_post_category24" data={data} />
         <DisplayCategory categoryNum="feature_post_category25" data={data} />
         <DisplayCategory categoryNum="feature_post_category26" data={data} />
-        <div className='md:hidden'>
-        <CalculatorCart />
+        <div className="md:hidden">
+          <CalculatorCart />
         </div>
       </div>
       <div className="mt-5 hidden md:block xl:mt-6">
