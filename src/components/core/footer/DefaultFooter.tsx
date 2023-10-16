@@ -3,7 +3,7 @@ import React from 'react';
 
 const DefaultFooter = () => {
   return (
-    <div className="bg-[#392FA3] pb-5 pt-8 mt-10 text-white xl:mt-14 xl:pb-8 xl:pt-14">
+    <div className="bg-[#392FA3] pb-5 pt-8 mt-7 text-white md:mt-8 xl:pb-8 xl:pt-14">
       <div className="commonContainer">
         <div className="flex justify-between mb-5 flex-col items-center md:flex-row md:items-start md:mb-7 xl:mb-10">
           <div className="space-y-6 xl:space-y-10">
@@ -13,7 +13,7 @@ const DefaultFooter = () => {
             <p className="text-sm xl:text-lg">প্রকাশনায়ঃ আকিজ বিজনেস লিমিটেড</p>
           </div>
 
-          <div className="space-y-5 text-center mt-5 md:mt-0 md:text-start xl:space-y-8">
+          {/* <div className="space-y-5 text-center mt-5 md:mt-0 md:text-start xl:space-y-8">
             <div>
               <h5 className="font-semibold md:text-xs xl:text-lg">উপদেষ্টা</h5>
               <p className="md:text-xs xl:text-lg">স্থপতি সজল চৌধুরী</p>
@@ -41,7 +41,7 @@ const DefaultFooter = () => {
               <h5 className="font-semibold md:text-xs xl:text-lg">বিজ্ঞাপন ও বিপণন</h5>
               <p className="md:text-xs xl:text-lg">সুলতান মাহমুদ</p>
             </div>
-          </div>
+          </div> */}
           <div>
             <ul className="flex text-center my-6 flex-col space-y-5 xl:my-0 xl:space-y-10">
               {/* <li>বন্ধন</li> */}
