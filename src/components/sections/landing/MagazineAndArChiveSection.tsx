@@ -44,7 +44,7 @@ const MagazineAndArChiveSection = () => {
         <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
           বন্ধন ইম্যাগাজিন চলতি সংখ্যা
         </h2>
-        <div className="h-full overflow-hidden">
+        <div className="h-60 overflow-hidden md:h-full">
           <div
             style={{
               backgroundColor: 'white',

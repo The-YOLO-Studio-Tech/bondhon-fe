@@ -12,6 +12,7 @@ const DefaultFooter = () => {
             </div>
             <p className="text-sm xl:text-lg">প্রকাশনায়ঃ আকিজ বিজনেস লিমিটেড</p>
           </div>
+
           <div className="space-y-5 text-center mt-5 md:mt-0 md:text-start xl:space-y-8">
             <div>
               <h5 className="font-semibold md:text-xs xl:text-lg">উপদেষ্টা</h5>
@@ -24,6 +25,21 @@ const DefaultFooter = () => {
             <div>
               <h5 className="font-semibold md:text-xs xl:text-lg">চিফ রিপোর্টার</h5>
               <p className="md:text-xs xl:text-lg">মাহফুজ ফারুক</p>
+            </div>
+          </div>
+
+          <div className="space-y-5 text-center mt-5 md:mt-0 md:text-start xl:space-y-8">
+            <div>
+              <h5 className="font-semibold md:text-xs xl:text-lg">শিল্প নির্দেশক</h5>
+              <p className="md:text-xs xl:text-lg">মোঃ সাইদুজ্জামান (জয়েস)</p>
+            </div>
+            <div>
+              <h5 className="font-semibold md:text-xs xl:text-lg">সিনিয়র গ্রাফিক্স ডিজাইনার</h5>
+              <p className="md:text-xs xl:text-lg">মোঃ আমিরুল ইসলাম</p>
+            </div>
+            <div>
+              <h5 className="font-semibold md:text-xs xl:text-lg">বিজ্ঞাপন ও বিপণন</h5>
+              <p className="md:text-xs xl:text-lg">সুলতান মাহমুদ</p>
             </div>
           </div>
           <div>
