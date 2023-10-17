@@ -1,7 +1,7 @@
 'use client';
 import { signOut } from 'next-auth/react';
 import Image from 'next/legacy/image';
-import React from 'react';
+import { useRouter } from 'next/navigation';
 import { FiLogOut } from 'react-icons/fi';
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 
@@ -23,6 +23,7 @@ export const SignOut = () => {
 };
 
 const DashboardTopNavbar = () => {
+  const { back, forward } = useRouter();
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
@@ -38,11 +39,17 @@ const DashboardTopNavbar = () => {
             <div className="flex items-center w-full justify-between pl-16 px-4">
               <div className="flex gap-6 items-center">
                 <div className="flex gap-2">
-                  <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
+                  <span
+                    onClick={back}
+                    className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white"
+                  >
                     <HiArrowNarrowLeft size={20} />
                   </span>
 
-                  <span className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white">
+                  <span
+                    onClick={forward}
+                    className="p-2 cursor-pointer bg-[#E8F3F9] hover:bg-[#0094F1] text-[#392FA3] rounded-md border-[#4D4D4D] transition-all hover:text-white"
+                  >
                     <HiArrowNarrowRight size={20} />
                   </span>
                 </div>

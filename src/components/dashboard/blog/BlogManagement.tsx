@@ -250,9 +250,9 @@ const BlogManagement = () => {
                 {data &&
                   data?.results?.map((info: BlogType) => (
                     <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
-                      <td className="px-6 py-4">
-                        <span className="flex gap-2 items-center">
-                          <span>
+                      <td className="px-6 py-4 w-1/2">
+                        <span className="flex gap-2 items-center ">
+                          <span className="min-w-[44px]">
                             <Image
                               className="rounded-lg"
                               src={info.thumbnail}
