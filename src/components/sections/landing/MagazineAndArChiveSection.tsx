@@ -39,10 +39,11 @@ const MagazineAndArChiveSection = () => {
   ];
 
   return (
-    <div className="md:grid py-7 border-t border-b mt-7 gap-5 xl:gap-7 md:mt-8 md:py-8 md:grid-cols-3 xl:py-10">
+    <div className="md:grid py-7 border-t-2 border-b-2 border-black mt-7 gap-5 xl:gap-7 md:mt-8 md:py-11 md:grid-cols-3">
       <div className="h-full md:col-span-2 ">
-        <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
-          বন্ধন ইম্যাগাজিন চলতি সংখ্যা
+        <h2 className="text-xl font-semibold text-[#392FA3] flex items-center mb-5 xl:mb-7 xl:text-[28px]">
+          বন্ধন <span className="py-1 px-3 ml-2 rounded-full bg-red-500 text-white">ই</span>
+          ম্যাগাজিন চলতি সংখ্যা
         </h2>
         <div className="h-60 overflow-hidden md:h-full">
           <div
@@ -51,7 +52,7 @@ const MagazineAndArChiveSection = () => {
               position: 'relative',
               paddingTop: 'max(20%,100px)',
               width: '100%',
-              height: '96%',
+              height: '95%',
             }}
           >
             <iframe
@@ -59,7 +60,7 @@ const MagazineAndArChiveSection = () => {
                 position: 'absolute',
                 border: 'none',
                 width: '100%',
-                height: '91%',
+                height: '90%',
                 backgroundColor: 'white',
                 left: 0,
                 top: 0,
@@ -75,7 +76,7 @@ const MagazineAndArChiveSection = () => {
         </div>
       </div>
       <div className="h-full md:col-span-1">
-        <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
+        <h2 className="text-xl font-semibold text-[#392FA3] mb-5 md:text-center xl:mb-7 xl:text-[28px]">
           আর্কাইভ
         </h2>
         <div className="w-full md:gap-5 md:flex md:flex-col xl:gap-7">

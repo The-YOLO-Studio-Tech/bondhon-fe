@@ -3,14 +3,14 @@ import React from 'react';
 
 const DefaultFooter = () => {
   return (
-    <div className="bg-[#392FA3] pb-5 pt-8 mt-7 text-white md:mt-8 xl:pb-8 xl:pt-14">
+    <div className="bg-[#392FA3] pb-5 pt-8 mt-7 text-white md:mt-8 xl:pb-8 xl:pt-10">
       <div className="commonContainer">
-        <div className="flex justify-between mb-5 flex-col items-center md:flex-row md:items-start md:mb-7 xl:mb-10">
+        <div className="flex justify-between mb-5 flex-col items-center md:flex-row md:items-start md:mb-7">
           <div className="space-y-3 md:space-y-6 xl:space-y-10">
             <div className="relative mx-auto w-fit md:mx-0">
               <Image src="/images/BandhanWhiteLogo.png" width={136} height={61} alt="logo" />
             </div>
-            <p className="text-sm xl:text-lg">প্রকাশনায়ঃ আকিজ বিজনেস লিমিটেড</p>
+            <p className="text-sm xl:text-lg">প্রকাশনায়ঃ আকিজ রিসোর্সেস লিমিটেড</p>
           </div>
 
           {/* <div className="space-y-5 text-center mt-5 md:mt-0 md:text-start xl:space-y-8">
@@ -51,7 +51,7 @@ const DefaultFooter = () => {
           </div>
           <div>
             <p className="text-sm text-center md:text-right xl:text-lg">
-              সম্পাদকীয় ও বাণিজ্যিক কার্যালয় <br />
+              <span className="mb-3">সম্পাদকীয় ও বাণিজ্যিক কার্যালয়</span> <br />
               বন্ধন ম্যাগাজিন <br />
               আইবস লিমিটেড <br />
               ৬/২ কাজী নজরুল ইসলাম সড়ক <br />
@@ -61,7 +61,7 @@ const DefaultFooter = () => {
             </p>
           </div>
         </div>
-        <p className="text-sm font-semibold pt-5 text-center border-t border-white md:pt-7 xl:pt-10 xl:text-lg">
+        <p className="text-sm font-semibold pt-5 text-center border-t border-white md:pt-7 xl:text-lg">
           © ২০২৩ বন্ধন ম্যাগাজিন | সমস্ত অধিকার সংরক্ষিত
         </p>
       </div>

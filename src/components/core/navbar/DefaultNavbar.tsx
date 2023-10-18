@@ -78,10 +78,7 @@ const MenuWithSubmenu = ({
       <div className="absolute top-[-1000px] subMenu">
         <ul className="bg-white text-[#392FA3] px-5 space-y-2 pb-3 mt-10 shadow-sm">
           {instance.sub_category?.map((i: { title: string }) => (
-            <li
-              className="min-w-[250px] inline-block hover:border-b xl:text-xl"
-              key={Math.random()}
-            >
+            <li className="min-w-[250px] inline-block hover:border-b" key={Math.random()}>
               <Link className="" key={Math.random()} href={`/blog/${instance.title}/${i.title}`}>
                 {i.title}
               </Link>
@@ -95,7 +92,7 @@ const MenuWithSubmenu = ({
 
 const SearchField = () => {
   return (
-    <div className="bg-white text-black p-1 flex items-center">
+    <div className="bg-white text-black flex items-center">
       <BiSearch size={20} />{' '}
       <input
         type="text"
@@ -114,7 +111,7 @@ const DefaultNavbar = () => {
     <div>
       <TopHeader />
       <div className="commonContainer">
-        <div className="mt-5 hidden justify-between bg-[#392FA3] items-center px-4 py-2 text-white md:flex md:py-3 md:px-7 xl:py-4 xl:px-10">
+        <div className="mt-5 hidden justify-between bg-[#392FA3] items-center px-4 py-2 text-white md:flex md:py-3 md:px-7 xl:px-10">
           <div className="flex gap-4 xl:gap-6">
             <Link href="/" className="flex items-center gap-1 xl:text-xl">
               <span className="flex items-center gap-1">
