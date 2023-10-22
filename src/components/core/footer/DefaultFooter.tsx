@@ -1,4 +1,5 @@
 import Image from 'next/legacy/image';
+import Link from 'next/link';
 import React from 'react';
 
 const DefaultFooter = () => {
@@ -44,9 +45,15 @@ const DefaultFooter = () => {
           </div> */}
           <div>
             <ul className="flex text-center my-6 flex-col space-y-3 md:space-y-5 xl:my-0 xl:space-y-10">
-              <li>বন্ধন</li>
-              <li>বিজ্ঞাপন</li>
-              <li>নীতিমালা</li>
+              <li>
+                <Link href={'/about'}>বন্ধন</Link>
+              </li>
+              <li>
+                <Link href={'/'}>বিজ্ঞাপন</Link>
+              </li>
+              <li>
+                <Link href={'/privacy-policy'}>নীতিমালা</Link>
+              </li>
             </ul>
           </div>
           <div>
@@ -56,8 +63,8 @@ const DefaultFooter = () => {
               আইবস লিমিটেড <br />
               ৬/২ কাজী নজরুল ইসলাম সড়ক <br />
               লালমাটিয়া, মোহাম্মাদপুর, ঢাকা-১২০৭ <br />
-              ই-মেইলঃ bondhon@gmail.com <br />
-              যোগাযোগঃ ০১৭১১-৫৫৫০০৪, ০১৭১১-৫৫৫০০৪
+              ই-মেইলঃ bandhanbgd@gmail.com <br />
+              যোগাযোগঃ ০১৭১১-৫৫৫০০৪, ০১৮১৭-৫২০৩৫৯
             </p>
           </div>
         </div>
