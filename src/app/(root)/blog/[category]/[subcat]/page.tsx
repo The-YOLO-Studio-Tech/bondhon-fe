@@ -12,7 +12,7 @@ const SubCategoryPage = ({ params }: Paramas) => {
     <div>
       <div className="mt-6 commonContainer xl:mt-8">
         <div className="text-center">
-          <h2 className="text-[#392FA3] text-2xl font-bold xl:text-[42px]">
+          <h2 className="text-[#392FA3] text-2xl font-bold w-fit px-4 mx-auto border-b border-[#392FA3] xl:text-4xl">
             {decodeURIComponent(params.category)}
           </h2>
           {/* <p className="text-[#392FA3] mt-4 mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">

@@ -44,7 +44,7 @@ const DefaultFooter = () => {
             </div>
           </div> */}
           <div>
-            <ul className="flex text-center my-6 flex-col space-y-3 md:space-y-5 xl:my-0 xl:space-y-10">
+            <ul className="flex text-center my-6 flex-col space-y-3 xl:text-xl md:space-y-5 xl:my-0 xl:space-y-10">
               <li>
                 <Link href={'/about'}>বন্ধন</Link>
               </li>
@@ -58,7 +58,7 @@ const DefaultFooter = () => {
           </div>
           <div>
             <p className="text-sm text-center md:text-right xl:text-lg">
-              <span className="mb-3">সম্পাদকীয় ও বাণিজ্যিক কার্যালয়</span> <br />
+              <span className="mb-3 block">সম্পাদকীয় ও বাণিজ্যিক কার্যালয়</span>
               বন্ধন ম্যাগাজিন <br />
               আইবস লিমিটেড <br />
               ৬/২ কাজী নজরুল ইসলাম সড়ক <br />
