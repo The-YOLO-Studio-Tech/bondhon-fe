@@ -2,6 +2,7 @@ import NextAuthProvider from '@/components/provider/NextAuthProvider';
 import TanStackQueryProvider from '@/components/provider/TanstackProvider';
 import { authOptions } from '@/libs/authOptions';
 import '@styles/globals.css';
+
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { Hind_Siliguri } from 'next/font/google';
