@@ -17,6 +17,6 @@ COPY . .
 RUN pnpm build
 
 
-EXPOSE 443
+EXPOSE 80
 
-CMD [ "pnpm", "start" ]
+CMD [ "pnpm", "start", "-p", "80" ]
