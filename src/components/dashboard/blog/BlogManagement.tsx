@@ -68,6 +68,7 @@ const UploadForm = ({
             title: data?.title,
             description_html: data?.description_html,
             status: data?.status,
+            short_description: data?.short_description,
             category: data?.category
               ? data?.category?.id
               : isNumberOrNull(searchParams.get('c_id')),
@@ -232,7 +233,7 @@ const BlogManagement = () => {
         <div className="tableContainer overflow-x-auto overflow-hidden">
           <div className="w-full relative tableContainer overflow-y-scroll max-h-[calc(100vh-200px)] min-h-[calc(100vh-200px)] lg:max-h-[calc(100vh-320px)] lg:min-h-[calc(100vh-320px)]">
             <table className="w-full text-left">
-              <thead className="text-bbc-dash-d-4 sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
+              <thead className="text-bbc-dash-d-4 bg-white sticky z-10 top-0 w-full h-fit text-bbc-dash-7 ">
                 <tr>
                   {COLUMN.map((item, idx) => (
                     <th
@@ -249,9 +250,9 @@ const BlogManagement = () => {
                 {data &&
                   data?.results?.map((info: BlogType) => (
                     <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
-                      <td className="px-6 py-4">
-                        <span className="flex gap-2 items-center">
-                          <span>
+                      <td className="px-6 py-4 w-1/2">
+                        <span className="flex gap-2 items-center ">
+                          <span className="min-w-[44px]">
                             <Image
                               className="rounded-lg"
                               src={info.thumbnail}

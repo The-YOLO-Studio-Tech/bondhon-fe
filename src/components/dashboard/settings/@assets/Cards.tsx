@@ -1,5 +1,4 @@
 import Image from 'next/legacy/image';
-import React from 'react';
 
 export const DashFeaturedCard = ({
   image = '/images/uploadImages/featuredCategory.png',
@@ -19,6 +18,42 @@ export const DashFeaturedCard = ({
         />
       </div>
     </div>
+  );
+};
+
+export const DashVideoCard = ({ url, title }: { url?: string; title?: string }) => {
+  return (
+    <>
+      {url ? (
+        <div>
+          <div className="relative w-full  h-48 xl:h-[320px]">
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${new URL(url).searchParams.get('v')}`}
+              // title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <button className="py-2 bg-[#392FA3] text-white leading-[140%] w-full text-center font-medium xl:text-xl xl:py-5">
+            {title}
+          </button>
+        </div>
+      ) : (
+        <div className="relative">
+          <Image
+            src={'/images/uploadImages/video.png'}
+            layout="responsive"
+            objectFit="cover"
+            width={273}
+            height={289}
+            alt="placeholder"
+          />
+        </div>
+      )}
+    </>
   );
 };
 
@@ -106,14 +141,19 @@ export const DashBlogAddCard = ({
     <div>
       <div className="">
         {image ? (
-          <Image
-            src={image}
-            layout="responsive"
-            objectFit="cover"
-            width={400}
-            height={400}
-            alt="img"
-          />
+          <div className="relative">
+            <Image
+              src={image}
+              layout="responsive"
+              objectFit="cover"
+              width={400}
+              height={400}
+              alt="img"
+            />
+            <p className="absolute py-1 text-xl font-medium bottom-0 left-0 w-full bg-white text-center">
+              {width} x {height}
+            </p>
+          </div>
         ) : (
           <div className="relative w-fit">
             <div className="relative w-fit">
@@ -172,6 +212,9 @@ export const DashRegularAddCard = ({ image = '/images/uploadImages/verticalAdd.p
     <div>
       <div className="relative">
         <Image src={image} layout="responsive" width={273} height={306} alt="placeholder" />
+        <p className="absolute py-1 text-xl font-medium bottom-0 left-0 w-full bg-white text-center">
+          {'273'} x {'306'}
+        </p>
       </div>
     </div>
   );

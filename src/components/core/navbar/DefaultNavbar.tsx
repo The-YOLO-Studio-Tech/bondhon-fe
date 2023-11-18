@@ -13,7 +13,7 @@ import AddCard from '../cart/AddCard';
 const TopHeader = () => {
   const { data: addData } = useGetPageContent('blog');
   return (
-    <div className=" mt-4 md:mt-6 xl:mt-8">
+    <div className="mt-4">
       <div className="grid commonContainer grid-cols-3 items-center w-full">
         <div className="md:hidden">
           <MobileHamburgerMenu />
@@ -24,10 +24,10 @@ const TopHeader = () => {
               <AddCard
                 image={addData?.results?.[0]?.content?.topAdd?.add_banner}
                 width={295}
-                height={57}
+                height={84}
               />
             ) : (
-              <LoadingCard width={295} height={57} />
+              <LoadingCard width={295} height={84} />
             )}
           </div>
         </div>
@@ -35,15 +35,21 @@ const TopHeader = () => {
           <Image src="/images/Bandhan-Logo.png" layout="fill" priority alt="Bandhan Logo" />
         </Link>
         <div className="flex items-center justify-end gap-3 xl:gap-5">
-          <Image
-            src="/images/icons/youtube.png"
-            width={32}
-            height={32}
-            priority
-            alt="youtube-icon"
-          />
-          <Image src="/images/icons/fb.png" width={32} height={32} priority alt="facebook-icon" />
-          <Image src="/images/icons/email.png" width={32} height={32} priority alt="email-icon" />
+          <span>
+            <Image
+              src="/images/icons/youtube.png"
+              width={32}
+              height={32}
+              priority
+              alt="youtube-icon"
+            />
+          </span>
+          <Link href="https://www.facebook.com/bandhanmagazine" target="_blank">
+            <Image src="/images/icons/fb.png" width={32} height={32} priority alt="facebook-icon" />
+          </Link>
+          <a href="mailto: bandhanbgd@gmail.com">
+            <Image src="/images/icons/email.png" width={32} height={32} priority alt="email-icon" />
+          </a>
         </div>
       </div>
     </div>
@@ -72,10 +78,7 @@ const MenuWithSubmenu = ({
       <div className="absolute top-[-1000px] subMenu">
         <ul className="bg-white text-[#392FA3] px-5 space-y-2 pb-3 mt-10 shadow-sm">
           {instance.sub_category?.map((i: { title: string }) => (
-            <li
-              className="min-w-[250px] inline-block hover:border-b xl:text-xl"
-              key={Math.random()}
-            >
+            <li className="min-w-[250px] inline-block hover:border-b" key={Math.random()}>
               <Link className="" key={Math.random()} href={`/blog/${instance.title}/${i.title}`}>
                 {i.title}
               </Link>
@@ -89,7 +92,7 @@ const MenuWithSubmenu = ({
 
 const SearchField = () => {
   return (
-    <div className="bg-white text-black p-1 flex items-center">
+    <div className="bg-white text-black flex items-center">
       <BiSearch size={20} />{' '}
       <input
         type="text"
@@ -108,7 +111,7 @@ const DefaultNavbar = () => {
     <div>
       <TopHeader />
       <div className="commonContainer">
-        <div className="mt-5 hidden justify-between bg-[#392FA3] items-center px-4 py-2 text-white md:flex md:py-3 md:px-7 xl:py-4 xl:px-10">
+        <div className="mt-5 hidden justify-between bg-[#392FA3] items-center px-4 py-2 text-white md:flex md:py-3 md:px-7 xl:px-10">
           <div className="flex gap-4 xl:gap-6">
             <Link href="/" className="flex items-center gap-1 xl:text-xl">
               <span className="flex items-center gap-1">

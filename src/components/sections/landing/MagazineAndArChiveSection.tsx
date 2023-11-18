@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -9,27 +9,50 @@ import 'swiper/css/pagination';
 // import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
-import { useGetArchiveData } from '@/hooks/querey/useArchiveData';
+import { useGetFilteredArchiveData } from '@/hooks/querey/useArchiveData';
 import Image from 'next/legacy/image';
+import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
+import Link from 'next/link';
+import getPreviousYearsInBangla from '@/libs/getPreviousYearsInBangla';
 
 SwiperCore.use([Navigation]);
 
 const MagazineAndArChiveSection = () => {
-  const { data } = useGetArchiveData();
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('');
+  const { data: pageContentData } = useGetPageContent('home');
+  const { data } = useGetFilteredArchiveData(month, year);
+
+  const banglaMonths = [
+    'জানুয়ারি',
+    'ফেব্রুয়ারি',
+    'মার্চ',
+    'এপ্রিল',
+    'মে',
+    'জুন',
+    'জুলাই',
+    'আগস্ট',
+    'সেপ্টেম্বর',
+    'অক্টোবর',
+    'নভেম্বর',
+    'ডিসেম্বর',
+  ];
+
   return (
-    <div className="md:grid py-8 border-t border-b mt-8 gap-5 xl:gap-7 md:mt-10 md:py-10 md:grid-cols-3 xl:py-[60px] xl:mt-[60px]">
+    <div className="md:grid py-7 border-t-2 border-b-2 border-black mt-7 gap-5 xl:gap-7 md:mt-8 md:py-11 md:grid-cols-3">
       <div className="h-full md:col-span-2 ">
-        <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
-          বন্ধন ইম্যাগাজিন চলতি সংখ্যা
+        <h2 className="text-xl font-semibold text-[#392FA3] flex items-center mb-5 xl:mb-7 xl:text-[28px]">
+          বন্ধন <span className="py-1 px-3 ml-2 rounded-full bg-red-500 text-white">ই</span>
+          ম্যাগাজিন চলতি সংখ্যা
         </h2>
-        <div className="h-full overflow-hidden">
+        <div className="h-60 overflow-hidden md:h-full">
           <div
             style={{
               backgroundColor: 'white',
               position: 'relative',
               paddingTop: 'max(20%,100px)',
               width: '100%',
-              height: '96%',
+              height: '95%',
             }}
           >
             <iframe
@@ -37,7 +60,7 @@ const MagazineAndArChiveSection = () => {
                 position: 'absolute',
                 border: 'none',
                 width: '100%',
-                height: '91%',
+                height: '90%',
                 backgroundColor: 'white',
                 left: 0,
                 top: 0,
@@ -53,37 +76,35 @@ const MagazineAndArChiveSection = () => {
         </div>
       </div>
       <div className="h-full md:col-span-1">
-        <h2 className="text-xl font-semibold text-[#392FA3] mb-5 xl:mb-7 xl:text-[28px]">
+        <h2 className="text-xl font-semibold text-[#392FA3] mb-5 md:text-center xl:mb-7 xl:text-[28px]">
           আর্কাইভ
         </h2>
         <div className="w-full md:gap-5 md:flex md:flex-col xl:gap-7">
           <div className="h-full md:h-3/5">
             <div className="bg-[#4852AE] py-3 px-5 flex w-full justify-between text-white text-sm font-semibold xl:text-lg">
               {' '}
-              <select className="bg-inherit outline-none" name="" id="">
-                <option value="">বছর</option>
-                {data?.results?.map((i: any) => {
-                  const dateObject = new Date(i?.publish_year);
-                  const year = new Intl.DateTimeFormat('bn-BD', { year: 'numeric' })?.format(
-                    dateObject,
-                  );
+              <select
+                onChange={(e) => setYear(e.target.value)}
+                value={year}
+                className="bg-inherit outline-none"
+              >
+                {getPreviousYearsInBangla(10).map((i: string) => {
                   return (
-                    <option key={Math.random()} value="">
-                      {year}
+                    <option key={Math.random()} value={i}>
+                      {i}
                     </option>
                   );
                 })}
               </select>
-              <select className="bg-inherit w-fit outline-none max-w-[100px]" name="" id="">
-                <option value="">মাস</option>
-                {data?.results?.map((i: any) => {
-                  const dateObject = new Date(i?.publish_year);
-                  const month = new Intl.DateTimeFormat('bn-BD', { month: 'long' }).format(
-                    dateObject,
-                  );
+              <select
+                value={month}
+                onChange={(e) => setMonth(e.target.value)}
+                className="bg-inherit w-fit outline-none max-w-[100px]"
+              >
+                {banglaMonths.map((i: any) => {
                   return (
-                    <option key={Math.random()} value="">
-                      {month}
+                    <option key={Math.random()} value={i}>
+                      {i}
                     </option>
                   );
                 })}
@@ -97,11 +118,6 @@ const MagazineAndArChiveSection = () => {
                     prevEl: '.button-prev',
                     nextEl: '.button-next',
                   }}
-                  // autoplay={{
-                  //   delay: 4000,
-                  //   disableOnInteraction: false,
-                  //   pauseOnMouseEnter: true,
-                  // }}
                   breakpoints={{
                     100: {
                       slidesPerView: 2,
@@ -123,20 +139,24 @@ const MagazineAndArChiveSection = () => {
                   modules={[]}
                   className="mySwiper555"
                 >
-                  {data?.results?.map((i: any) => (
-                    <SwiperSlide key={Math.random()}>
-                      <div>
-                        <Image
-                          src={i.thumbnail}
-                          width={111}
-                          height={150}
-                          layout="responsive"
-                          objectFit="cover"
-                          alt="thumbnail"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
+                  {data?.results?.length > 0 ? (
+                    data?.results?.map((i: any) => (
+                      <SwiperSlide key={Math.random()}>
+                        <div>
+                          <Image
+                            src={i.thumbnail}
+                            width={111}
+                            height={150}
+                            layout="responsive"
+                            objectFit="cover"
+                            alt="thumbnail"
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))
+                  ) : (
+                    <p className="text-lg font-semibold py-4">No megazine available</p>
+                  )}
                 </Swiper>
               </div>
               <div className="flex justify-center gap-3 mt-2 lg:gap-5">
@@ -151,12 +171,40 @@ const MagazineAndArChiveSection = () => {
           </div>
 
           <div className="md:h-2/5 md:mt-auto grid grid-cols-2 gap-5 mt-4 xl:gap-7">
-            <div className="text-sm border p-5 text-center h-full border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
-              <p>জটিল যৌগের সরল কথা</p>
-            </div>
-            <div className="text-sm border p-5 text-center h-full border-[#392FA3] md:p-0 md:py-2 xl:text-lg">
-              <p>জটিল যৌগের সরল কথা</p>
-            </div>
+            {pageContentData.results?.[0]?.content?.feature_post_category3 ? (
+              <Link
+                href={`/blog/${pageContentData?.results?.[0]?.content?.feature_post_category3?.title}`}
+                className="text-sm border p-5 text-center flex items-center justify-center h-full min-h-[73px] border-[#392FA3] md:p-0 md:py-2 xl:text-lg"
+              >
+                <p>{pageContentData.results?.[0]?.content?.feature_post_category3?.title}</p>
+              </Link>
+            ) : (
+              <div className="relative w-full h-[73px]">
+                <Image
+                  src="/images/placeHolder.jpeg"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="placeholder"
+                />
+              </div>
+            )}
+            {pageContentData.results?.[0]?.content?.feature_post_category16 ? (
+              <Link
+                href={`/blog/${pageContentData?.results?.[0]?.content?.feature_post_category16?.title}`}
+                className="text-sm border p-5 text-center flex items-center justify-center h-full min-h-[73px] border-[#392FA3] md:p-0 md:py-2 xl:text-lg"
+              >
+                <p>{pageContentData.results?.[0]?.content?.feature_post_category16?.title}</p>
+              </Link>
+            ) : (
+              <div className="relative w-full h-[73px]">
+                <Image
+                  src="/images/placeHolder.jpeg"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="placeholder"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

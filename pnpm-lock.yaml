@@ -74,6 +74,9 @@ dependencies:
   sharp:
     specifier: ^0.32.6
     version: 0.32.6
+  suneditor:
+    specifier: ^2.45.1
+    version: 2.45.1
   suneditor-react:
     specifier: ^3.6.1
     version: 3.6.1(react-dom@18.2.0)(react@18.2.0)(suneditor@2.45.1)

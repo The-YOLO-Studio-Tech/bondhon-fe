@@ -3,9 +3,6 @@ import AddCard from '@/components/core/cart/AddCard';
 import LoadingCard from '@/components/core/cart/LoadingCard';
 import AllBlogsSection from '@/components/sections/blogs/AllBlogsSection';
 import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
-import Link from 'next/link';
-
-import React from 'react';
 
 type Paramas = { params: { category: string } };
 
@@ -14,14 +11,14 @@ const BlogCategory = ({ params }: Paramas) => {
   return (
     <div className="mt-6 commonContainer xl:mt-8">
       <div className="text-center">
-        <h2 className="text-[#392FA3] text-2xl font-bold xl:text-[42px]">
+        <h2 className="text-[#392FA3] text-2xl font-bold w-fit px-4 mx-auto border-b border-[#392FA3] xl:text-4xl">
           {decodeURIComponent(params.category)}
         </h2>
-        <p className="text-[#392FA3] mt-4 mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">
+        {/* <p className="text-[#392FA3] mt-4 mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">
           <Link href={'/'}>হোম</Link> - {decodeURIComponent(params.category)}
-        </p>
+        </p> */}
       </div>
-      <div className="md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
+      <div className="mt-6 xl:mt-8 md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
         <div className="md:col-span-9">
           <AllBlogsSection c_title={params.category} addData={addData} />
         </div>

@@ -18,3 +18,15 @@ export const convertNewDateToDbFormat = (date: any) => {
   const formattedDate = year + '-' + month + '-' + day;
   return formattedDate;
 };
+
+export const getBanglaYear = (date: any) => {
+  const dateObject = new Date(date);
+  const year = new Intl.DateTimeFormat('bn-BD', { year: 'numeric' })?.format(dateObject);
+  return year;
+};
+
+export const getBanglaMonth = (date: any) => {
+  const dateObject = new Date(date);
+  const month = new Intl.DateTimeFormat('bn-BD', { month: 'long' }).format(dateObject);
+  return month;
+};

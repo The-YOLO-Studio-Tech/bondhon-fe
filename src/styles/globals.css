@@ -21,6 +21,10 @@
   top: 16px;
 }
 
+.videoCatCard {
+  height: 270px;
+}
+
 .commonContainer {
   max-width: 1512px;
   margin-left: auto;
@@ -34,6 +38,9 @@
     padding-left: 80px;
     padding-right: 80px;
   }
+  .videoCatCard {
+    height: 230px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -41,8 +48,16 @@
     padding-left: 50px;
     padding-right: 50px;
   }
+  .videoCatCard {
+    height: 195px;
+  }
 }
 
+@media screen and (max-width: 800px) {
+  .videoCatCard {
+    height: 130px;
+  }
+}
 @media screen and (max-width: 600px) {
   .commonContainer {
     padding-left: 20px;

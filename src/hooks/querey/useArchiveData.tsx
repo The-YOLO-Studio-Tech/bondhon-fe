@@ -9,11 +9,24 @@ type ArchiveType = {
   publish_year: string;
 };
 
-export const useGetArchiveData = () => {
+export const useGetFilteredArchiveData = (month?: string, year?: string) => {
   /** session management */
+  const month__in = decodeURIComponent(month || '') || '';
+  const year__in = decodeURIComponent(year || '') || '';
 
   return useQuery({
-    queryKey: ['e-magazine'],
+    queryKey: ['e-magazine', month__in, year__in],
+    queryFn: () =>
+      axiousResuest({
+        url: `/content/e-magazine/?month__in=${month__in}&year__in=${year__in}`,
+        method: 'get',
+      }),
+  });
+};
+export const useGetArchiveData = () => {
+  /** session management */
+  return useQuery({
+    queryKey: ['magazine'],
     queryFn: () =>
       axiousResuest({
         url: `/content/e-magazine/`,

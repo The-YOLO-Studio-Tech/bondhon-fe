@@ -20,11 +20,11 @@ const Home = () => {
     );
   }
   return (
-    <main className="commonContainer pt-6 md:pt-8 ">
+    <main className="commonContainer pt-4 md:pt-5 ">
       <div className="md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
         <div className="md:col-span-9">
           <HeroSection />
-          <div className="mt-8 xl:mt-[60px]">
+          <div className="mt-7 md:mt-8">
             {data?.results?.[0]?.content?.add4 ? (
               <AddCard
                 image={data?.results?.[0]?.content?.add4?.add_banner}

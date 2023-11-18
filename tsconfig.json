@@ -54,7 +54,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "out/types/**/*.ts",
-    "src/hooks/querey/category.tsq"
+    "src/hooks/querey/category.tsq",
+    "src/components/@assets/inputs/TexEditor.tsx"
   ],
   "exclude": ["node_modules", ".next", "out", "dist", "*.d.ts"],
   "types": ["types", "node", "react", "react-dom", "tailwindcss", "commitlint/types"]

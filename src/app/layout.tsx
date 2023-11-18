@@ -2,6 +2,7 @@ import NextAuthProvider from '@/components/provider/NextAuthProvider';
 import TanStackQueryProvider from '@/components/provider/TanstackProvider';
 import { authOptions } from '@/libs/authOptions';
 import '@styles/globals.css';
+
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { Hind_Siliguri } from 'next/font/google';
@@ -12,10 +13,20 @@ const inter = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
-  title: 'Bondhon',
-  description: 'Bondhon',
+  title: 'Bandhan',
+  description: 'Bandhan',
+  icons: '/favicon.ico',
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Bandhan',
+    images: [
+      {
+        url: '/bandhan MetaData.jpg',
+      },
+    ],
+  },
 };
-
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(authOptions);
   return (

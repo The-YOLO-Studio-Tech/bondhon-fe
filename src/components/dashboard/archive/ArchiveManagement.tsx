@@ -23,7 +23,12 @@ import {
   useGetSingleArchiveData,
   useUpdateArchive,
 } from '@/hooks/querey/useArchiveData';
-import { convertDateFormat, convertNewDateToDbFormat } from '@/libs/convertDateFormat';
+import {
+  convertDateFormat,
+  convertNewDateToDbFormat,
+  getBanglaMonth,
+  getBanglaYear,
+} from '@/libs/convertDateFormat';
 
 const COLUMN = ['পোস্ট', 'লিংক', 'তারিখ', 'একশন'];
 type ArchiveType = {
@@ -63,19 +68,34 @@ const UploadForm = ({
 
     validationSchema: ArchiveInfo,
     onSubmit: async (data: any) => {
+      let month = getBanglaMonth(data?.publish_year);
+      let newYear = getBanglaYear(data?.publish_year);
+
       try {
+        let modifiedData;
         if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
-          let modifiedData = {
+          modifiedData = {
             title: data?.title,
             url: data?.url,
+            month: month,
+            year: newYear,
             publish_year: data?.publish_year,
           };
+
           await mutateAsync(modifiedData);
         } else {
+          modifiedData = {
+            title: data?.title,
+            url: data?.url,
+            thumbnail: data?.thumbnail,
+            month: getBanglaMonth(data?.publish_year),
+            year: getBanglaYear(data?.publish_year),
+            publish_year: data?.publish_year,
+          };
           let form_data = new FormData();
 
-          for (let key in data) {
-            form_data.append(key, data[key]);
+          for (let key in modifiedData) {
+            form_data.append(key, modifiedData[key]);
           }
 
           await mutateAsync(form_data);

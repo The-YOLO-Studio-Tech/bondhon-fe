@@ -2,7 +2,8 @@ import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
-type VideoType = {
+export type VideoType = {
+  id?: string | number;
   title: string;
   url: string;
   thumbnail: string;
