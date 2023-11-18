@@ -1,0 +1,17 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=developer;password=Dev88@1432#;encrypt=DANGER_PLAINTEXT"
+}
+
+
+model Test {
+  id String @id @default(cuid())
+  key String
+}
