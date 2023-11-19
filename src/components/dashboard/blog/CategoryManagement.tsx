@@ -10,6 +10,8 @@ import { useAddCategory, useDeleteCategory, useUpdateCategory } from '@/hooks/qu
 import { BlogCategoryInfo } from '@/libs/validations/blog.validation';
 import { BiEdit } from 'react-icons/bi';
 import DeleteModal from '@/components/@assets/modals/DeleteModal';
+// import { blogCategorycreate } from '@/actions/blog.action';
+
 
 type CategoryType = {
   id: number;
@@ -44,22 +46,25 @@ export const UploadForm = ({
     },
 
     validationSchema: BlogCategoryInfo,
-    onSubmit: async (data: any) => {
+    onSubmit: async (_data: any) => {
+      // console.log(data);
       try {
-        if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
-          let modifiedData = {
-            title: data?.title,
-          };
-          await mutateAsync(modifiedData);
-        } else {
-          let form_data = new FormData();
+        // await blogCategorycreate(data);
+        // await create(data)
+        // if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
+        //   let modifiedData = {
+        //     title: data?.title,
+        //   };
+        //   await mutateAsync(modifiedData);
+        // } else {
+        //   let form_data = new FormData();
 
-          for (let key in data) {
-            form_data.append(key, data[key]);
-          }
+        //   for (let key in data) {
+        //     form_data.append(key, data[key]);
+        //   }
 
-          await mutateAsync(form_data);
-        }
+        //   await mutateAsync(form_data);
+        // }
         setOpen(!open);
         resetForm();
         instance

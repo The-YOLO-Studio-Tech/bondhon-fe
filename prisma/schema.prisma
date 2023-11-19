@@ -15,3 +15,9 @@ model Test {
   id String @id @default(cuid())
   key String
 }
+
+model BlogCategory {
+  id String @id @default(cuid())
+  title String
+  thumbnail64  String
+}
