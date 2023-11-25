@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlserver"
-  url      = "sqlserver://103.197.207.66:1433;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT;TrustServerCertificate=False"
+  url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"
 }
 
 
@@ -16,10 +16,10 @@ model Test {
   key String
 }
 
-model BlogCategory {
-  id String @id @default(cuid())
-  title String
-  thumbnail64  String
-}
+// model BlogCategory {
+//   id String @id @default(cuid())
+//   title String
+//   thumbnail64  String
+// }
 
   // url      = "sqlserver://103.197.207.66:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"
