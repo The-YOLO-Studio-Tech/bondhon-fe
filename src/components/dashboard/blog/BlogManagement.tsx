@@ -1,13 +1,6 @@
 'use client';
 import ImageUpload from '@/components/@assets/inputs/ImageUpload';
-import {
-  BlogType,
-  useAddBlog,
-  useDeleteBlog,
-  useGetBlogData,
-  useGetSingleBlogData,
-  useUpdateBlog,
-} from '@/hooks/querey/blog.tsq';
+import { useAddBlog, useDeleteBlog, useGetBlogData, useUpdateBlog } from '@/hooks/querey/blog.tsq';
 import { BlogInfo } from '@/libs/validations/blog.validation';
 import { LoadingButton } from '@mui/lab';
 import { CircularProgress, Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
@@ -33,7 +26,7 @@ const UploadForm = ({
   mutateAsync,
   setOpen,
 }: {
-  instance?: BlogType | null;
+  instance?: any | null;
   mutateAsync: any;
   setOpen?: any;
 }) => {
@@ -55,7 +48,7 @@ const UploadForm = ({
       status: instance?.status || 'publish',
       short_description: instance?.short_description || '',
       description_html: instance?.description_html || '',
-      thumbnail: instance?.thumbnail || null,
+      thumbnail: instance?.thumbnail_b64 || null,
       category: isNumberOrNull(searchParams.get('c_id')),
       sub_category: instance?.sub_category || isNumberOrNull(searchParams.get('sc_id')),
     },
@@ -63,39 +56,26 @@ const UploadForm = ({
     validationSchema: BlogInfo,
     onSubmit: async (data: any) => {
       try {
-        if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
-          let modifiedData = {
-            title: data?.title,
-            description_html: data?.description_html,
-            status: data?.status,
-            short_description: data?.short_description,
-            category: data?.category
-              ? data?.category?.id
-              : isNumberOrNull(searchParams.get('c_id')),
-            sub_category: data?.sub_category,
-          };
+        const body = {
+          title: data.title,
+          blogCategoryId: data.category,
+          // blogSubCategoryId: null,
+          thumbnail_b64: data.thumbnail,
+          description_html: data.description_html,
+          short_description: data.short_description,
+          status: data.status,
+        };
+        console.log(body)
+        await mutateAsync(body);
 
-          await mutateAsync(modifiedData);
-        } else {
-          let form_data = new FormData();
-
-          for (let key in data) {
-            if (data[key]) {
-              form_data.append(key, data[key]);
-            }
-          }
-
-          await mutateAsync(form_data);
-        }
+        enqueueSnackbar('Saved', { variant: 'success' });
         setOpen(!open);
-        instance
-          ? enqueueSnackbar('Updated Successfully', { variant: 'success' })
-          : enqueueSnackbar('Uploaded Successfully', { variant: 'success' });
-        resetForm();
-      } catch (err: any) {
-        for (let key of err.errors) {
-          enqueueSnackbar(`${key?.detail}`, { variant: 'error' });
+        if (instance) {
+        } else {
+          resetForm();
         }
+      } catch (err: any) {
+        enqueueSnackbar('Unexpected error please try again later', { variant: 'error' });
       }
     },
   });
@@ -155,10 +135,9 @@ const UploadForm = ({
   );
 };
 
-const EditData = ({ id }: { id: number }) => {
-  const { mutateAsync } = useUpdateBlog(id);
+const EditData = ({ data }: { data: any }) => {
+  const { mutateAsync } = useUpdateBlog(data.id);
   const [open, setOpen] = useState(false);
-  const { data } = useGetSingleBlogData(id, open);
 
   return (
     <>
@@ -248,14 +227,14 @@ const BlogManagement = () => {
               </thead>
               <tbody className="h-1/2 w-full">
                 {data &&
-                  data?.results?.map((info: BlogType) => (
+                  data?.map((info: any) => (
                     <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
                       <td className="px-6 py-4 w-1/2">
                         <span className="flex gap-2 items-center ">
                           <span className="min-w-[44px]">
                             <Image
                               className="rounded-lg"
-                              src={info.thumbnail}
+                              src={info.thumbnail_b64}
                               width={44}
                               height={44}
                               alt="thumbnail"
@@ -266,10 +245,10 @@ const BlogManagement = () => {
                       </td>
 
                       <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td>
-                      <td className="px-6 py-4 ">{convertDateFormat(info.created_at)}</td>
+                      <td className="px-6 py-4 ">{convertDateFormat(info.createdAt)}</td>
                       <td className="px-6 py-4 ">
                         <span className="flex justify-end items-center gap-2">
-                          <EditData id={info.id} />
+                          <EditData data={info} />
                           <span className="text-bbc-dash-2 cursor-pointer">
                             <DeleteData id={info.id} />
                           </span>

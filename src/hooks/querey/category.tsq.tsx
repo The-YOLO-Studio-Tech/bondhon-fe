@@ -1,6 +1,6 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { SubCategoryType } from './subCategory.tsq';
 
 export type CategoryType = {
@@ -20,7 +20,7 @@ export const useGetCategoryData = () => {
     queryKey: ['contentCategoryList'],
     queryFn: () =>
       axiousResuest({
-        url: `/content/category/`,
+        url: `/api/blog/category`,
         method: 'get',
       }),
   });
@@ -29,18 +29,18 @@ export const useGetCategoryData = () => {
 export const useAddCategory = () => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return useMutation(
     async (body: CategoryType) =>
       await axiousResuest({
-        url: `/content/category/`,
+        url: `/api/blog/category`,
 
         method: 'post',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session?.accessToken}`,
+          // Authorization: `Bearer ${session?.accessToken}`,
         },
       }),
     {
@@ -52,17 +52,17 @@ export const useAddCategory = () => {
 export const useUpdateCategory = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async (body: CategoryType) =>
       await axiousResuest({
-        url: `/content/category/${id}/`,
+        url: `/api/blog/category/${id}/`,
 
         method: 'patch',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
@@ -74,16 +74,16 @@ export const useUpdateCategory = (id: number) => {
 export const useDeleteCategory = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async () =>
       await axiousResuest({
-        url: `/content/category/${id}/`,
+        url: `/api/blog/category/${id}/`,
 
         method: 'delete',
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {

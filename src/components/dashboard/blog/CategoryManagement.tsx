@@ -12,18 +12,18 @@ import { BiEdit } from 'react-icons/bi';
 import DeleteModal from '@/components/@assets/modals/DeleteModal';
 // import { blogCategorycreate } from '@/actions/blog.action';
 
-type CategoryType = {
-  id: number;
-  title: string;
-  thumbnail: string;
-  created_at?: string | undefined;
-};
+// type CategoryType = {
+//   id: number;
+//   title: string;
+//   thumbnail: string;
+//   created_at?: string | undefined;
+// };
 
 export const UploadForm = ({
   instance,
   mutateAsync,
 }: {
-  instance?: CategoryType | null;
+  instance?: any | null;
   mutateAsync: any;
   setOpen?: any;
 }) => {
@@ -41,38 +41,26 @@ export const UploadForm = ({
   } = useFormik({
     initialValues: {
       title: instance?.title || '',
-      thumbnail: instance?.thumbnail || '',
+      thumbnail: instance?.thumbnail_b64 || '',
     },
 
     validationSchema: BlogCategoryInfo,
-    onSubmit: async (_data: any) => {
-      // console.log(data);
+    onSubmit: async (data: any) => {
       try {
-        // await blogCategorycreate(data);
-        // await create(data)
-        // if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
-        //   let modifiedData = {
-        //     title: data?.title,
-        //   };
-        //   await mutateAsync(modifiedData);
-        // } else {
-        //   let form_data = new FormData();
+        const body = {
+          title: data.title,
+          thumbnail_b64: data.thumbnail,
+        };
 
-        //   for (let key in data) {
-        //     form_data.append(key, data[key]);
-        //   }
-
-        //   await mutateAsync(form_data);
-        // }
-        setOpen(!open);
-        resetForm();
-        instance
-          ? enqueueSnackbar('Updated Successfully', { variant: 'success' })
-          : enqueueSnackbar('Uploaded Successfully', { variant: 'success' });
-      } catch (err: any) {
-        for (let key of err.errors) {
-          enqueueSnackbar(`${key?.detail}`, { variant: 'error' });
+        await mutateAsync(body);
+        if (instance) {
+        } else {
+          resetForm();
         }
+        enqueueSnackbar('Saved', { variant: 'success' });
+        setOpen(!open);
+      } catch (err: any) {
+        enqueueSnackbar('Unexpected error please try again later', { variant: 'error' });
       }
     },
   });

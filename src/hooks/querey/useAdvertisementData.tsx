@@ -13,7 +13,7 @@ export const useGetAdvertisementData = () => {
     queryKey: ['commercial-ad'],
     queryFn: () =>
       axiousResuest({
-        url: `/content/commercial-ad/`,
+        url: `/api/advertisement`,
         method: 'get',
       }),
   });
@@ -40,7 +40,7 @@ export const useAddAdvertisement = () => {
   return useMutation(
     async (body: AdvertisementType) =>
       await axiousResuest({
-        url: `/content/commercial-ad/`,
+        url: `/api/advertisement`,
 
         method: 'post',
         data: body,
@@ -58,17 +58,17 @@ export const useAddAdvertisement = () => {
 export const useUpdateAdvertisement = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async (body: AdvertisementType) =>
       await axiousResuest({
-        url: `/content/commercial-ad/${id}/`,
+        url: `/api/advertisement/${id}`,
 
         method: 'patch',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
@@ -80,16 +80,17 @@ export const useUpdateAdvertisement = (id: number) => {
 export const useDeleteAdvertisement = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+
+  // const { data: session } = useSession();
   return useMutation(
     async () =>
       await axiousResuest({
-        url: `/content/commercial-ad/${id}/`,
+        url: `/api/advertisement/${id}`,
 
         method: 'delete',
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session?.accessToken}`,
         },
       }),
     {

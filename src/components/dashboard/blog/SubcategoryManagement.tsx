@@ -1,6 +1,5 @@
 'use client';
 import {
-  SubCategoryType,
   useAddSubCategory,
   useDeleteSubCategory,
   useUpdateSubCategory,
@@ -20,7 +19,7 @@ const UploadForm = ({
   category,
   mutateAsync,
 }: {
-  instance?: SubCategoryType | null;
+  instance?: any | null;
   mutateAsync: any;
   category: number;
   setOpen?: any;
@@ -45,26 +44,16 @@ const UploadForm = ({
     validationSchema: BlogSubCategoryInfo,
     onSubmit: async (data: any) => {
       try {
-        // if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
-        //   let modifiedData = {
-        //     title: data?.title,
-        //   };
-        //   await mutateAsync(modifiedData);
-        // } else {
-        //   let form_data = new FormData();
-
-        //   for (let key in data) {
-        //     form_data.append(key, data[key]);
-        //   }
-
-        //   await mutateAsync(form_data);
-        // }
-        mutateAsync(data);
+        const body = {
+          title: data.title,
+          blogCategoryId: data.category,
+        };
+        await mutateAsync(body);
+        if (instance) {
+        } else {
+          resetForm();
+        }
         setOpen(!open);
-        resetForm();
-        instance
-          ? enqueueSnackbar('Updated Successfully', { variant: 'success' })
-          : enqueueSnackbar('Uploaded Successfully', { variant: 'success' });
       } catch (err: any) {
         for (let key of err.errors) {
           enqueueSnackbar(`${key?.detail}`, { variant: 'error' });

@@ -54,7 +54,7 @@ const CategoryItem = ({ category, idx }: { category: any; idx: number }) => {
           <li className="my-1 ">
             <AddNewSubcategory category_id={category.id} />
           </li>
-          {category.sub_category?.map((sub_category: any) => (
+          {category.BlogSubCategory?.map((sub_category: any) => (
             <ul
               className={`list-disc ml-4 ${
                 searchParams.get('sub_category__title') == sub_category.title
@@ -96,7 +96,7 @@ const BlogItems = () => {
         <AddCategoryModal />
       </li>
       {data &&
-        data.results.map((category: CategoryType, idx: number) => (
+        data.map((category: CategoryType, idx: number) => (
           <CategoryItem key={Math.random()} idx={idx} category={category} />
         ))}
     </ul>

@@ -1,6 +1,6 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 export type SubCategoryType = {
   id: number;
@@ -26,18 +26,18 @@ export const useGetSubCategoryData = () => {
 export const useAddSubCategory = () => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return useMutation(
     async (body: SubCategoryType) =>
       await axiousResuest({
-        url: `/content/sub-category/`,
+        url: `/api/blog/subcategory`,
 
         method: 'post',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session?.accessToken}`,
+          // Authorization: `Bearer ${session?.accessToken}`,
         },
       }),
     {
@@ -49,17 +49,17 @@ export const useAddSubCategory = () => {
 export const useUpdateSubCategory = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async (body: SubCategoryType) =>
       await axiousResuest({
-        url: `/content/sub-category/${id}/`,
+        url: `/api/blog/subcategory/${id}`,
 
         method: 'patch',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
@@ -71,16 +71,16 @@ export const useUpdateSubCategory = (id: number) => {
 export const useDeleteSubCategory = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async () =>
       await axiousResuest({
-        url: `/content/sub-category/${id}/`,
+        url: `/api/blog/subcategory/${id}`,
 
         method: 'delete',
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {

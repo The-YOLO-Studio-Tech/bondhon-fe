@@ -1,6 +1,6 @@
 'use client';
 import { enqueueSnackbar } from 'notistack';
-import { CircularProgress, Dialog, DialogContent, DialogTitle, Pagination } from '@mui/material';
+import { CircularProgress, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { FiEdit } from 'react-icons/fi';
@@ -13,25 +13,24 @@ import {
   useAddAdvertisement,
   useDeleteAdvertisement,
   useGetAdvertisementData,
-  useGetSingleAdvertisementData,
   useUpdateAdvertisement,
 } from '@/hooks/querey/useAdvertisementData';
 import { AdvertisementInfo } from '@/libs/validations/advertisement.validation';
 
 const COLUMN = ['অ্যাড', 'তারিখ', 'একশন'];
 
-type AdvertisementType = {
-  id: number;
-  add_banner: string;
-  created_at?: string | undefined;
-};
+// type AdvertisementType = {
+//   id: number;
+//   add_banner: string;
+//   created_at?: string | undefined;
+// };
 // mutateAsync
 const UploadForm = ({
   instance,
   mutateAsync,
   setOpen,
 }: {
-  instance?: AdvertisementType | null;
+  instance?: any | null;
   mutateAsync?: any;
   setOpen?: any;
 }) => {
@@ -44,38 +43,43 @@ const UploadForm = ({
     isSubmitting,
     handleSubmit,
     setFieldValue,
-    resetForm,
+    // resetForm,
   } = useFormik({
     initialValues: {
-      add_banner: instance?.add_banner || '',
+      add_banner: instance?.base64 || '',
     },
 
     validationSchema: AdvertisementInfo,
     onSubmit: async (data: any) => {
       try {
-        if (!data?.add_banner?.name && data?.add_banner?.includes('http')) {
-          let modifiedData = {
-            add_banner: data?.add_banner,
-          };
-          await mutateAsync(modifiedData);
-        } else {
-          let form_data = new FormData();
+        const body = {
+          base64: data.add_banner,
+        };
 
-          for (let key in data) {
-            form_data.append(key, data[key]);
-          }
+        await mutateAsync(body);
+        // console.log(body);
+        // if (!data?.add_banner?.name && data?.add_banner?.includes('http')) {
+        //   let modifiedData = {
+        //     add_banner: data?.add_banner,
+        //   };
+        //   await mutateAsync(modifiedData);
+        // } else {
+        //   let form_data = new FormData();
 
-          await mutateAsync(form_data);
-        }
+        //   for (let key in data) {
+        //     form_data.append(key, data[key]);
+        //   }
+
+        //   await mutateAsync(form_data);
+        // }
         setOpen(!open);
         instance
           ? enqueueSnackbar('Updated Successfully', { variant: 'success' })
           : enqueueSnackbar('Uploaded Successfully', { variant: 'success' });
-        resetForm();
+        // resetForm();
       } catch (err: any) {
-        for (let key of err.errors) {
-          enqueueSnackbar(`${key?.detail}`, { variant: 'error' });
-        }
+        // console.log(err);
+        enqueueSnackbar('Unexpected error please try again later', { variant: 'error' });
       }
     },
   });
@@ -128,10 +132,10 @@ const AddData = () => {
   );
 };
 
-const EditData = ({ id }: { id: number }) => {
-  const { mutateAsync } = useUpdateAdvertisement(id);
+const EditData = ({ instance }: { instance: any }) => {
+  const { mutateAsync } = useUpdateAdvertisement(instance.id);
   const [open, setOpen] = useState(false);
-  const { data } = useGetSingleAdvertisementData(id, open);
+  // const { data } = useGetSingleAdvertisementData(id, open);
 
   return (
     <>
@@ -142,7 +146,9 @@ const EditData = ({ id }: { id: number }) => {
         <DialogTitle>এডিট অ্যাড</DialogTitle>
         <DialogContent>
           <div className="space-y-4">
-            {data && <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} instance={data} />}
+            {instance && (
+              <UploadForm mutateAsync={mutateAsync} setOpen={setOpen} instance={instance} />
+            )}
           </div>
         </DialogContent>
       </Dialog>
@@ -195,14 +201,14 @@ const AdvertisementManagement = () => {
 
               <tbody className="h-1/2 w-full">
                 {data &&
-                  data?.results?.map((info: AdvertisementType) => (
+                  data?.map((info: any) => (
                     <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
                       <td className="px-6 py-4">
                         <span className="flex gap-2 items-center">
                           <span>
                             <Image
                               className="rounded-lg"
-                              src={info.add_banner}
+                              src={info.base64}
                               width={74}
                               height={74}
                               alt="add_banner"
@@ -210,13 +216,13 @@ const AdvertisementManagement = () => {
                           </span>
                         </span>
                       </td>
-                      {/* <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td> */}
+
                       <td className="px-6 py-4 text-center">
                         {convertDateFormat(info.created_at)}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <span className="flex items-center justify-end gap-2">
-                          <EditData id={info.id} />
+                          <EditData instance={info} />
                           <span className="text-bbc-dash-2 cursor-pointer">
                             <DeleteData id={info.id} />
                           </span>
@@ -238,9 +244,9 @@ const AdvertisementManagement = () => {
             )}
           </div>
 
-          <div className="py-5 flex justify-end">
+          {/* <div className="py-5 flex justify-end">
             <Pagination count={10} variant="outlined" color="primary" />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export type BlogType = {
@@ -17,20 +17,20 @@ export type BlogType = {
 
 const REFEARCH_QUERY = ['contentBlogList'];
 
-export const useGetBlogData = (limit = 50, offset = 0, c_title = '', s_title = '') => {
+export const useGetBlogData = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
   const title = pathname.includes('/post/') ? pathname.replace('/post/', '') || '' : '';
-  const category__title = searchParams.get('category__title') || c_title;
-  const sub_category__title = searchParams.get('sub_category__title') || s_title;
+  const category__id = searchParams.get('c_id') || '';
+  const sub_category__title = searchParams.get('sub_category__title') || '';
 
   return useQuery({
-    queryKey: [...REFEARCH_QUERY, ...[category__title, sub_category__title, title]],
+    queryKey: [...REFEARCH_QUERY, ...[category__id, sub_category__title, title]],
     queryFn: () =>
       axiousResuest({
-        url: `/content/blog/?limit=${limit}&offset=${offset}&category__title=${decodeURIComponent(
-          category__title,
+        url: `/api/blog?blogCategoryId=${decodeURIComponent(
+          category__id,
         )}&sub_category__title=${decodeURIComponent(
           sub_category__title,
         )}&title=${decodeURIComponent(title)}`,
@@ -55,18 +55,18 @@ export const useGetSingleBlogData = (id: number, fire: boolean) => {
 export const useAddBlog = () => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return useMutation(
     async (body: BlogType) =>
       await axiousResuest({
-        url: `/content/blog/`,
+        url: `/api/blog`,
 
         method: 'post',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session?.accessToken}`,
+          // Authorization: `Bearer ${session?.accessToken}`,
         },
       }),
     {
@@ -79,17 +79,17 @@ export const useUpdateBlog = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
 
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async (body: BlogType) =>
       await axiousResuest({
-        url: `/content/blog/${id}/`,
+        url: `/api/blog/${id}/`,
 
         method: 'patch',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
@@ -101,16 +101,16 @@ export const useUpdateBlog = (id: number) => {
 export const useDeleteBlog = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async () =>
       await axiousResuest({
-        url: `/content/blog/${id}/`,
+        url: `/api/blog/${id}/`,
 
         method: 'delete',
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
