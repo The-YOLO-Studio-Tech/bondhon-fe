@@ -12,7 +12,6 @@ import { BiEdit } from 'react-icons/bi';
 import DeleteModal from '@/components/@assets/modals/DeleteModal';
 // import { blogCategorycreate } from '@/actions/blog.action';
 
-
 type CategoryType = {
   id: number;
   title: string;

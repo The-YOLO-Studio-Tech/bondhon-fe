@@ -11,7 +11,7 @@ const ImageUpload = ({ setValue, error, value }: { setValue: any; error: any; va
         const selectedFile = e.target.files[0];
         setValue(selectedFile);
         const _ = await getImgToB64(selectedFile);
-        setValue(_)
+        setValue(_);
         setPrevImg(_);
       }
     } catch (error) {}

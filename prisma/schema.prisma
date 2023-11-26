@@ -5,9 +5,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "sqlserver"
+//   url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT;"
+
+// } &n2Wbisn.Z,,?Fh
+
 datasource db {
-  provider = "sqlserver"
-  url      = "sqlserver://103.197.207.66:1433;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT;TrustServerCertificate=False"
+  provider = "postgresql"
+  url      = "postgresql://postgres:%26n2Wbisn.Z%2C%2C%3FFh@167.99.73.175:5432/test1"
 }
 
 
@@ -22,4 +28,4 @@ model BlogCategory {
   thumbnail64  String
 }
 
-  // url      = "sqlserver://103.197.207.66:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"
+  // url   COpYPPyy5S29iUCt   = "sqlserver://103.197.207.66:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"

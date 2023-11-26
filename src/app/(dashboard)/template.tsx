@@ -6,10 +6,10 @@ const Template = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       {/* <AuthPage> */}
-        <DashboardTopNavbar />
+      <DashboardTopNavbar />
 
-        <DashboardAsidebar />
-        <div className="pl-4 pt-20 bg-[#F1F3F3] pr-4 lg:pr-8 lg:pl-[300px]">{children}</div>
+      <DashboardAsidebar />
+      <div className="pl-4 pt-20 bg-[#F1F3F3] pr-4 lg:pr-8 lg:pl-[300px]">{children}</div>
       {/* </AuthPage> */}
     </div>
   );
