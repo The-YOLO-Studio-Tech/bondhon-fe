@@ -1,13 +1,6 @@
 'use client';
 import { enqueueSnackbar } from 'notistack';
-import {
-  CircularProgress,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Pagination,
-  TextField,
-} from '@mui/material';
+import { CircularProgress, Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { FiEdit } from 'react-icons/fi';
@@ -20,7 +13,6 @@ import { convertDateFormat } from '@/libs/convertDateFormat';
 import {
   useAddVideo,
   useDeleteVideo,
-  useGetSingleVideoData,
   useGetVideoData,
   useUpdateVideo,
 } from '@/hooks/querey/useVideoData';
@@ -32,7 +24,7 @@ type WeUniqueType = {
   title: string;
   url: string;
   thumbnail: string;
-  created_at?: string | undefined;
+  createdAt?: string | undefined;
 };
 // mutateAsync
 const UploadForm = ({
@@ -64,30 +56,15 @@ const UploadForm = ({
     validationSchema: VideoInfo,
     onSubmit: async (data: any) => {
       try {
-        if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
-          let modifiedData = {
-            title: data?.title,
-            url: data?.url,
-          };
-          await mutateAsync(modifiedData);
+        await mutateAsync(data);
+        if (instance) {
         } else {
-          let form_data = new FormData();
-
-          for (let key in data) {
-            form_data.append(key, data[key]);
-          }
-
-          await mutateAsync(form_data);
+          resetForm();
         }
+        enqueueSnackbar('Saved', { variant: 'success' });
         setOpen(!open);
-        instance
-          ? enqueueSnackbar('Updated Successfully', { variant: 'success' })
-          : enqueueSnackbar('Uploaded Successfully', { variant: 'success' });
-        resetForm();
       } catch (err: any) {
-        for (let key of err.errors) {
-          enqueueSnackbar(`${key?.detail}`, { variant: 'error' });
-        }
+        enqueueSnackbar('Unexpected error please try again later', { variant: 'error' });
       }
     },
   });
@@ -164,10 +141,9 @@ const AddData = () => {
   );
 };
 
-const EditData = ({ id }: { id: number }) => {
-  const { mutateAsync } = useUpdateVideo(id);
+const EditData = ({ data }: { data: any }) => {
+  const { mutateAsync } = useUpdateVideo(data.id);
   const [open, setOpen] = useState(false);
-  const { data } = useGetSingleVideoData(id, open);
 
   return (
     <>
@@ -198,6 +174,7 @@ const DeleteData = ({ id }: { id: number }) => {
 // default component
 const VideoManagement = () => {
   const { data, isLoading } = useGetVideoData();
+
   //
   return (
     <div>
@@ -224,7 +201,7 @@ const VideoManagement = () => {
 
               <tbody className="h-1/2 w-full">
                 {data &&
-                  data?.results?.map((info: WeUniqueType) => (
+                  data?.map((info: WeUniqueType) => (
                     <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
                       <td className="px-6 py-4">
                         <span className="flex gap-2 items-center">
@@ -242,10 +219,10 @@ const VideoManagement = () => {
                       </td>
                       <td className="px-6 py-4">{info.url}</td>
                       {/* <td className="px-6 py-4 text-bbc-dash-3 capitalize">{info.status}</td> */}
-                      <td className="px-6 py-4 ">{convertDateFormat(info.created_at)}</td>
+                      <td className="px-6 py-4 ">{convertDateFormat(info.createdAt)}</td>
                       <td className="px-6 py-4 ">
                         <span className="flex items-center gap-2">
-                          <EditData id={info.id} />
+                          <EditData data={info} />
                           <span className="text-bbc-dash-2 cursor-pointer">
                             <DeleteData id={info.id} />
                           </span>
@@ -260,15 +237,11 @@ const VideoManagement = () => {
                 <CircularProgress />
               </div>
             )}
-            {data?.results?.length === 0 && (
+            {data?.length === 0 && (
               <div className="absolute text text-bbc-dash-d-2 top-1/2 -translate-y-1/2 right-1/2 -translate-x-1/2 justify-center items-center">
                 No Data Available!
               </div>
             )}
-          </div>
-
-          <div className="py-5 flex justify-end">
-            <Pagination count={10} variant="outlined" color="primary" />
           </div>
         </div>
       </div>

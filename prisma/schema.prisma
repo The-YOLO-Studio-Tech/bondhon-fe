@@ -29,10 +29,10 @@ model Advertisement {
 }
 
 model BlogCategory {
-  id            Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   title         String
-  menu         String?
-  thumbnail_b64 String @db.VarChar(MAX)
+  menu          String?
+  thumbnail_b64 String  @db.VarChar(MAX)
   Blog          Blog[]
 }
 
@@ -47,6 +47,15 @@ model Blog {
   createdAt         DateTime     @default(now())
   updatedAt         DateTime     @updatedAt
   blogCategoryId    Int
+}
+
+model Video {
+  id        Int      @id @default(autoincrement())
+  title     String
+  url       String   @db.VarChar(MAX)
+  thumbnail String?  @db.VarChar(MAX)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // url   COpYPPyy5S29iUCt   = "sqlserver://103.197.207.66:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"

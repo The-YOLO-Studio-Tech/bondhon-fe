@@ -1,6 +1,5 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
 
 export type VideoType = {
   id?: string | number;
@@ -16,7 +15,7 @@ export const useGetVideoData = () => {
     queryKey: ['video'],
     queryFn: () =>
       axiousResuest({
-        url: `/content/video/`,
+        url: `/api/video`,
         method: 'get',
       }),
   });
@@ -38,18 +37,18 @@ export const useGetSingleVideoData = (id: number, fire: boolean) => {
 export const useAddVideo = () => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return useMutation(
     async (body: VideoType) =>
       await axiousResuest({
-        url: `/content/video/`,
+        url: `/api/video`,
 
         method: 'post',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session?.accessToken}`,
+          // Authorization: `Bearer ${session?.accessToken}`,
         },
       }),
     {
@@ -61,17 +60,17 @@ export const useAddVideo = () => {
 export const useUpdateVideo = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async (body: VideoType) =>
       await axiousResuest({
-        url: `/content/video/${id}/`,
+        url: `/api/video/${id}`,
 
         method: 'patch',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
@@ -83,16 +82,16 @@ export const useUpdateVideo = (id: number) => {
 export const useDeleteVideo = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async () =>
       await axiousResuest({
-        url: `/content/video/${id}/`,
+        url: `/api/video/${id}`,
 
         method: 'delete',
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
