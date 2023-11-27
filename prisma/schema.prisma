@@ -22,10 +22,18 @@ model Test {
 }
 
 model Advertisement {
-  id        Int      @id @default(autoincrement())
-  base64    String?  @db.VarChar(MAX)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                    Int                     @id @default(autoincrement())
+  base64                String?                 @db.VarChar(MAX)
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  BlogPageAdvertisement BlogPageAdvertisement[]
+}
+
+model BlogPageAdvertisement {
+  id              Int           @id @default(autoincrement())
+  sl              Int           @unique
+  advertisement   Advertisement @relation(fields: [advertisementId], references: [id])
+  advertisementId Int
 }
 
 model BlogCategory {

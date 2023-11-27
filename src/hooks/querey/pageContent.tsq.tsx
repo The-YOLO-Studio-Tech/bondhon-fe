@@ -1,7 +1,6 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { HomePageCoontentType } from '@/models/HomePageCoontentType';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
 
 export const useGetPageContent = (home: string) => {
   /** session management */
@@ -16,21 +15,20 @@ export const useGetPageContent = (home: string) => {
   });
 };
 
-export const useMutionPageContent = () => {
+export const useUploadBlogAdd = () => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return useMutation(
     async (body: HomePageCoontentType) =>
       await axiousResuest({
-        url: `/content/page-content/`,
-
+        url: `/api/advertisement/blog`,
         method: 'post',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session?.accessToken}`,
+          // Authorization: `Bearer ${session?.accessToken}`,
         },
       }),
     {
