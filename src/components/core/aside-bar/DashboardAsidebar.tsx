@@ -3,34 +3,74 @@ import {
   AddCategoryModal,
   DeleteCategory,
   UpdateCategoryModal,
+  // DeleteCategory,
+  // UpdateCategoryModal,
 } from '@/components/dashboard/blog/CategoryManagement';
-import {
-  AddNewSubcategory,
-  DeleteSubCategory,
-  UpdateSubCategoryModal,
-} from '@/components/dashboard/blog/SubcategoryManagement';
-import { CategoryType, useGetCategoryData } from '@/hooks/querey/category.tsq';
+import { useGetCategoryData } from '@/hooks/querey/category.tsq';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { AiOutlineDown, AiOutlineRight } from 'react-icons/ai';
 
+const Categories = ({ menu, open }: { menu: string; open: boolean }) => {
+  const { data } = useGetCategoryData(menu);
+  const searchParams = useSearchParams();
+
+  return (
+    <>
+      <ul className={`ml-4 ${open ? 'inline-block' : 'hidden'}`}>
+        <li className="my-1 ">
+          <AddCategoryModal menu={menu} />
+        </li>
+        {data?.map((i: any) => (
+          <ul
+            className={`list-disc ml-4 ${
+              searchParams.get('sub_category__title') == i.title ? 'text-[#392FA3]' : ''
+            }`}
+            key={i.id}
+          >
+            <li className="" key={i.id}>
+              <div className="flex gap-2 text-sm items-center">
+                <Link href={`/dashboard/blog/?menu=${menu}&c_id=${i.id}`}>{i.title}</Link>
+                <span className="flex gap-1">
+                  <UpdateCategoryModal instance={i} menu={menu} />
+                  <DeleteCategory id={i.id} />
+                </span>
+              </div>
+            </li>
+          </ul>
+        ))}
+      </ul>
+    </>
+  );
+};
+
 // category
-const CategoryItem = ({ category, idx }: { category: any; idx: number }) => {
+const MenuItem = ({ menu, idx }: { menu: any; idx: number }) => {
   const [open, setOpen] = useState(false);
   const searchParams = useSearchParams();
   return (
-    <li key={category.id}>
+    <li key={idx}>
       <div className="flex ">
-        {idx < 6 ? (
+        <Link
+          onClick={() => setOpen(!open)}
+          className={`flex justify-between items-center mr-8 pb-1 w-4/5 px-3 py-2 rounded-md ${
+            searchParams.get('menu') == menu ? 'bg-[#392FA3] text-white' : ''
+          }`}
+          href={`/dashboard/blog/?menu=${menu}`}
+        >
+          {menu}
+          {open ? <AiOutlineDown /> : <AiOutlineRight />}
+        </Link>
+        {/* {idx < 6 ? (
           <Link
             onClick={() => setOpen(!open)}
             className={`flex justify-between items-center mr-8 pb-1 w-4/5 px-3 py-2 rounded-md ${
-              searchParams.get('category__title') == category.title ? 'bg-[#392FA3] text-white' : ''
+              searchParams.get('category__title') == menu ? 'bg-[#392FA3] text-white' : ''
             }`}
-            href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}`}
+            href={`/dashboard/blog/?category__title=${menu}`}
           >
-            {category.title}
+            {menu}
             {open ? <AiOutlineDown /> : <AiOutlineRight />}
           </Link>
         ) : (
@@ -42,63 +82,27 @@ const CategoryItem = ({ category, idx }: { category: any; idx: number }) => {
           >
             {category.title}
           </Link>
-        )}
-        <span className="w-1/5 flex gap-1 items-center">
+        )} */}
+        {/* <span className="w-1/5 flex gap-1 items-center">
           <UpdateCategoryModal id={category.id} instance={category} />
           <DeleteCategory id={category.id} />
-        </span>
+        </span> */}
       </div>
-
-      {idx < 6 && (
-        <ul className={`ml-4 ${open ? 'inline-block' : 'hidden'}`}>
-          <li className="my-1 ">
-            <AddNewSubcategory category_id={category.id} />
-          </li>
-          {category.BlogSubCategory?.map((sub_category: any) => (
-            <ul
-              className={`list-disc ml-4 ${
-                searchParams.get('sub_category__title') == sub_category.title
-                  ? 'text-[#392FA3]'
-                  : ''
-              }`}
-              key={sub_category.id}
-            >
-              <li className="" key={sub_category.id}>
-                <div className="flex gap-2 text-sm items-center">
-                  <Link
-                    href={`/dashboard/blog/?c_id=${category.id}&category__title=${category.title}&sc_id=${sub_category.id}&sub_category__title=${sub_category.title}`}
-                  >
-                    {sub_category.title}
-                  </Link>
-                  <span className="flex gap-1">
-                    <UpdateSubCategoryModal
-                      id={sub_category.id}
-                      category_id={category.id}
-                      instance={sub_category}
-                    />
-                    <DeleteSubCategory id={sub_category.id} />
-                  </span>
-                </div>
-              </li>
-            </ul>
-          ))}
-        </ul>
-      )}
+      <Categories menu={menu} open={open} />
     </li>
   );
 };
 
 const BlogItems = () => {
-  const { data } = useGetCategoryData();
+  // const { data } = useGetCategoryData();
   return (
     <ul className="ml-4 space-y-2">
-      <li>
-        <AddCategoryModal />
-      </li>
-      {data &&
-        data.map((category: CategoryType, idx: number) => (
-          <CategoryItem key={Math.random()} idx={idx} category={category} />
-        ))}
+      <Link href={'/dashboard/blog'}>সকল ব্লগ</Link>
+      {['স্থাপত্য', 'প্রকৌশল', 'ইন্টেরিয়র', 'পরিবেশ', 'মূল রচনা', 'অন্যান্য'].map(
+        (menu: any, idx: number) => (
+          <MenuItem key={Math.random()} idx={idx} menu={menu} />
+        ),
+      )}
     </ul>
   );
 };

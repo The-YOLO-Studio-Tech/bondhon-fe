@@ -22,10 +22,12 @@ import DeleteModal from '@/components/@assets/modals/DeleteModal';
 export const UploadForm = ({
   instance,
   mutateAsync,
+  menu,
 }: {
   instance?: any | null;
   mutateAsync: any;
   setOpen?: any;
+  menu: string;
 }) => {
   const [open, setOpen] = useState(false);
   const {
@@ -42,6 +44,7 @@ export const UploadForm = ({
     initialValues: {
       title: instance?.title || '',
       thumbnail: instance?.thumbnail_b64 || '',
+      menu: menu,
     },
 
     validationSchema: BlogCategoryInfo,
@@ -50,8 +53,8 @@ export const UploadForm = ({
         const body = {
           title: data.title,
           thumbnail_b64: data.thumbnail,
+          menu: menu,
         };
-
         await mutateAsync(body);
         if (instance) {
         } else {
@@ -70,7 +73,7 @@ export const UploadForm = ({
       {instance ? (
         <BiEdit onClick={() => setOpen(!open)} size={15} className="texre cursor-pointer" />
       ) : (
-        <p className="cursor-pointer" onClick={() => setOpen(!open)}>
+        <p className="cursor-pointer text-sm" onClick={() => setOpen(!open)}>
           অ্যাড ক্যাটাগরি
         </p>
       )}
@@ -113,20 +116,20 @@ export const UploadForm = ({
   );
 };
 
-export const AddCategoryModal = () => {
+export const AddCategoryModal = ({ menu }: { menu: string }) => {
   const { mutateAsync } = useAddCategory();
   return (
     <div>
-      <UploadForm mutateAsync={mutateAsync} />
+      <UploadForm menu={menu} mutateAsync={mutateAsync} />
     </div>
   );
 };
 
-export const UpdateCategoryModal = ({ id, instance }: { id: number; instance: any }) => {
-  const { mutateAsync } = useUpdateCategory(id);
+export const UpdateCategoryModal = ({ instance, menu }: { instance: any; menu: string }) => {
+  const { mutateAsync } = useUpdateCategory(instance.id);
   return (
     <div>
-      <UploadForm mutateAsync={mutateAsync} instance={instance} />
+      <UploadForm menu={menu} mutateAsync={mutateAsync} instance={instance} />
     </div>
   );
 };

@@ -13,14 +13,14 @@ export type CategoryType = {
 
 const REFEARCH_QUERY = ['contentCategoryList'];
 
-export const useGetCategoryData = () => {
+export const useGetCategoryData = (menu = '') => {
   /** session management */
 
   return useQuery({
-    queryKey: ['contentCategoryList'],
+    queryKey: ['contentCategoryList', menu],
     queryFn: () =>
       axiousResuest({
-        url: `/api/blog/category`,
+        url: `/api/blog/category?menu=${menu}`,
         method: 'get',
       }),
   });

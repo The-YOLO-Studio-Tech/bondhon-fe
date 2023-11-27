@@ -22,18 +22,14 @@ export const useGetBlogData = () => {
   const pathname = usePathname();
 
   const title = pathname.includes('/post/') ? pathname.replace('/post/', '') || '' : '';
-  const category__id = searchParams.get('c_id') || '';
-  const sub_category__title = searchParams.get('sub_category__title') || '';
+  const menu = searchParams.get('menu') || '';
+  const c_id = searchParams.get('c_id') || '';
 
   return useQuery({
-    queryKey: [...REFEARCH_QUERY, ...[category__id, sub_category__title, title]],
+    queryKey: [...REFEARCH_QUERY, ...[menu, c_id, title]],
     queryFn: () =>
       axiousResuest({
-        url: `/api/blog?blogCategoryId=${decodeURIComponent(
-          category__id,
-        )}&sub_category__title=${decodeURIComponent(
-          sub_category__title,
-        )}&title=${decodeURIComponent(title)}`,
+        url: `/api/blog?menu=${decodeURIComponent(menu)}&c_id=${c_id}`,
         method: 'get',
       }),
   });

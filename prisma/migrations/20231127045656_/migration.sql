@@ -1,0 +1,22 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- DropForeignKey
+ALTER TABLE [dbo].[Blog] DROP CONSTRAINT [Blog_blogCategoryId_fkey];
+
+-- AddForeignKey
+ALTER TABLE [dbo].[Blog] ADD CONSTRAINT [Blog_blogCategoryId_fkey] FOREIGN KEY ([blogCategoryId]) REFERENCES [dbo].[BlogCategory]([id]) ON DELETE CASCADE ON UPDATE CASCADE;
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH

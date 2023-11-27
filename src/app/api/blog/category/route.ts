@@ -2,11 +2,15 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const GET = async () => {
+export const GET = async (req: Request) => {
+  const url = new URL(req.url);
+  const menu = url.searchParams.get('menu') || '';
+  let filter: any = {};
+  if (menu) {
+    filter.menu = menu;
+  }
   const data = await prisma.blogCategory.findMany({
-    include: {
-      BlogSubCategory: true,
-    },
+    where: filter,
   });
 
   return Response.json(data);
