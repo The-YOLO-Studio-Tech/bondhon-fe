@@ -7,10 +7,10 @@ import Image from 'next/legacy/image';
 import { enqueueSnackbar } from 'notistack';
 import { useGetAdvertisementData } from '@/hooks/querey/useAdvertisementData';
 import { AddType } from '@/models/HomePageCoontentType';
-import { useGetBlogAdd, useUploadBlogAdd } from '@/hooks/querey/pageContent.tsq';
+import { useGetSingleBlogAdd, useUploadBlogDetailsAdd } from '@/hooks/querey/pageContent.tsq';
 
 const MiniCard = ({ add, setOpen, addNum }: { add: any; setOpen: any; addNum: string }) => {
-  const { mutateAsync } = useUploadBlogAdd();
+  const { mutateAsync } = useUploadBlogDetailsAdd();
 
   const handleClick = useCallback(async () => {
     try {
@@ -29,10 +29,10 @@ const MiniCard = ({ add, setOpen, addNum }: { add: any; setOpen: any; addNum: st
   );
 };
 
-const BlogAddPost = ({ addNum }: { addNum: string }) => {
+const BlogDetailsAddPost = ({ addNum }: { addNum: string }) => {
   const [open, setOpen] = useState(false);
   const { data: adds } = useGetAdvertisementData();
-  const { data } = useGetBlogAdd();
+  const { data } = useGetSingleBlogAdd();
 
   return (
     <div>
@@ -59,4 +59,4 @@ const BlogAddPost = ({ addNum }: { addNum: string }) => {
   );
 };
 
-export default BlogAddPost;
+export default BlogDetailsAddPost;

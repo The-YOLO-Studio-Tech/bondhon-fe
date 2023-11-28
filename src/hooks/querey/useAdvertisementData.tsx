@@ -25,7 +25,7 @@ export const useGetSingleAdvertisementData = (id: number, fire: boolean) => {
     queryKey: ['single_commercial-ad', id],
     queryFn: () =>
       axiousResuest({
-        url: `/content/commercial-ad/${id}/`,
+        url: `/content/commercial-ad/${id}`,
         method: 'get',
       }),
     enabled: fire,

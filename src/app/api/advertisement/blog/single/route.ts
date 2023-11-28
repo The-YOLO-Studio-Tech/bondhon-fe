@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const GET = async () => {
-  const data = await prisma.blogPageAdvertisement.findMany({
+  const data = await prisma.blogDetailsPageAdvertisement.findMany({
     include: {
       advertisement: true,
       // subCategories: true,
@@ -16,13 +16,13 @@ export const GET = async () => {
 export const POST = async (req: Request) => {
   try {
     const body = await req.json();
-    const _ = await prisma.blogPageAdvertisement.findUnique({
+    const _ = await prisma.blogDetailsPageAdvertisement.findUnique({
       where: {
         sl: body.sl,
       },
     });
     if (_) {
-      const updateInfo = await prisma.blogPageAdvertisement.update({
+      const updateInfo = await prisma.blogDetailsPageAdvertisement.update({
         where: {
           sl: body.sl,
         },
@@ -30,7 +30,7 @@ export const POST = async (req: Request) => {
       });
       return Response.json(updateInfo);
     } else {
-      const createInfo = await prisma.blogPageAdvertisement.create({ data: body });
+      const createInfo = await prisma.blogDetailsPageAdvertisement.create({ data: body });
       return Response.json(createInfo);
     }
     // return Response.json({});

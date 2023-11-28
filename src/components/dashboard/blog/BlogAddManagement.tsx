@@ -1,5 +1,6 @@
 import React from 'react';
 import BlogAddPost from '../settings/@assets/BlogAddPost';
+import BlogDetailsAddPost from '../settings/@assets/BlogDetailsAddPost';
 
 const BlogAddManagement = () => {
   return (
@@ -19,9 +20,8 @@ const BlogAddManagement = () => {
         <h2 className="text-2xl mt-10 mb-4 font-semibold text-[#392FA3]">
           ব্লগ ডিটেইলস অ্যাডভারটাইসমেন্ট
         </h2>
-        <div>{/* <BlogAddPost addNum="blog_add6" /> */}</div>
-        <div className="grid mt-4 grid-cols-4 gap-5">
-          {/* <BlogAddPost addNum="blog_add7" /> */}
+        <div className="grid grid-cols-4 gap-5">
+          <BlogDetailsAddPost addNum="1" />
         </div>
       </div>
     </div>

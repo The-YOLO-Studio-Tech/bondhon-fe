@@ -2,14 +2,14 @@ import axiousResuest from '@/libs/axiosRequest';
 import { HomePageCoontentType } from '@/models/HomePageCoontentType';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-export const useGetPageContent = (home: string) => {
+export const useGetBlogAdd = () => {
   /** session management */
 
   return useQuery({
     queryKey: ['contentPageContentList'],
     queryFn: () =>
       axiousResuest({
-        url: `/content/page-content/?home=${home}`,
+        url: `/api/advertisement/blog`,
         method: 'get',
       }),
   });
@@ -33,6 +33,39 @@ export const useUploadBlogAdd = () => {
       }),
     {
       onSuccess: () => queryClient.invalidateQueries(['contentPageContentList']),
+    },
+  );
+};
+
+export const useGetSingleBlogAdd = () => {
+  /** session management */
+
+  return useQuery({
+    queryKey: ['GetSingleBlogAdd'],
+    queryFn: () =>
+      axiousResuest({
+        url: `/api/advertisement/blog/single`,
+        method: 'get',
+      }),
+  });
+};
+
+export const useUploadBlogDetailsAdd = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (body: HomePageCoontentType) =>
+      await axiousResuest({
+        url: `/api/advertisement/blog/single`,
+        method: 'post',
+        data: body,
+        headers: {
+          // @ts-ignore
+          // Authorization: `Bearer ${session?.accessToken}`,
+        },
+      }),
+    {
+      onSuccess: () => queryClient.invalidateQueries(['GetSingleBlogAdd']),
     },
   );
 };
