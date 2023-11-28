@@ -63,7 +63,7 @@ const MiniCard = ({ add, setOpen, addNum }: { add: AddType; setOpen: any; addNum
 const AddPost = ({ addNum }: { addNum: string }) => {
   const [open, setOpen] = useState(false);
   const { data: adds } = useGetAdvertisementData();
-  const { data } = useGetPageContent('home');
+  // const { data } = useGetPageContent('home');
 
   return (
     <div>
@@ -88,7 +88,7 @@ const AddPost = ({ addNum }: { addNum: string }) => {
           ) : (
             <DashAddCard width={273} height={306} />
           ))}
-        {addNum == 'add2' &&
+        {/* {addNum == 'add2' &&
           (data?.results?.[0]?.content?.add2 ? (
             <DashVerticalAddCard
               image={data?.results?.[0]?.content?.add2?.add_banner}
@@ -97,8 +97,8 @@ const AddPost = ({ addNum }: { addNum: string }) => {
             />
           ) : (
             <DashVerticalAddCard width={273} height={548} />
-          ))}
-        {addNum == 'add3' &&
+          ))} */}
+        {/* {addNum == 'add3' &&
           (data?.results?.[0]?.content?.add3 ? (
             <DashVerticalAddCard
               image={data?.results?.[0].content.add3.add_banner}
@@ -107,19 +107,19 @@ const AddPost = ({ addNum }: { addNum: string }) => {
             />
           ) : (
             <DashVerticalAddCard width={273} height={430} />
-          ))}
-        {addNum == 'add4' &&
+          ))} */}
+        {/* {addNum == 'add4' &&
           (data?.results?.[0]?.content.add4 ? (
             <DashLargeAddCard image={data?.results?.[0]?.content?.add4?.add_banner} />
           ) : (
             <DashLargeAddCard />
-          ))}
-        {addNum == 'add5' &&
+          ))} */}
+        {/* {addNum == 'add5' &&
           (data?.results?.[0]?.content?.add5 ? (
             <DashLargeAddCard image={data?.results?.[0]?.content?.add5?.add_banner} />
           ) : (
             <DashLargeAddCard />
-          ))}
+          ))} */}
       </div>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">
         <DialogTitle>অ্যাড সিলেক্ট করুন</DialogTitle>
