@@ -20,7 +20,6 @@ import {
   useAddArchive,
   useDeleteArchive,
   useGetArchiveData,
-  useGetSingleArchiveData,
   useUpdateArchive,
 } from '@/hooks/querey/useArchiveData';
 import {
@@ -63,7 +62,7 @@ const UploadForm = ({
       title: instance?.title || '',
       url: instance?.url || '',
       thumbnail: instance?.thumbnail || '',
-      publish_year: instance?.publish_year || convertNewDateToDbFormat(new Date()),
+      publish_year: instance?.publish_year?.split('T')[0] || convertNewDateToDbFormat(new Date()),
     },
 
     validationSchema: ArchiveInfo,
@@ -72,43 +71,21 @@ const UploadForm = ({
       let newYear = getBanglaYear(data?.publish_year);
 
       try {
-        let modifiedData;
-        if (!data?.thumbnail?.name && data?.thumbnail?.includes('http')) {
-          modifiedData = {
-            title: data?.title,
-            url: data?.url,
-            month: month,
-            year: newYear,
-            publish_year: data?.publish_year,
-          };
-
-          await mutateAsync(modifiedData);
-        } else {
-          modifiedData = {
-            title: data?.title,
-            url: data?.url,
-            thumbnail: data?.thumbnail,
-            month: getBanglaMonth(data?.publish_year),
-            year: getBanglaYear(data?.publish_year),
-            publish_year: data?.publish_year,
-          };
-          let form_data = new FormData();
-
-          for (let key in modifiedData) {
-            form_data.append(key, modifiedData[key]);
-          }
-
-          await mutateAsync(form_data);
-        }
-        setOpen(!open);
-        instance
-          ? enqueueSnackbar('Updated Successfully', { variant: 'success' })
-          : enqueueSnackbar('Uploaded Successfully', { variant: 'success' });
+        const body = {
+          title: data?.title,
+          url: data?.url,
+          thumbnail: data.thumbnail,
+          month: month,
+          year: newYear,
+          publish_year: new Date(data?.publish_year),
+        };
+        // console.log(body);
+        await mutateAsync(body);
         resetForm();
+        setOpen(!open);
+        enqueueSnackbar('Saved', { variant: 'success' });
       } catch (err: any) {
-        for (let key of err.errors) {
-          enqueueSnackbar(`${key?.detail}`, { variant: 'error' });
-        }
+        enqueueSnackbar('Unexpected error please try again later', { variant: 'error' });
       }
     },
   });
@@ -199,10 +176,9 @@ const AddData = () => {
   );
 };
 
-const EditData = ({ id }: { id: number }) => {
-  const { mutateAsync } = useUpdateArchive(id);
+const EditData = ({ data }: { data: any }) => {
+  const { mutateAsync } = useUpdateArchive(data.id);
   const [open, setOpen] = useState(false);
-  const { data } = useGetSingleArchiveData(id, open);
 
   return (
     <>
@@ -259,7 +235,7 @@ const ArchiveManagement = () => {
 
               <tbody className="h-1/2 w-full">
                 {data &&
-                  data?.results?.map((info: ArchiveType) => (
+                  data?.map((info: ArchiveType) => (
                     <tr key={Math.random()} className="bg-white border-b text-bbc-dash-regular-2">
                       <td className="px-6 py-4">
                         <span className="flex gap-2 items-center">
@@ -280,7 +256,7 @@ const ArchiveManagement = () => {
                       <td className="px-6 py-4 ">{convertDateFormat(info.publish_year)}</td>
                       <td className="px-6 py-4 ">
                         <span className="flex items-center gap-2">
-                          <EditData id={info.id} />
+                          <EditData data={info} />
                           <span className="text-bbc-dash-2 cursor-pointer">
                             <DeleteData id={info.id} />
                           </span>

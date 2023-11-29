@@ -1,6 +1,5 @@
 import axiousResuest from '@/libs/axiosRequest';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
 
 type ArchiveType = {
   title: string;
@@ -18,7 +17,7 @@ export const useGetFilteredArchiveData = (month?: string, year?: string) => {
     queryKey: ['e-magazine', month__in, year__in],
     queryFn: () =>
       axiousResuest({
-        url: `/content/e-magazine/?month__in=${month__in}&year__in=${year__in}`,
+        url: `/api/e-magazine/?month__in=${month__in}&year__in=${year__in}`,
         method: 'get',
       }),
   });
@@ -29,7 +28,7 @@ export const useGetArchiveData = () => {
     queryKey: ['magazine'],
     queryFn: () =>
       axiousResuest({
-        url: `/content/e-magazine/`,
+        url: `/api/magazine`,
         method: 'get',
       }),
   });
@@ -51,22 +50,22 @@ export const useGetSingleArchiveData = (id: number, fire: boolean) => {
 export const useAddArchive = () => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return useMutation(
     async (body: ArchiveType) =>
       await axiousResuest({
-        url: `/content/e-magazine/`,
+        url: `/api/magazine`,
 
         method: 'post',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session?.accessToken}`,
+          // Authorization: `Bearer ${session?.accessToken}`,
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(['e-magazine']),
+      onSuccess: () => queryClient.invalidateQueries(['magazine']),
     },
   );
 };
@@ -74,21 +73,21 @@ export const useAddArchive = () => {
 export const useUpdateArchive = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async (body: ArchiveType) =>
       await axiousResuest({
-        url: `/content/e-magazine/${id}/`,
+        url: `/api/magazine/${id}`,
 
         method: 'patch',
         data: body,
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(['e-magazine']),
+      onSuccess: () => queryClient.invalidateQueries(['magazine']),
     },
   );
 };
@@ -96,20 +95,20 @@ export const useUpdateArchive = (id: number) => {
 export const useDeleteArchive = (id: number) => {
   const queryClient = useQueryClient();
   /** session management */
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   return useMutation(
     async () =>
       await axiousResuest({
-        url: `/content/e-magazine/${id}/`,
+        url: `/api/magazine/${id}`,
 
         method: 'delete',
         headers: {
           // @ts-ignore
-          Authorization: `Bearer ${session.accessToken}`,
+          // Authorization: `Bearer ${session.accessToken}`,
         },
       }),
     {
-      onSuccess: () => queryClient.invalidateQueries(['e-magazine']),
+      onSuccess: () => queryClient.invalidateQueries(['magazine']),
     },
   );
 };

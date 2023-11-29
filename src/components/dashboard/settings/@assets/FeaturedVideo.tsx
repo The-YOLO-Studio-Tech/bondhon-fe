@@ -2,18 +2,20 @@
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { DashVideoCard } from './Cards';
-import { useGetPageContent, useMutionPageContent } from '@/hooks/querey/pageContent.tsq';
+import { useGetLandingPagevideo, useUploadLandingPagevideo } from '@/hooks/querey/pageContent.tsq';
 import { enqueueSnackbar } from 'notistack';
 import { VideoType, useGetVideoData } from '@/hooks/querey/useVideoData';
 
 const MiniCard = ({ video, setOpen }: { video: VideoType; setOpen: any }) => {
-  const { mutateAsync } = useMutionPageContent();
+  const { mutateAsync } = useUploadLandingPagevideo();
+
   const handleClick = useCallback(async () => {
     try {
       const data = {
-        page_name: 'home',
-        content: { feature_video: video },
+        sl: 1,
+        videoId: video.id,
       };
+
       await mutateAsync(data);
       setOpen(false);
       enqueueSnackbar('Saved', { variant: 'success' });
@@ -44,26 +46,22 @@ const MiniCard = ({ video, setOpen }: { video: VideoType; setOpen: any }) => {
 const FeaturedVideo = () => {
   const [open, setOpen] = useState(false);
   const { data: video } = useGetVideoData();
-  const { data } = useGetPageContent('home');
+  const { data } = useGetLandingPagevideo();
 
   return (
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
-        {data?.results?.[0]?.content?.feature_video ? (
-          <DashVideoCard
-            url={data?.results?.[0]?.content?.feature_video?.url}
-            title={data?.results?.[0]?.content?.feature_video?.title}
-          />
-        ) : (
-          <DashVideoCard />
-        )}
+        <DashVideoCard
+          url={data?.find((i: any) => i.sl == 1)?.video?.url}
+          title={data?.find((i: any) => i.sl == 1)?.video?.title}
+        />
       </div>
       <Dialog open={open} onClose={() => setOpen(!open)} fullWidth maxWidth="md">
         <DialogTitle>পোস্ট সিলেক্ট করুন</DialogTitle>
         <DialogContent>
           <div className="grid grid-cols-5 gap-4">
             {video &&
-              video.results.map((video: VideoType) => (
+              video.map((video: VideoType) => (
                 <MiniCard key={video.id} video={video} setOpen={(x: any) => setOpen(x)} />
               ))}
           </div>

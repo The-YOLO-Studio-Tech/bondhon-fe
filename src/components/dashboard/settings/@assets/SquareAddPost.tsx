@@ -1,61 +1,37 @@
 'use client';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { DashAddCard, DashLargeAddCard, DashVerticalAddCard } from './Cards';
 import Image from 'next/legacy/image';
-import { useGetPageContent, useMutionPageContent } from '@/hooks/querey/pageContent.tsq';
-import { enqueueSnackbar } from 'notistack';
 import { useGetAdvertisementData } from '@/hooks/querey/useAdvertisementData';
 import { AddType } from '@/models/HomePageCoontentType';
+import { DashAddCard } from './Cards';
+import { useGetLandingAdd, useUploadLandingAdd } from '@/hooks/querey/pageContent.tsq';
 
-const MiniCard = ({ add, setOpen, addNum }: { add: AddType; setOpen: any; addNum: string }) => {
-  const { mutateAsync } = useMutionPageContent();
+const MiniCard = ({
+  add,
+  setOpen,
+  addNum,
+  open,
+}: {
+  add: any;
+  setOpen: any;
+  addNum: string;
+  open: boolean;
+}) => {
+  const { mutateAsync } = useUploadLandingAdd();
   const handleClick = useCallback(async () => {
-    let data;
     try {
-      if (addNum == 'topAdd') {
-        data = {
-          page_name: 'home',
-          content: { topAdd: add },
-        };
-      } else if (addNum == 'add1') {
-        data = {
-          page_name: 'home',
-          content: { add1: add },
-        };
-      } else if (addNum == 'add2') {
-        data = {
-          page_name: 'home',
-          content: { add2: add },
-        };
-      } else if (addNum == 'add3') {
-        data = {
-          page_name: 'home',
-          content: { add3: add },
-        };
-      } else if (addNum == 'add4') {
-        data = {
-          page_name: 'home',
-          content: { add4: add },
-        };
-      } else if (addNum == 'add5') {
-        data = {
-          page_name: 'home',
-          content: { add5: add },
-        };
-      }
-      await mutateAsync(data);
-      setOpen(false);
-      enqueueSnackbar('Saved', { variant: 'success' });
-    } catch (err: any) {
-      for (let key of err.errors) {
-        enqueueSnackbar(`${key?.detail}`, { variant: 'error' });
-      }
-    }
-  }, [add, mutateAsync, setOpen, addNum]);
+      const body = {
+        sl: Number(addNum),
+        advertisementId: add.id,
+      };
+      mutateAsync(body);
+      setOpen(!open);
+    } catch (error) {}
+  }, [addNum, add, mutateAsync, setOpen, open]);
   return (
     <div className="cursor-pointer" onClick={handleClick}>
-      <Image className="rounded-lg" src={add.add_banner} width={150} height={150} alt="thumbnail" />
+      <Image className="rounded-lg" src={add.base64} width={150} height={150} alt="thumbnail" />
     </div>
   );
 };
@@ -63,12 +39,19 @@ const MiniCard = ({ add, setOpen, addNum }: { add: AddType; setOpen: any; addNum
 const AddPost = ({ addNum }: { addNum: string }) => {
   const [open, setOpen] = useState(false);
   const { data: adds } = useGetAdvertisementData();
-  // const { data } = useGetPageContent('home');
+  const { data } = useGetLandingAdd();
 
   return (
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
-        {addNum == 'topAdd' &&
+        <DashAddCard
+          image={data?.find((i: any) => i.id == Number(addNum))?.advertisement?.base64}
+          addNum={addNum}
+          width={295}
+          height={84}
+        />
+
+        {/* {addNum == 'topAdd' &&
           (data?.results?.[0]?.content?.topAdd ? (
             <DashAddCard
               width={295}
@@ -77,7 +60,8 @@ const AddPost = ({ addNum }: { addNum: string }) => {
             />
           ) : (
             <DashAddCard width={295} height={84} />
-          ))}
+          ))} */}
+        {/* 
         {addNum == 'add1' &&
           (data?.results?.[0]?.content?.add1 ? (
             <DashAddCard
@@ -87,7 +71,7 @@ const AddPost = ({ addNum }: { addNum: string }) => {
             />
           ) : (
             <DashAddCard width={273} height={306} />
-          ))}
+          ))} */}
         {/* {addNum == 'add2' &&
           (data?.results?.[0]?.content?.add2 ? (
             <DashVerticalAddCard
@@ -126,8 +110,14 @@ const AddPost = ({ addNum }: { addNum: string }) => {
         <DialogContent>
           <div className="flex flex-wrap gap-4">
             {adds &&
-              adds.results.map((add: AddType) => (
-                <MiniCard key={add.id} add={add} setOpen={(x: any) => setOpen(x)} addNum={addNum} />
+              adds.map((add: AddType) => (
+                <MiniCard
+                  key={add.id}
+                  add={add}
+                  open={open}
+                  setOpen={(x: any) => setOpen(x)}
+                  addNum={addNum}
+                />
               ))}
           </div>
         </DialogContent>

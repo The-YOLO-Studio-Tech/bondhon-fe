@@ -94,10 +94,12 @@ export const DashAddCard = ({
   image,
   width,
   height,
+  addNum,
 }: {
   image?: string;
   width: number;
   height: number;
+  addNum: string;
 }) => {
   return (
     <div>
@@ -117,7 +119,7 @@ export const DashAddCard = ({
               <Image src="/images/cardBg.png" width={width} height={height} alt="img" />
             </div>
             <div className="absolute top-1/2 text-center left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <p>add</p>
+              <p>Add#{addNum}</p>
               <p className="text-2xl font-semibold pt-2">
                 {width}x{height}
               </p>
