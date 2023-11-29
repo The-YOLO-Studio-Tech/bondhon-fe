@@ -68,7 +68,7 @@ const Menu = ({ menu }: { menu: string }) => {
       ) : (
         <>
           {data.length === 0 ? (
-            <Link href={`/blog/${menu}`} className="flex items-center gap-1 xl:text-xl">
+            <Link href={`/blog/?menu=${menu}`} className="flex items-center gap-1 xl:text-xl">
               {menu}
               <span className="rotate-90">
                 <AiOutlineLine size={12} />
@@ -108,9 +108,9 @@ const MenuWithSubmenu = ({
       </li>
       <div className="absolute top-[-1000px] subMenu">
         <ul className="bg-white text-[#392FA3] px-5 space-y-2 pb-3 mt-10 shadow-sm">
-          {instance?.map((i: { title: string }) => (
+          {instance?.map((i: any) => (
             <li className="min-w-[250px] inline-block hover:border-b" key={Math.random()}>
-              <Link className="" key={Math.random()} href={`/blog/${instance.title}/${i.title}`}>
+              <Link className="" key={Math.random()} href={`/blog/?menu=${title}&c_id=${i.id}`}>
                 {i.title}
               </Link>
             </li>
@@ -158,30 +158,6 @@ const DefaultNavbar = () => {
                 return (
                   <div key={Math.random()}>
                     <Menu menu={i} />
-                    {/* <Link href={`/blog/${i}`} className="flex items-center gap-1 xl:text-xl">
-                      {i}
-                      <span className="rotate-90">
-                        <AiOutlineLine size={12} />
-                      </span>
-                    </Link> */}
-                    {/* {i.sub_category.length === 0 ? (
-                      <Link
-                        href={`/blog/${i.title}`}
-                        className="flex items-center gap-1 xl:text-xl"
-                      >
-                        {i.title}
-                        <span className="rotate-90">
-                          <AiOutlineLine size={12} />
-                        </span>
-                      </Link>
-                    ) : (
-                      <MenuWithSubmenu
-                        instance={i}
-                        count={data?.results.length}
-                        idx={idx}
-                        key={Math.random()}
-                      />
-                    )} */}
                   </div>
                 );
               },

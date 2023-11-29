@@ -38,5 +38,3 @@ export const DELETE = async (_req: Request, { params }: { params: { id: string |
     });
   }
 };
-
-

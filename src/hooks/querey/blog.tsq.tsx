@@ -35,16 +35,15 @@ export const useGetBlogData = () => {
   });
 };
 
-export const useGetSingleBlogData = (id: number, fire: boolean) => {
+export const useGetSingleBlogData = (slug: string) => {
   /** session management */
   return useQuery({
-    queryKey: ['single_blog', id],
+    queryKey: ['single_blog', slug],
     queryFn: () =>
       axiousResuest({
-        url: `/content/blog/${id}/`,
+        url: `/api/blog?slug=${slug}`,
         method: 'get',
       }),
-    enabled: fire,
   });
 };
 

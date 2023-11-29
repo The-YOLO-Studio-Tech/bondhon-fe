@@ -6,7 +6,7 @@ const FeatureCart = ({ data }: { data: any }) => {
   return (
     <div className="relative">
       {data?.find((i: any) => i.sl * 1 == 1)?.blog?.thumbnail_b64 ? (
-        <Link href={`/post/${data?.results?.[0]?.content?.feature_post?.title}`}>
+        <Link href={`/blog/${data?.find((i: any) => i.sl * 1 == 1)?.blog?.title}`}>
           <div className="">
             <Image
               src={data?.find((i: any) => i.sl * 1 == 1)?.blog?.thumbnail_b64}

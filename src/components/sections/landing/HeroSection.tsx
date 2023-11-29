@@ -3,11 +3,16 @@ import AddCard from '@/components/core/cart/AddCard';
 import FeatureCart from '@/components/core/cart/FeatureCart';
 import LoadingCard from '@/components/core/cart/LoadingCard';
 import ThumnileCategoryCart from '@/components/core/cart/ThumnileCategoryCart';
-import { useGetLandingBlog, useGetLandingPageCategory } from '@/hooks/querey/pageContent.tsq';
+import {
+  useGetLandingAdd,
+  useGetLandingBlog,
+  useGetLandingPageCategory,
+} from '@/hooks/querey/pageContent.tsq';
 
 const HeroSection = () => {
   const { data, isLoading } = useGetLandingBlog();
   const { data: category } = useGetLandingPageCategory();
+  const { data: lansingAdd } = useGetLandingAdd();
 
   return (
     <div className="grid md:grid-cols-3 md:gap-5 xl:gap-7">
@@ -16,9 +21,10 @@ const HeroSection = () => {
       </div>
       <div className="relative w-[295px] mx-auto mt-5 h-[65px] md:hidden">
         <div className="">
-          {data?.results?.[0]?.content?.topAdd ? (
+          {/* add 1 */}
+          {lansingAdd?.find((i: any) => i.sl == 1) ? (
             <AddCard
-              image={data?.results?.[0]?.content?.topAdd?.add_banner}
+              image={lansingAdd?.find((i: any) => i.sl == 1)?.advertisement?.base64}
               width={295}
               height={57}
             />

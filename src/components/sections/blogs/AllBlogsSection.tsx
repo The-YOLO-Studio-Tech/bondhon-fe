@@ -4,17 +4,11 @@ import BlogCard from '../../core/cart/BlogCard';
 import { BlogType, useGetBlogData } from '@/hooks/querey/blog.tsq';
 import LoadingCard from '@/components/core/cart/LoadingCard';
 import AddCard from '@/components/core/cart/AddCard';
+import { useGetBlogAdd } from '@/hooks/querey/pageContent.tsq';
 
-const AllBlogsSection = ({
-  c_title = '',
-  s_title = '',
-  addData,
-}: {
-  c_title?: string;
-  s_title?: string;
-  addData?: any;
-}) => {
-  const { data, isLoading } = useGetBlogData(50, 0, c_title, s_title);
+const AllBlogsSection = ({}: {}) => {
+  const { data, isLoading } = useGetBlogData();
+  const { data: addVer } = useGetBlogAdd();
 
   return (
     <div>
@@ -23,12 +17,13 @@ const AllBlogsSection = ({
           ? [...new Array(4)].map(() => (
               <LoadingCard key={Math.random()} width={295} height={239} />
             ))
-          : data?.results.slice(0, 6).map((i: BlogType) => <BlogCard key={i.id} blog={i} />)}
+          : data?.slice(0, 6).map((i: BlogType) => <BlogCard key={i.id} blog={i} />)}
       </div>
       <div className="my-8 md:my-10 xl:my-[60px]">
-        {addData?.results?.[1]?.content?.blog_add5 ? (
+        {/* add 5 */}
+        {addVer?.find((i: any) => i.sl == 5) ? (
           <AddCard
-            image={addData?.results?.[1]?.content?.blog_add5?.add_banner}
+            image={addVer?.find((i: any) => i.sl == 5)?.advertisement?.base64}
             width={945}
             height={257}
           />
@@ -40,9 +35,10 @@ const AllBlogsSection = ({
       {/* mbl add show */}
       <div className="grid grid-cols-2 px-2 gap-5 md:hidden">
         <div className="mb-5 md:mb-8 xl:mb-14">
-          {addData?.results?.[1]?.content?.blog_add1 ? (
+          {/* add 1 */}
+          {addVer?.find((i: any) => i.sl == 1) ? (
             <AddCard
-              image={addData?.results?.[1]?.content?.blog_add1?.add_banner}
+              image={addVer?.find((i: any) => i.sl == 1)?.advertisement?.base64}
               width={295}
               height={488}
             />
@@ -51,9 +47,10 @@ const AllBlogsSection = ({
           )}
         </div>
         <div className="mb-5 md:mb-8 xl:mb-14">
-          {addData?.results?.[1]?.content?.blog_add2 ? (
+          {/* add 2 */}
+          {addVer?.find((i: any) => i.sl == 2) ? (
             <AddCard
-              image={addData?.results?.[1]?.content?.blog_add2?.add_banner}
+              image={addVer?.find((i: any) => i.sl == 2)?.advertisement?.base64}
               width={295}
               height={668}
             />
@@ -67,17 +64,16 @@ const AllBlogsSection = ({
           ? [...new Array(4)].map(() => (
               <LoadingCard key={Math.random()} width={295} height={239} />
             ))
-          : data?.results
-              .slice(7, data.length)
-              .map((i: BlogType) => <BlogCard key={i.id} blog={i} />)}
+          : data?.slice(7, data.length).map((i: BlogType) => <BlogCard key={i.id} blog={i} />)}
       </div>
 
       {/* mbl bottomAdd section */}
       <div className="grid grid-cols-2 gap-5 px-2 mt-7 md:hidden">
         <div className="mb-5 md:mb-8 xl:mb-14">
-          {addData?.results?.[1]?.content?.blog_add3 ? (
+          {/* add 3 */}
+          {addVer?.find((i: any) => i.sl == 3) ? (
             <AddCard
-              image={addData?.results?.[1]?.content?.blog_add3?.add_banner}
+              image={addVer?.find((i: any) => i.sl == 3)?.advertisement?.base64}
               width={295}
               height={302}
             />
@@ -86,9 +82,10 @@ const AllBlogsSection = ({
           )}
         </div>
         <div className="mb-5 md:mb-8 xl:mb-14">
-          {addData?.results?.[1]?.content?.blog_add4 ? (
+          {/* add 4 */}
+          {addVer?.find((i: any) => i.sl == 4) ? (
             <AddCard
-              image={addData?.results?.[1]?.content?.blog_add4?.add_banner}
+              image={addVer?.find((i: any) => i.sl == 4)?.advertisement?.base64}
               width={295}
               height={426}
             />

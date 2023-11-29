@@ -7,6 +7,7 @@ export const GET = async (req: Request) => {
   // const blogCategoryId = url.searchParams.get('blogCategoryId') || '';
   const menu = url.searchParams.get('menu') || '';
   const c_id = url.searchParams.get('c_id') || '';
+  const slug = url.searchParams.get('slug') || '';
 
   let filter: any = {};
   if (menu) {
@@ -20,6 +21,9 @@ export const GET = async (req: Request) => {
       ...filter.category,
       id: Number(c_id),
     };
+  }
+  if (slug) {
+    filter.title = slug;
   }
 
   const data = await prisma.blog.findMany({

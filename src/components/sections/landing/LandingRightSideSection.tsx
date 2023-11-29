@@ -1,5 +1,5 @@
 import AddCard from '@/components/core/cart/AddCard';
-import CalculatorCart from '@/components/core/cart/CalculatorCart';
+// import CalculatorCart from '@/components/core/cart/CalculatorCart';
 import DisplayCategory from '@/components/core/cart/DisplayCategory';
 import LoadingCard from '@/components/core/cart/LoadingCard';
 import ThumnileCategoryCart from '@/components/core/cart/ThumnileCategoryCart';
@@ -42,10 +42,10 @@ const LandingRightSideSection = () => {
       </div>
       <div className=" grid grid-cols-2 mb-7 mt-5 gap-5 md:space-y-5 xl:space-y-5 md:grid-cols-none md:mb-8 md:gap-0 xl:mt-7">
         {/* cat 20 to 23 */}
-        <ThumnileCategoryCart data={landingCat?.find((i: any) => i.sl == 20)} />
-        <ThumnileCategoryCart data={landingCat?.find((i: any) => i.sl == 21)} />
-        <ThumnileCategoryCart data={landingCat?.find((i: any) => i.sl == 22)} />
-        <ThumnileCategoryCart data={landingCat?.find((i: any) => i.sl == 23)} />
+        <ThumnileCategoryCart isHight={true} data={landingCat?.find((i: any) => i.sl == 20)} />
+        <ThumnileCategoryCart isHight={true} data={landingCat?.find((i: any) => i.sl == 21)} />
+        <ThumnileCategoryCart isHight={true} data={landingCat?.find((i: any) => i.sl == 22)} />
+        <ThumnileCategoryCart isHight={true} data={landingCat?.find((i: any) => i.sl == 23)} />
       </div>
       <div className="px-4 md:px-0">
         {/* add 6 */}
@@ -65,13 +65,13 @@ const LandingRightSideSection = () => {
         <DisplayCategory data={lansingAdd?.find((i: any) => i.sl * 1 == 25)} />
         <DisplayCategory data={lansingAdd?.find((i: any) => i.sl * 1 == 26)} />
 
-        <div className="md:hidden">
+        {/* <div className="md:hidden">
           <CalculatorCart />
-        </div>
+        </div> */}
       </div>
-      <div className="mt-5 hidden md:block xl:mt-6">
+      {/* <div className="mt-5 hidden md:block xl:mt-6">
         <CalculatorCart />
-      </div>
+      </div> */}
     </div>
   );
 };

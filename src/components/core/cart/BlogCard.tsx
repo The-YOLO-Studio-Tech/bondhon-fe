@@ -1,14 +1,13 @@
-import { BlogType } from '@/hooks/querey/blog.tsq';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 
-const BlogCard = ({ blog }: { blog: BlogType }) => {
+const BlogCard = ({ blog }: { blog: any }) => {
   return (
-    <Link className=" border border-[#CACACA] h-fit" href={`/post/${blog.title}`}>
+    <Link className=" border border-[#CACACA] h-fit" href={`/blog/${blog.title}`}>
       <div className="relative">
         <Image
-          src={blog.thumbnail}
+          src={blog.thumbnail_b64}
           width={295}
           height={239}
           layout="responsive"
