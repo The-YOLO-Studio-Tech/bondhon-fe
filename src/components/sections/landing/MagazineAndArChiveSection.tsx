@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -11,8 +11,6 @@ import 'swiper/css/pagination';
 import { Navigation } from 'swiper/modules';
 import { useGetFilteredArchiveData } from '@/hooks/querey/useArchiveData';
 import Image from 'next/legacy/image';
-import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
-import Link from 'next/link';
 import getPreviousYearsInBangla from '@/libs/getPreviousYearsInBangla';
 
 SwiperCore.use([Navigation]);
@@ -20,7 +18,7 @@ SwiperCore.use([Navigation]);
 const MagazineAndArChiveSection = () => {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
-  const { data: pageContentData } = useGetPageContent('home');
+  // const { data: pageContentData } = useGetPageContent('home');
   const { data } = useGetFilteredArchiveData(month, year);
 
   const banglaMonths = [
@@ -65,7 +63,7 @@ const MagazineAndArChiveSection = () => {
                 left: 0,
                 top: 0,
               }}
-              src={data?.results?.[0]?.url}
+              src={data?.[0]?.url}
               // seamless="seamless"
               scrolling="no"
               frameBorder={0}
@@ -139,8 +137,8 @@ const MagazineAndArChiveSection = () => {
                   modules={[]}
                   className="mySwiper555"
                 >
-                  {data?.results?.length > 0 ? (
-                    data?.results?.map((i: any) => (
+                  {data?.length > 0 ? (
+                    data?.map((i: any) => (
                       <SwiperSlide key={Math.random()}>
                         <div>
                           <Image
@@ -171,7 +169,7 @@ const MagazineAndArChiveSection = () => {
           </div>
 
           <div className="md:h-2/5 md:mt-auto grid grid-cols-2 gap-5 mt-4 xl:gap-7">
-            {pageContentData.results?.[0]?.content?.feature_post_category3 ? (
+            {/* {pageContentData.results?.[0]?.content?.feature_post_category3 ? (
               <Link
                 href={`/blog/${pageContentData?.results?.[0]?.content?.feature_post_category3?.title}`}
                 className="text-sm border p-5 text-center flex items-center justify-center h-full min-h-[73px] border-[#392FA3] md:p-0 md:py-2 xl:text-lg"
@@ -187,8 +185,9 @@ const MagazineAndArChiveSection = () => {
                   alt="placeholder"
                 />
               </div>
-            )}
-            {pageContentData.results?.[0]?.content?.feature_post_category16 ? (
+            )} */}
+            {/* -------- */}
+            {/* {pageContentData.results?.[0]?.content?.feature_post_category16 ? (
               <Link
                 href={`/blog/${pageContentData?.results?.[0]?.content?.feature_post_category16?.title}`}
                 className="text-sm border p-5 text-center flex items-center justify-center h-full min-h-[73px] border-[#392FA3] md:p-0 md:py-2 xl:text-lg"
@@ -204,7 +203,7 @@ const MagazineAndArChiveSection = () => {
                   alt="placeholder"
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

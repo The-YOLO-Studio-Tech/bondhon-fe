@@ -1,9 +1,8 @@
-import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
 import Link from 'next/link';
 import LoadingCard from './LoadingCard';
+import { useGetLandingPagevideo } from '@/hooks/querey/pageContent.tsq';
 
 export const VideoCart = ({ data }: { data: any }) => {
-  // const { data } = useGetVideoData();
   return (
     <div>
       <div className="relative w-full  h-48 xl:h-[250px]">
@@ -25,11 +24,12 @@ export const VideoCart = ({ data }: { data: any }) => {
 };
 
 export const VideoCategoryCart = () => {
-  const { data } = useGetPageContent('home');
+  const { data } = useGetLandingPagevideo();
+
   // data?.results?.[0]?.content?.feature_video
   return (
     <>
-      {data?.results?.[0]?.content?.feature_video ? (
+      {data?.find((i: any) => i.sl == 1)?.video ? (
         <Link href="/video-gallery">
           <div>
             <div className="relative w-full videoCatCard ">
@@ -37,7 +37,7 @@ export const VideoCategoryCart = () => {
                 width="100%"
                 height="100%"
                 src={`https://www.youtube.com/embed/${new URL(
-                  data?.results?.[0]?.content?.feature_video?.url,
+                  data?.find((i: any) => i.sl == 1)?.video?.url,
                 ).searchParams.get('v')}`}
                 title="YouTube video player"
                 frameBorder="0"

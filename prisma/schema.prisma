@@ -113,7 +113,7 @@ model Magazine {
   url          String?  @db.VarChar(MAX)
   month        String
   year         String
-  publish_year DateTime?
+  publish_year DateTime
 }
 
 // url   COpYPPyy5S29iUCt   = "sqlserver://103.197.207.66:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"

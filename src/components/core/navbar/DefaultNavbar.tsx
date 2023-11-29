@@ -1,17 +1,17 @@
 'use client';
-
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { BiChevronDown, BiHomeAlt2, BiSearch } from 'react-icons/bi';
 import { AiOutlineLine } from 'react-icons/ai';
 import MobileHamburgerMenu from './MobileHamburgerMenu';
-import { useBlogCategoryData } from '@/hooks/querey/useCategorySubcategoryData';
-import { useGetPageContent } from '@/hooks/querey/pageContent.tsq';
-import LoadingCard from '../cart/LoadingCard';
+
+import { useGetCategoryData } from '@/hooks/querey/category.tsq';
+import { useGetLandingAdd } from '@/hooks/querey/pageContent.tsq';
 import AddCard from '../cart/AddCard';
+import LoadingCard from '../cart/LoadingCard';
 
 const TopHeader = () => {
-  const { data: addData } = useGetPageContent('blog');
+  const { data: lansingAdd } = useGetLandingAdd();
   return (
     <div className="mt-4">
       <div className="grid commonContainer grid-cols-3 items-center w-full">
@@ -20,9 +20,9 @@ const TopHeader = () => {
         </div>
         <div className="relative hidden md:inline-block md:w-[200px] md:h-[57px] xl:w-[295px] xl:h-[84px]">
           <div className="">
-            {addData?.results?.[0]?.content?.topAdd ? (
+            {lansingAdd?.find((i: any) => i.sl == 1) ? (
               <AddCard
-                image={addData?.results?.[0]?.content?.topAdd?.add_banner}
+                image={lansingAdd?.find((i: any) => i.sl == 1)?.advertisement?.base64}
                 width={295}
                 height={84}
               />
@@ -56,28 +56,59 @@ const TopHeader = () => {
   );
 };
 
+const Menu = ({ menu }: { menu: string }) => {
+  const { data, isLoading } = useGetCategoryData(menu);
+  // console.log(data);
+  return (
+    <div>
+      {isLoading ? (
+        [...new Array(4)].map(() => (
+          <p key={Math.random()} className="px-4 py-1 rounded-md bg-white"></p>
+        ))
+      ) : (
+        <>
+          {data.length === 0 ? (
+            <Link href={`/blog/${menu}`} className="flex items-center gap-1 xl:text-xl">
+              {menu}
+              <span className="rotate-90">
+                <AiOutlineLine size={12} />
+              </span>
+            </Link>
+          ) : (
+            <MenuWithSubmenu
+              title={menu}
+              instance={data}
+              // count={data.length}
+              // idx={idx}
+            />
+          )}
+        </>
+      )}
+    </div>
+  );
+};
+
 const MenuWithSubmenu = ({
-  idx,
-  instance,
-  count,
+  title,
+  instance, // count,
 }: {
-  idx: number;
+  title: string;
   instance: any;
-  count: number;
+  // count: number;
 }) => {
   return (
     <div className="relative menu z-10">
       <li className="flex gap-1 items-center">
         <span className="flex items-center xl:text-xl">
-          {instance?.title} <BiChevronDown />
+          {title} <BiChevronDown />
         </span>
-        <span className={`rotate-90 ${idx + 1 == count ? 'hidden' : 'block'}`}>
+        {/* <span className={`rotate-90 ${idx + 1 == count ? 'hidden' : 'block'}`}>
           <AiOutlineLine size={12} />
-        </span>
+        </span> */}
       </li>
       <div className="absolute top-[-1000px] subMenu">
         <ul className="bg-white text-[#392FA3] px-5 space-y-2 pb-3 mt-10 shadow-sm">
-          {instance.sub_category?.map((i: { title: string }) => (
+          {instance?.map((i: { title: string }) => (
             <li className="min-w-[250px] inline-block hover:border-b" key={Math.random()}>
               <Link className="" key={Math.random()} href={`/blog/${instance.title}/${i.title}`}>
                 {i.title}
@@ -105,7 +136,7 @@ const SearchField = () => {
 
 // default component
 const DefaultNavbar = () => {
-  const { data, isLoading } = useBlogCategoryData(6, 0);
+  // const { data, isLoading } = useBlogCategoryData(6, 0);
 
   return (
     <div>
@@ -122,38 +153,39 @@ const DefaultNavbar = () => {
                 <AiOutlineLine size={12} />
               </span>
             </Link>
-            {isLoading
-              ? [...new Array(4)].map(() => (
-                  <p key={Math.random()} className="px-4 py-1 rounded-md bg-white"></p>
-                ))
-              : data?.results?.map((i: any, idx: number) => {
-                  return (
-                    <div key={Math.random()}>
-                      {i.sub_category.length === 0 ? (
-                        <Link
-                          href={`/blog/${i.title}`}
-                          className="flex items-center gap-1 xl:text-xl"
-                        >
-                          {i.title}
-                          <span className="rotate-90">
-                            <AiOutlineLine size={12} />
-                          </span>
-                        </Link>
-                      ) : (
-                        <MenuWithSubmenu
-                          instance={i}
-                          count={data?.results.length}
-                          idx={idx}
-                          key={Math.random()}
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-
-            {/* {[...new Array(4)].map((_i, idx) => (
-              
-            ))} */}
+            {['স্থাপত্য', 'প্রকৌশল', 'ইন্টেরিয়র', 'পরিবেশ', 'মূল রচনা', 'অন্যান্য'].map(
+              (i: any) => {
+                return (
+                  <div key={Math.random()}>
+                    <Menu menu={i} />
+                    {/* <Link href={`/blog/${i}`} className="flex items-center gap-1 xl:text-xl">
+                      {i}
+                      <span className="rotate-90">
+                        <AiOutlineLine size={12} />
+                      </span>
+                    </Link> */}
+                    {/* {i.sub_category.length === 0 ? (
+                      <Link
+                        href={`/blog/${i.title}`}
+                        className="flex items-center gap-1 xl:text-xl"
+                      >
+                        {i.title}
+                        <span className="rotate-90">
+                          <AiOutlineLine size={12} />
+                        </span>
+                      </Link>
+                    ) : (
+                      <MenuWithSubmenu
+                        instance={i}
+                        count={data?.results.length}
+                        idx={idx}
+                        key={Math.random()}
+                      />
+                    )} */}
+                  </div>
+                );
+              },
+            )}
           </div>
           <div>
             <SearchField />

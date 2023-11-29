@@ -70,7 +70,7 @@ export const useUploadBlogDetailsAdd = () => {
   );
 };
 
-///////..
+/////// landing page add
 export const useGetLandingAdd = () => {
   /** session management */
 

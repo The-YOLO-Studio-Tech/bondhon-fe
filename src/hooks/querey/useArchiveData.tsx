@@ -17,7 +17,7 @@ export const useGetFilteredArchiveData = (month?: string, year?: string) => {
     queryKey: ['e-magazine', month__in, year__in],
     queryFn: () =>
       axiousResuest({
-        url: `/api/e-magazine/?month__in=${month__in}&year__in=${year__in}`,
+        url: `/api/magazine`,
         method: 'get',
       }),
   });
