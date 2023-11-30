@@ -1,15 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
-
-// datasource db {
-//   provider = "sqlserver"
-//   url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT;"
-
-// } &n2Wbisn.Z,,?Fh
 
 datasource db {
   provider = "sqlserver"
@@ -23,40 +14,40 @@ model Test {
 
 model Advertisement {
   id                           Int                            @id @default(autoincrement())
-  base64                       String?                        @db.VarChar(MAX)
+  base64                       String?                        @db.VarChar(Max)
   createdAt                    DateTime                       @default(now())
   updatedAt                    DateTime                       @updatedAt
-  BlogPageAdvertisement        BlogPageAdvertisement[]
   BlogDetailsPageAdvertisement BlogDetailsPageAdvertisement[]
+  BlogPageAdvertisement        BlogPageAdvertisement[]
   LangingPageAdvertisement     LangingPageAdvertisement[]
 }
 
 model BlogPageAdvertisement {
   id              Int           @id @default(autoincrement())
   sl              Int           @unique
-  advertisement   Advertisement @relation(fields: [advertisementId], references: [id])
   advertisementId Int
+  advertisement   Advertisement @relation(fields: [advertisementId], references: [id])
 }
 
 model BlogDetailsPageAdvertisement {
   id              Int           @id @default(autoincrement())
   sl              Int           @unique
-  advertisement   Advertisement @relation(fields: [advertisementId], references: [id])
   advertisementId Int
+  advertisement   Advertisement @relation(fields: [advertisementId], references: [id])
 }
 
 model LangingPageAdvertisement {
   id              Int           @id @default(autoincrement())
   sl              Int           @unique
-  advertisement   Advertisement @relation(fields: [advertisementId], references: [id])
   advertisementId Int
+  advertisement   Advertisement @relation(fields: [advertisementId], references: [id])
 }
 
 model BlogCategory {
   id                  Int                   @id @default(autoincrement())
   title               String
+  thumbnail_b64       String                @db.VarChar(Max)
   menu                String?
-  thumbnail_b64       String                @db.VarChar(MAX)
   Blog                Blog[]
   LandingPageCategory LandingPageCategory[]
 }
@@ -64,56 +55,54 @@ model BlogCategory {
 model Blog {
   id                Int               @id @default(autoincrement())
   title             String            @unique
-  category          BlogCategory      @relation(fields: [blogCategoryId], references: [id], onDelete: Cascade)
-  thumbnail_b64     String            @db.VarChar(MAX)
-  description_html  String
-  short_description String
-  status            String
+  thumbnail_b64     String            @db.VarChar(Max)
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
   blogCategoryId    Int
+  description_html  String
+  short_description String
+  status            String
+  category          BlogCategory      @relation(fields: [blogCategoryId], references: [id], onDelete: Cascade)
   LandingPageBlog   LandingPageBlog[]
 }
 
 model LandingPageBlog {
   id     Int  @id @default(autoincrement())
   sl     Int  @unique
-  blog   Blog @relation(fields: [blogId], references: [id])
   blogId Int
+  blog   Blog @relation(fields: [blogId], references: [id])
 }
 
 model LandingPageCategory {
   id             Int          @id @default(autoincrement())
   sl             Int          @unique
-  category       BlogCategory @relation(fields: [blogCategoryId], references: [id])
   blogCategoryId Int
+  category       BlogCategory @relation(fields: [blogCategoryId], references: [id])
 }
 
 model Video {
   id           Int            @id @default(autoincrement())
   title        String
-  url          String         @db.VarChar(MAX)
-  thumbnail    String?        @db.VarChar(MAX)
+  url          String         @db.VarChar(Max)
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
+  thumbnail    String?        @db.VarChar(Max)
   FeatureVideo FeatureVideo[]
 }
 
 model FeatureVideo {
   id      Int   @id @default(autoincrement())
   sl      Int   @unique
-  video   Video @relation(fields: [videoId], references: [id])
   videoId Int
+  video   Video @relation(fields: [videoId], references: [id])
 }
 
 model Magazine {
   id           Int      @id @default(autoincrement())
   title        String
-  thumbnail    String?  @db.VarChar(MAX)
-  url          String?  @db.VarChar(MAX)
+  thumbnail    String?  @db.VarChar(Max)
+  url          String?  @db.VarChar(Max)
   month        String
   year         String
   publish_year DateTime
 }
-
-// url   COpYPPyy5S29iUCt   = "sqlserver://103.197.207.66:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"
