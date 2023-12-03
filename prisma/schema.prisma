@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlserver"
-  url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"
+  url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=true"
 }
 
 model Test {
@@ -106,3 +106,7 @@ model Magazine {
   year         String
   publish_year DateTime
 }
+
+
+
+  // url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"
