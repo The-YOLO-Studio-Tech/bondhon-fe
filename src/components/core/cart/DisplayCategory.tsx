@@ -5,7 +5,11 @@ const DisplayCategory = ({ data }: { data: any }) => {
   return (
     <div>
       {data?.category ? (
-        <CategoryCart title={data?.category?.title} image={data?.category?.thumbnail_b64} />
+        <CategoryCart
+          id={data?.id}
+          title={data?.category?.title}
+          image={data?.category?.thumbnail_b64}
+        />
       ) : (
         <LoadingCard width={295} height={312} />
       )}

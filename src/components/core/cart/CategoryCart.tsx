@@ -2,9 +2,9 @@ import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
 
-const CategoryCart = ({ image, title }: { image: any; title: string }) => {
+const CategoryCart = ({ image, title, id }: { image: any; title: string; id: string }) => {
   return (
-    <Link href={`/blog/${title}`}>
+    <Link href={`/blog/?c_id=${id}`}>
       <div className="relative">
         <Image
           src={image}
