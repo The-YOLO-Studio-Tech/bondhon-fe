@@ -67,17 +67,18 @@ const BlogUploadForm: FC<Props> = ({ instance, setOpen }) => {
 
         // await mutateAsync(body);
 
-        enqueueSnackbar('Saved', { variant: 'success' });
-
         if (instance) {
           await editBlog(body);
+          enqueueSnackbar('Edited', { variant: 'success' });
           setOpen(false);
         } else {
           await addBlog(body);
           resetForm();
           push('/dashboard/blog');
+          enqueueSnackbar('Saved', { variant: 'success' });
         }
       } catch (err: any) {
+        // console.log(err)
         enqueueSnackbar('Unexpected error please try again later', { variant: 'error' });
       }
     },

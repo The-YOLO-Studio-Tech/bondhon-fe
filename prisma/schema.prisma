@@ -59,7 +59,7 @@ model Blog {
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
   blogCategoryId    Int
-  description_html  String
+  description_html  String            @db.NVarChar(Max)
   short_description String
   status            String
   category          BlogCategory      @relation(fields: [blogCategoryId], references: [id], onDelete: Cascade)
@@ -106,7 +106,6 @@ model Magazine {
   year         String
   publish_year DateTime
 }
-
 
 // "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=true;trustServerCertificate=true;connectTimeout=5"
 // url      = "sqlserver://103.197.207.67:1433;database=Bandhan;user=bandhan;password=X99@321#;encrypt=DANGER_PLAINTEXT"

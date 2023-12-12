@@ -45,6 +45,7 @@ export const POST = async (req: Request) => {
     const _ = await prisma.blog.create({ data: body });
     return Response.json(_);
   } catch (error) {
+    // console.log(error)
     return Response.error();
   }
 };

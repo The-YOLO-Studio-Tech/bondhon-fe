@@ -2,6 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+/* editor styeles */
+@layer components {
+  .editor {
+    @apply w-full;
+  }
+  .editor li {
+    @apply list-disc ml-5;
+  }
+
+  .editor a {
+    @apply text-blue-500 underline;
+  }
+  .editor figure {
+    width: 100% !important ;
+    display: block !important ;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+  }
+  .editor figure img {
+    width: 100% !important ;
+    display: block !important ;
+    object-fit: cover;
+    border-radius: 20px !important;
+    background-position: center;
+    overflow: hidden !important;
+  }
+
+  .editor img {
+    @apply block rounded-md overflow-hidden w-full;
+  }
+  .editor del {
+    @apply text-gray-400;
+  }
+
+  .editor h1 {
+    @apply text-4xl font-bold;
+  }
+  .editor h2 {
+    @apply text-3xl font-bold;
+  }
+  .editor h3 {
+    @apply text-2xl font-bold;
+  }
+  .editor h4 {
+    @apply text-xl font-bold;
+  }
+  .editor p {
+    @apply text-[16px] font-normal;
+  }
+}
+/* editor styeles */
+
+
 .tableContainer::-webkit-scrollbar {
   background: white;
   height: 10px;
