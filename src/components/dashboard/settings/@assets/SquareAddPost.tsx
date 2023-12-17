@@ -36,19 +36,20 @@ const MiniCard = ({
   );
 };
 
-const AddPost = ({ addNum }: { addNum: string }) => {
+const AddPost = ({ addNum, width, height }: { addNum: string; width: number; height: number }) => {
   const [open, setOpen] = useState(false);
   const { data: adds } = useGetAdvertisementData();
   const { data } = useGetLandingAdd();
 
   return (
     <div>
+      <p>Add({width + 'x' + height})</p>
       <div onClick={() => setOpen(!open)} className="cursor-pointer">
         <DashAddCard
           image={data?.find((i: any) => i.id == Number(addNum))?.advertisement?.base64}
           addNum={addNum}
-          width={295}
-          height={84}
+          width={width}
+          height={height}
         />
 
         {/* {addNum == 'topAdd' &&

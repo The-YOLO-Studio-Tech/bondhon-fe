@@ -144,6 +144,7 @@ const BlogUploadForm: FC<Props> = ({ instance, setOpen }) => {
         />
 
         <ImageUpload
+          ratio={'295x239'}
           error={Boolean(errors.thumbnail) && touched.thumbnail && errors.thumbnail}
           setValue={(x: any) => setFieldValue('thumbnail', x)}
           value={values.thumbnail}

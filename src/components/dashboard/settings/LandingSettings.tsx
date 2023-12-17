@@ -7,7 +7,7 @@ const LandingSettings = () => {
   return (
     <>
       <div className="mt-10 w-56">
-        <AddPost addNum="1" />
+        <AddPost width={295} height={84} addNum="1" />
       </div>
       <div className="py-10 md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
         <div className="col-span-9">
@@ -26,7 +26,7 @@ const LandingSettings = () => {
 
           {/* add section */}
           <div className="my-10">
-            <AddPost addNum="2" />
+            <AddPost width={947} height={257} addNum="2" />
           </div>
 
           {/* category card section */}
@@ -44,7 +44,7 @@ const LandingSettings = () => {
 
           {/* add section */}
           <div className="my-10">
-            <AddPost addNum="3" />{' '}
+            <AddPost width={947} height={257} addNum="3" />{' '}
           </div>
 
           {/* more category card section */}
@@ -64,10 +64,10 @@ const LandingSettings = () => {
             <FeaturedVideo />
           </div>
           <div className="mt-7">
-            <AddPost addNum="4" />
+            <AddPost width={295} height={333} addNum="4" />
           </div>
           <div className="mt-10">
-            <AddPost addNum="5" />
+            <AddPost width={295} height={607} addNum="5" />
           </div>
           <div className="grid space-y-7 mt-8">
             <FeaturePostCategory sl={'20'} />
@@ -76,7 +76,7 @@ const LandingSettings = () => {
             <FeaturePostCategory sl={'23'} />
           </div>
           <div className="mt-10">
-            <AddPost addNum="6" />
+            <AddPost width={295} height={607} addNum="6" />
           </div>
 
           <div className="grid space-y-7 mt-8">

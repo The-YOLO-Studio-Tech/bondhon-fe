@@ -54,7 +54,6 @@
 }
 /* editor styeles */
 
-
 .tableContainer::-webkit-scrollbar {
   background: white;
   height: 10px;
@@ -111,6 +110,7 @@
     height: 130px;
   }
 }
+
 @media screen and (max-width: 600px) {
   .commonContainer {
     padding-left: 20px;

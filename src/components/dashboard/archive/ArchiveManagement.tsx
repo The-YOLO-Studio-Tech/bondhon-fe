@@ -126,7 +126,7 @@ const UploadForm = ({
           error={touched.url && Boolean(errors.url)}
           helperText={touched.url && errors.url}
           onChange={handleChange}
-          label="Video Url"
+          label="Magazine Url"
           multiline
           rows={4}
         />

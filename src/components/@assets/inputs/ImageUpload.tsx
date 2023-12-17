@@ -2,7 +2,17 @@ import { getImgToB64 } from '@/libs/getImgToB64';
 import Image from 'next/legacy/image';
 import React, { useState } from 'react';
 
-const ImageUpload = ({ setValue, error, value }: { setValue: any; error: any; value: any }) => {
+const ImageUpload = ({
+  setValue,
+  error,
+  value,
+  ratio,
+}: {
+  setValue: any;
+  error: any;
+  value: any;
+  ratio?: string;
+}) => {
   const [prevImg, setPrevImg] = useState<string>();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +44,7 @@ const ImageUpload = ({ setValue, error, value }: { setValue: any; error: any; va
             <Image src={'/images/imgUpIcon.png'} width={120} height={84} alt="icon" />
           )}
         </div>
-
+        {ratio && <p className="font-medium">({ratio})</p>}
         <p>Drag and drop award image to upload</p>
         <p>or</p>
         <div className="py-4 px-8 rounded-[200px] w-fit mx-auto text-bbc-dash-btn-md bg-[#3B82F6] text-white">

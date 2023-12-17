@@ -94,6 +94,7 @@ export const UploadForm = ({
             />
 
             <ImageUpload
+              ratio="295x263"
               error={Boolean(errors.thumbnail) && touched.thumbnail && errors.thumbnail}
               setValue={(x: any) => setFieldValue('thumbnail', x)}
               value={values.thumbnail}
