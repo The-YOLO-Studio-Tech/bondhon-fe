@@ -4,12 +4,14 @@ import LoadingCard from '@/components/core/cart/LoadingCard';
 import AllBlogsSection from '@/components/sections/blogs/AllBlogsSection';
 import { useGetBlogAdd } from '@/hooks/querey/pageContent.tsq';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 // type Paramas = { params: { category: string } };
 
 const BlogPage = () => {
   const { data: addVer } = useGetBlogAdd();
-
+  const searchParams = useSearchParams();
+  const category = searchParams.get('menu' || '');
   return (
     <div className="mt-6 commonContainer xl:mt-8">
       <div className="text-center">
@@ -18,7 +20,7 @@ const BlogPage = () => {
           Blog
         </h2>
         <p className="text-[#392FA3] mt-4 mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">
-          <Link href={'/'}>হোম</Link> - DDD
+          <Link href={'/'}>হোম</Link> - {category || 'ব্লগ'}
         </p>
       </div>
       <div className="mt-6 xl:mt-8 md:grid md:grid-cols-12 md:gap-5 xl:gap-7">

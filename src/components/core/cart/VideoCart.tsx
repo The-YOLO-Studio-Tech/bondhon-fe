@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import LoadingCard from './LoadingCard';
 import { useGetLandingPagevideo } from '@/hooks/querey/pageContent.tsq';
 
@@ -30,27 +30,28 @@ export const VideoCategoryCart = () => {
   return (
     <>
       {data?.find((i: any) => i.sl == 1)?.video ? (
-        <Link href="/video-gallery">
-          <div>
-            <div className="relative w-full videoCatCard ">
-              <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${new URL(
-                  data?.find((i: any) => i.sl == 1)?.video?.url,
-                ).searchParams.get('v')}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <button className="py-2 bg-[#392FA3] text-white leading-[140%] font-medium w-full text-center xl:text-xl xl:py-3">
-              {`ভিডিও গ্যালারি`}
-            </button>
+        // <Link href="/video-gallery">
+        <div>
+          <div className="relative w-full videoCatCard ">
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${new URL(
+                data?.find((i: any) => i.sl == 1)?.video?.url,
+              ).searchParams.get('v')}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
           </div>
-        </Link>
+          <button className="py-2 bg-[#392FA3] cursor-default text-white truncate leading-[140%] font-medium w-full text-center xl:text-xl xl:py-3">
+            {/* {`ভিডিও গ্যালারি`} */}
+            {data?.find((i: any) => i.sl == 1)?.video?.title}
+          </button>
+        </div>
       ) : (
+        // </Link>
         <LoadingCard width={295} height={312} />
       )}
     </>

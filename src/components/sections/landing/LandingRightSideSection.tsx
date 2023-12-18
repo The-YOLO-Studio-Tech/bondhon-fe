@@ -17,9 +17,9 @@ const LandingRightSideSection = () => {
       </div>
       <div className="px-4 md:px-0">
         {/* add 4 */}
-        {lansingAdd?.find((i: any) => i.sl == 4) ? (
+        {lansingAdd?.find((i: any) => i.sl == 6) ? (
           <AddCard
-            image={lansingAdd?.find((i: any) => i.sl == 4)?.advertisement?.base64}
+            image={lansingAdd?.find((i: any) => i.sl == 6)?.advertisement?.base64}
             width={295}
             height={322}
           />
@@ -49,9 +49,9 @@ const LandingRightSideSection = () => {
       </div>
       <div className="px-4 md:px-0">
         {/* add 6 */}
-        {lansingAdd?.find((i: any) => i.sl == 6) ? (
+        {lansingAdd?.find((i: any) => i.sl == 4) ? (
           <AddCard
-            image={lansingAdd?.find((i: any) => i.sl == 6)?.advertisement?.base64}
+            image={lansingAdd?.find((i: any) => i.sl == 4)?.advertisement?.base64}
             width={295}
             height={603}
           />
@@ -61,9 +61,9 @@ const LandingRightSideSection = () => {
       </div>
       <div className=" mt-7 grid grid-cols-2 gap-5 md:gap-0 md:grid-cols-none md:space-y-4 md:mt-9 lg:space-y-7 xl:space-y-6">
         {/* cat 24 tp 26 */}
-        <DisplayCategory data={lansingAdd?.find((i: any) => i.sl * 1 == 24)} />
-        <DisplayCategory data={lansingAdd?.find((i: any) => i.sl * 1 == 25)} />
-        <DisplayCategory data={lansingAdd?.find((i: any) => i.sl * 1 == 26)} />
+        <DisplayCategory data={landingCat?.find((i: any) => i.sl == 24)} />
+        <DisplayCategory data={landingCat?.find((i: any) => i.sl == 25)} />
+        <DisplayCategory data={landingCat?.find((i: any) => i.sl == 26)} />
 
         {/* <div className="md:hidden">
           <CalculatorCart />

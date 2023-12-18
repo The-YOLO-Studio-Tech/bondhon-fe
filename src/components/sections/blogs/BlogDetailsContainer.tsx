@@ -118,9 +118,9 @@ const BlogDetailsContainer = ({ slug }: { slug: string }) => {
 
   return (
     <>
-      <div className="mb-10 xl:mb-16">
+      {/* <div className="mb-10 xl:mb-16">
         <div className="mb-5 md:mb-8 xl:mb-14">
-          {/* add 1 */}
+          add 1
           {addVer?.find((i: any) => i.sl == 1) ? (
             <AddCard
               image={addVer?.find((i: any) => i.sl == 1)?.advertisement?.base64}
@@ -131,7 +131,7 @@ const BlogDetailsContainer = ({ slug }: { slug: string }) => {
             <LoadingCard width={1270} height={275} />
           )}
         </div>
-      </div>
+      </div> */}
       {/*  */}
       <div>
         {data?.[0] && <BlogDetailsHeader blog={data?.[0]} />}

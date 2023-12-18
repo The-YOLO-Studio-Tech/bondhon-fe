@@ -17,14 +17,14 @@
   .editor figure {
     width: 100% !important ;
     display: block !important ;
-    border-radius: 20px !important;
+    border-radius: 0px !important;
     overflow: hidden !important;
   }
   .editor figure img {
     width: 100% !important ;
     display: block !important ;
     object-fit: cover;
-    border-radius: 20px !important;
+    border-radius: 0px !important;
     background-position: center;
     overflow: hidden !important;
   }

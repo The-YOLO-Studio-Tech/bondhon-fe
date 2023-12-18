@@ -82,7 +82,7 @@ const LandingSettings = () => {
           <div className="grid space-y-7 mt-8">
             <FeaturePostCategory sl={'24'} />
             <FeaturePostCategory sl={'25'} />
-            <FeaturePostCategory sl={'16'} />
+            <FeaturePostCategory sl={'26'} />
           </div>
         </div>
       </div>
