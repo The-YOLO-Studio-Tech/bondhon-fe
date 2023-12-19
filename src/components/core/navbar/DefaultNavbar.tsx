@@ -67,7 +67,7 @@ const Menu = ({ menu }: { menu: string }) => {
         ))
       ) : (
         <>
-          {data.length === 0 ? (
+          {data?.length === 0 ? (
             <Link href={`/blog/?menu=${menu}`} className="flex items-center gap-1 xl:text-xl">
               {menu}
               <span className="rotate-90">

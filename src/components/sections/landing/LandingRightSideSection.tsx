@@ -28,7 +28,7 @@ const LandingRightSideSection = () => {
         )}
       </div>
 
-      <div className="mt-7 px-4 md:px-0 md:mt-8">
+      <div className="mt-7 px-4 pt-[3px] md:px-0 md:mt-8">
         {/* add 5 */}
         {lansingAdd?.find((i: any) => i.sl == 5) ? (
           <AddCard
@@ -59,7 +59,7 @@ const LandingRightSideSection = () => {
           <LoadingCard width={295} height={603} />
         )}
       </div>
-      <div className=" mt-7 grid grid-cols-2 gap-5 md:gap-0 md:grid-cols-none md:space-y-4 md:mt-9 lg:space-y-7 xl:space-y-6">
+      <div className=" mt-7 grid grid-cols-2 gap-5 md:gap-0 md:grid-cols-none md:space-y-4 md:mt-9 lg:space-y-5 xl:space-y-6">
         {/* cat 24 tp 26 */}
         <DisplayCategory data={landingCat?.find((i: any) => i.sl == 24)} />
         <DisplayCategory data={landingCat?.find((i: any) => i.sl == 25)} />

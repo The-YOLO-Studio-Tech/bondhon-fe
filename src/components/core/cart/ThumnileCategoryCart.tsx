@@ -15,14 +15,18 @@ const ThumnileCategoryCart = ({ isHight = false, data }: { data: any; isHight?: 
           </h5>
           <div
             className={`relative col-span-6 w-full ${
-              isHight ? `h-[101px]` : 'h-[100px] md:h-full'
+              isHight ? `h-[101px] md:h-20 lg:h-[84px] xl:h-[101px]` : 'h-[100px] md:h-full'
             }`}
           >
             <Image src={data?.category?.thumbnail_b64} objectFit="cover" layout="fill" alt="img" />
           </div>
         </Link>
       ) : (
-        <div className={`border relative w-full ${isHight ? `h-[101px]` : 'h-[100px] md:h-full'}`}>
+        <div
+          className={`border relative w-full ${
+            isHight ? `h-[101px] md:h-20 lg:h-[84px] xl:h-[101px]` : 'h-[100px] md:h-full'
+          }`}
+        >
           <Image src="/images/placeHolder.jpeg" layout="fill" objectFit="cover" alt="placeholder" />
         </div>
       )}
