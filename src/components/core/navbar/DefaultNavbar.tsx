@@ -163,7 +163,7 @@ const DefaultNavbar = () => {
               },
             )}
           </div>
-          <div>
+          <div className="hidden lg:block">
             <SearchField />
           </div>
         </div>

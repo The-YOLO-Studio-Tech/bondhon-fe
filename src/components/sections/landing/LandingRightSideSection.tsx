@@ -40,7 +40,7 @@ const LandingRightSideSection = () => {
           <LoadingCard width={295} height={603} />
         )}
       </div>
-      <div className=" grid grid-cols-2 mb-7 mt-5 gap-5 md:space-y-5 xl:space-y-5 md:grid-cols-none md:mb-8 md:gap-0 xl:mt-7">
+      <div className=" grid grid-cols-2 mb-7 mt-5 gap-5 md:space-y-5 xl:space-y-4 md:grid-cols-none md:mb-7 md:gap-0 xl:mt-7">
         {/* cat 20 to 23 */}
         <ThumnileCategoryCart isHight={true} data={landingCat?.find((i: any) => i.sl == 20)} />
         <ThumnileCategoryCart isHight={true} data={landingCat?.find((i: any) => i.sl == 21)} />
@@ -59,7 +59,7 @@ const LandingRightSideSection = () => {
           <LoadingCard width={295} height={603} />
         )}
       </div>
-      <div className=" mt-7 grid grid-cols-2 gap-5 md:gap-0 md:grid-cols-none md:space-y-4 md:mt-9 lg:space-y-5 xl:space-y-6">
+      <div className=" mt-7 grid grid-cols-2 gap-5 md:gap-0 md:grid-cols-none md:space-y-4 md:mt-[33px] lg:space-y-5 xl:space-y-6">
         {/* cat 24 tp 26 */}
         <DisplayCategory data={landingCat?.find((i: any) => i.sl == 24)} />
         <DisplayCategory data={landingCat?.find((i: any) => i.sl == 25)} />

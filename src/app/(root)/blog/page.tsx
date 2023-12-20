@@ -3,7 +3,7 @@ import AddCard from '@/components/core/cart/AddCard';
 import LoadingCard from '@/components/core/cart/LoadingCard';
 import AllBlogsSection from '@/components/sections/blogs/AllBlogsSection';
 import { useGetBlogAdd } from '@/hooks/querey/pageContent.tsq';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 // type Paramas = { params: { category: string } };
@@ -17,11 +17,11 @@ const BlogPage = () => {
       <div className="text-center">
         <h2 className="text-[#392FA3] text-2xl font-bold w-fit px-4 mx-auto border-b border-[#392FA3] xl:text-4xl">
           {/* {decodeURIComponent(params.category)} */}
-          Blog
+          {category || 'ব্লগ'}
         </h2>
-        <p className="text-[#392FA3] mt-4 mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">
+        {/* <p className="text-[#392FA3] mt-4 mb-10 md:mb-12 xl:mb-16 xl:mt-5 xl:text-lg">
           <Link href={'/'}>হোম</Link> - {category || 'ব্লগ'}
-        </p>
+        </p> */}
       </div>
       <div className="mt-6 xl:mt-8 md:grid md:grid-cols-12 md:gap-5 xl:gap-7">
         <div className="md:col-span-9">

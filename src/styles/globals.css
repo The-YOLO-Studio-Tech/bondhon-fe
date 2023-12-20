@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  user-select: none
+}
+
 /* editor styeles */
 @layer components {
   .editor {
@@ -119,6 +123,11 @@
   }
   .videoCatCard {
     height: 192px;
+  }
+}
+@media screen and (max-width: 830px) {
+  .videoCatCard {
+    height: 140px;
   }
 }
 
