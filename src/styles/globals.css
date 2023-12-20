@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  user-select: none
+body {
+  user-select: none;
 }
 
 /* editor styeles */
