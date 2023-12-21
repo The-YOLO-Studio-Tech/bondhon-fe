@@ -2,11 +2,12 @@ import CategoryCart from './CategoryCart';
 import LoadingCard from './LoadingCard';
 
 const DisplayCategory = ({ data }: { data: any }) => {
+  // console.log(data)
   return (
     <div>
       {data?.category ? (
         <CategoryCart
-          id={data?.id}
+          id={data?.category?.id}
           title={data?.category?.title}
           image={data?.category?.thumbnail_b64}
         />
