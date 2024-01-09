@@ -12,9 +12,9 @@ const BlogDetailsHeader = ({ blog }: { blog: any }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   return (
-    <div className=" justify-between items-end pb-5 border-b lg:flex xl:pb-7">
+    <div className=" justify-between items-end pb-4 border-b lg:flex xl:pb-5">
       <div>
-        <h2 className="text-xl font-semibold mb-4 xl:mb-[22px] xl:text-3xl">{blog.title}</h2>
+        <h2 className="text-xl font-semibold mb-4 xl:mb-5 xl:text-3xl">{blog.title}</h2>
         {/* <h5 className="text-sm font-medium xl:text-[15px]">ব্লগ টি লিখেছেন- স্থপতি মৃধা রাতুল</h5> */}
         <p className="text-[#7B7C7D] text-xs xl:text-sm">
           প্রকাশ : {convertDateFormat(blog.createdAt)}
@@ -41,7 +41,7 @@ const BlogDetailsHeader = ({ blog }: { blog: any }) => {
 
           <Link
             target="_blank "
-            className="relative w-5 h-5 xl:h-7 xl:w-7"
+            className="relative w-7 h-5 xl:h-8 xl:w-9"
             href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
               currentUrl,
             )}&text=${encodeURIComponent('Check out this amazing Blog')}`}
